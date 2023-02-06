@@ -1,4 +1,4 @@
-# Makefile that builds g2-sdk-go, a "go" program.
+# Makefile that builds, tests, and packages the "go" program.
 
 # "Simple expanded" variables (':=')
 
@@ -21,12 +21,6 @@ GO_PACKAGE_NAME := $(shell echo $(GIT_REMOTE_URL) | sed -e 's|^git@github.com:|g
 CC = gcc
 
 # Conditional assignment. ('?=')
-
-SENZING_G2_DIR ?= /opt/senzing/g2
-
-# Exports
-
-export SENZING_TOOLS_DATABASE_URL=sqlite3://na:na@/tmp/sqlite/G2C.db
 
 # The first "make" target runs as default.
 
@@ -61,17 +55,7 @@ dependencies:
 
 .PHONY: test
 test:
-	@rm -rf /tmp/sqlite
-	@mkdir  /tmp/sqlite
-	@cp testdata/sqlite/G2C.db /tmp/sqlite/G2C.db
 	@go test -v -p 1 ./...
-#	@go test -v ./.
-#	@go test -v ./g2config
-#	@go test -v ./g2configmgr
-#	@go test -v ./g2diagnostic
-#	@go test -v ./g2engine
-#	@go test -v ./g2product
-
 
 # -----------------------------------------------------------------------------
 # Run
