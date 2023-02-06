@@ -61,5 +61,5 @@ func ExampleExamplePackageImpl_SaySomething() {
 		Something: "I'm here",
 	}
 	examplePackage.SaySomething(ctx)
-	//Output: From examplepackage: I'm here
+	//Output: examplePackage: I'm here
 }
