@@ -1,1 +1,24 @@
 # template-go
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/senzing/template-go.svg)](https://pkg.go.dev/github.com/senzing/template-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/senzing/template-go)](https://goreportcard.com/report/github.com/senzing/template-go)
+[![go-test.yaml](https://github.com/Senzing/template-go/actions/workflows/go-test.yaml/badge.svg)](https://github.com/Senzing/template-go/actions/workflows/go-test.yaml)
+
+## Syopsis
+
+The template-go repository serves as a starting point for new repositories hosting Go code.
+It also shows best practices that can retro-fit into existing repositories hosting Go code.
+
+## Overview
+
+Aspects of the template-go repository:
+
+1. **Badges:** Example badges can be seen above.
+1. **.github/workflows:** GitActions tailored to Go programming.
+1. **.github/dependabot.yml** Specifications for keeping Go dependencies up-to-date.
+1. **Example documentation:** used in the [Go Package library](https://pkg.go.dev).
+1. **Dockerfile:** for use in containerizing the Go program.
+1. **RPM/DEB builds:** Using `package.Dockerfile` to build `RPM` and `DEB` files for installation.
+1. **Makefile:** for simplifying development lifecycle commands.
+1. **Sample code:** `main.go` and `examplepackage` code examples.
+1. **Sample test cases:** `*_test.go` files showing how to write and document test cases.

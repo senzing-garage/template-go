@@ -49,6 +49,25 @@ dependencies:
 	@go get -t -u ./...
 	@go mod tidy
 
+
+.PHONY: build
+build: dependencies build-linux
+
+
+.PHONY: build-linux
+build-linux:
+	@GOOS=linux \
+	GOARCH=amd64 \
+	go build \
+	  -ldflags \
+	    "-X 'main.buildIteration=${BUILD_ITERATION}' \
+	     -X 'main.buildVersion=${BUILD_VERSION}' \
+	     -X 'main.programName=${PROGRAM_NAME}' \
+	    " \
+	  -o $(GO_PACKAGE_NAME)
+	@mkdir -p $(TARGET_DIRECTORY)/linux || true
+	@mv $(GO_PACKAGE_NAME) $(TARGET_DIRECTORY)/linux
+
 # -----------------------------------------------------------------------------
 # Test
 # -----------------------------------------------------------------------------
@@ -56,6 +75,48 @@ dependencies:
 .PHONY: test
 test:
 	@go test -v -p 1 ./...
+
+
+# -----------------------------------------------------------------------------
+# docker-build
+#  - https://docs.docker.com/engine/reference/commandline/build/
+# -----------------------------------------------------------------------------
+
+.PHONY: docker-build
+docker-build:
+	@docker build \
+		--build-arg BUILD_ITERATION=$(BUILD_ITERATION) \
+		--build-arg BUILD_VERSION=$(BUILD_VERSION) \
+		--build-arg GO_PACKAGE_NAME=$(GO_PACKAGE_NAME) \
+		--build-arg PROGRAM_NAME=$(PROGRAM_NAME) \
+		--file Dockerfile \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
+		.
+
+
+.PHONY: docker-build-package
+docker-build-package:
+	@docker build \
+		--build-arg BUILD_ITERATION=$(BUILD_ITERATION) \
+		--build-arg BUILD_VERSION=$(BUILD_VERSION) \
+		--build-arg GO_PACKAGE_NAME=$(GO_PACKAGE_NAME) \
+		--build-arg PROGRAM_NAME=$(PROGRAM_NAME) \
+		--no-cache \
+		--file package.Dockerfile \
+		--tag $(DOCKER_BUILD_IMAGE_NAME) \
+		.
+
+# -----------------------------------------------------------------------------
+# Package
+# -----------------------------------------------------------------------------
+
+.PHONY: package
+package: docker-build-package
+	@mkdir -p $(TARGET_DIRECTORY) || true
+	@CONTAINER_ID=$$(docker create $(DOCKER_BUILD_IMAGE_NAME)); \
+	docker cp $$CONTAINER_ID:/output/. $(TARGET_DIRECTORY)/; \
+	docker rm -v $$CONTAINER_ID
 
 # -----------------------------------------------------------------------------
 # Run
@@ -65,14 +126,27 @@ test:
 run:
 	@go run main.go
 
+
+.PHONY: docker-run
+docker-run:
+	@docker run \
+	    --interactive \
+	    --tty \
+	    --name $(DOCKER_CONTAINER_NAME) \
+	    $(DOCKER_IMAGE_NAME)
+
+
+
+
 # -----------------------------------------------------------------------------
 # Utility targets
 # -----------------------------------------------------------------------------
 
 .PHONY: update-pkg-cache
 update-pkg-cache:
-	GOPROXY=https://proxy.golang.org GO111MODULE=on \
+	@GOPROXY=https://proxy.golang.org GO111MODULE=on \
 	go get $(GO_PACKAGE_NAME)@$(BUILD_TAG)
+
 
 .PHONY: clean
 clean:
