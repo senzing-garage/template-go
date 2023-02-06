@@ -18,7 +18,7 @@ type ExamplePackageImpl struct {
 // Constants
 // ----------------------------------------------------------------------------
 
-const exampleConstant = "examplepackage"
+const exampleConstant = "examplePackage"
 
 // ----------------------------------------------------------------------------
 // Interface methods
@@ -35,6 +35,6 @@ Output
     See the example output.
 */
 func (examplepackage *ExamplePackageImpl) SaySomething(ctx context.Context) error {
-	fmt.Printf("From %s: %s\n", exampleConstant, examplepackage.Something)
+	fmt.Printf("%s: %s\n", exampleConstant, examplepackage.Something)
 	return nil
 }

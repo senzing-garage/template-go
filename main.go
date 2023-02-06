@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+
+	"github.com/senzing/template-go/examplepackage"
 )
 
 // ----------------------------------------------------------------------------
@@ -38,5 +40,16 @@ func exampleFunction(ctx context.Context, name string, version string, iteration
 
 func main() {
 	ctx := context.TODO()
+
+	// Calling a function in main.go.
+
 	exampleFunction(ctx, programName, buildVersion, buildIteration)
+
+	// Using a package
+
+	examplePackage := &examplepackage.ExamplePackageImpl{
+		Something: " Main says 'Hi!'",
+	}
+
+	examplePackage.SaySomething(ctx)
 }

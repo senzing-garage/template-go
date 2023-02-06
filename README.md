@@ -16,9 +16,9 @@ Aspects of the template-go repository:
 1. **Badges:** Example badges can be seen above.
 1. **.github/workflows:** GitActions tailored to Go programming.
 1. **.github/dependabot.yml** Specifications for keeping Go dependencies up-to-date.
-1. **Example documentation:** used in the [Go Package library](https://pkg.go.dev).
-1. **Dockerfile:** for use in containerizing the Go program.
+1. **Example documentation:** Documentation style conducive to the [Go Package library](https://pkg.go.dev).
+1. **Dockerfile:** Containerizing the Go program.
 1. **RPM/DEB builds:** Using `package.Dockerfile` to build `RPM` and `DEB` files for installation.
-1. **Makefile:** for simplifying development lifecycle commands.
+1. **Makefile:** Simplifies development lifecycle commands.
 1. **Sample code:** `main.go` and `examplepackage` code examples.
 1. **Sample test cases:** `*_test.go` files showing how to write and document test cases.

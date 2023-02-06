@@ -76,7 +76,6 @@ build-linux:
 test:
 	@go test -v -p 1 ./...
 
-
 # -----------------------------------------------------------------------------
 # docker-build
 #  - https://docs.docker.com/engine/reference/commandline/build/
@@ -134,9 +133,6 @@ docker-run:
 	    --tty \
 	    --name $(DOCKER_CONTAINER_NAME) \
 	    $(DOCKER_IMAGE_NAME)
-
-
-
 
 # -----------------------------------------------------------------------------
 # Utility targets
