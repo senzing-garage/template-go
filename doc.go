@@ -1,4 +1,6 @@
 /*
+The Senzing XXXX module is...
+
 # Synopsis
 
 The Senzing XXXX packages are...

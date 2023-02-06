@@ -1,4 +1,6 @@
 /*
+The example package is used to...
+
 # Synopsis
 
 The examplepackage package is...
