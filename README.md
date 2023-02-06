@@ -22,3 +22,111 @@ Aspects of the template-go repository:
 1. **Makefile:** Simplifies development lifecycle commands.
 1. **Sample code:** `main.go` and `examplepackage` code examples.
 1. **Sample test cases:** `*_test.go` files showing how to write and document test cases.
+
+## Development
+
+### Build
+
+1. Identify repository.
+   Example:
+
+    ```console
+    export GIT_ACCOUNT=senzing
+    export GIT_REPOSITORY=template-go
+    export GIT_ACCOUNT_DIR=~/${GIT_ACCOUNT}.git
+    export GIT_REPOSITORY_DIR="${GIT_ACCOUNT_DIR}/${GIT_REPOSITORY}"
+
+    ```
+
+1. Build the binaries.
+   Example:
+
+     ```console
+     cd ${GIT_REPOSITORY_DIR}
+     make build
+
+     ```
+
+1. The binaries will be found in ${GIT_REPOSITORY_DIR}/target.
+   Example:
+
+    ```console
+    tree ${GIT_REPOSITORY_DIR}/target
+
+    ```
+
+1. Clean up.
+   Example:
+
+     ```console
+     cd ${GIT_REPOSITORY_DIR}
+     make clean
+
+     ```
+
+### Test
+
+1. Run Go tests.
+   Example:
+
+     ```console
+     cd ${GIT_REPOSITORY_DIR}
+     make test
+
+     ```
+
+### Package
+
+#### Package RPM and DEB files
+
+1. Use make target to run a docker images that builds RPM and DEB files.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make package
+
+    ```
+
+1. The results will be in the `${GIT_REPOSITORY_DIR}/target` directory.
+   Example:
+
+    ```console
+    tree ${GIT_REPOSITORY_DIR}/target
+
+    ```
+
+#### Test DEB package on Ubuntu
+
+1. Determine if `template-go` is installed.
+   Example:
+
+    ```console
+    apt list --installed | grep template-go
+
+    ```
+
+1. :pencil2: Install `template-go`.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}/target
+    sudo apt install ./template-go-0.0.0.deb
+
+    ```
+
+1. Run command.
+   Example:
+
+    ```console
+    template-go
+
+    ```
+
+1. Remove `template-go` from system.
+   Example:
+
+    ```console
+    sudo apt-get remove template-go
+
+    ```
