@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/senzing/template-go)](https://goreportcard.com/report/github.com/senzing/template-go)
 [![go-test.yaml](https://github.com/Senzing/template-go/actions/workflows/go-test.yaml/badge.svg)](https://github.com/Senzing/template-go/actions/workflows/go-test.yaml)
 
-## Syopsis
+## Synopsis
 
 The template-go repository serves as a starting point for new repositories hosting Go code.
 It also shows best practices that can retro-fit into existing repositories hosting Go code.
@@ -74,6 +74,21 @@ Aspects of the template-go repository:
      make test
 
      ```
+
+### Documentation
+
+1. Start `godoc` documentation server.
+   Example:
+
+    ```console
+     cd ${GIT_REPOSITORY_DIR}
+     godoc
+
+    ```
+
+1. Visit [localhost:6060](http://localhost:6060)
+1. Senzing documentation will be in the "Third party" section.
+   `github.com` > `senzing` > `template-go`
 
 ### Package
 
