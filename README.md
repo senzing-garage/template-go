@@ -99,6 +99,10 @@ Aspects of the template-go repository:
 1. Senzing documentation will be in the "Third party" section.
    `github.com` > `senzing` > `template-go`
 
+1. When published, the reference can be found by clicking on the following badge:
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/senzing/go-observing.svg)](https://pkg.go.dev/github.com/senzing/go-observing)
+
 ### Docker
 
 1. Use make target to run a docker images that builds RPM and DEB files.
