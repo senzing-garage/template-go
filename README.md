@@ -106,7 +106,17 @@ Aspects of the template-go repository:
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
-    make package
+    make docker-build
+
+    ```
+
+1. Run docker container.
+   Example:
+
+    ```console
+    docker run \
+      --rm \
+      senzing/template-go
 
     ```
 

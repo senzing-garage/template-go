@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 
 ARG IMAGE_GO_BUILDER=golang:1.20.0
-ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.1.1
+ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.4.0
 
 # -----------------------------------------------------------------------------
 # Stage: go_builder
