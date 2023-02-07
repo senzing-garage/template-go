@@ -99,6 +99,17 @@ Aspects of the template-go repository:
 1. Senzing documentation will be in the "Third party" section.
    `github.com` > `senzing` > `template-go`
 
+### Docker
+
+1. Use make target to run a docker images that builds RPM and DEB files.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make package
+
+    ```
+
 ### Package
 
 #### Package RPM and DEB files
