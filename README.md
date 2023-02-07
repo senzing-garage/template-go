@@ -99,7 +99,8 @@ Aspects of the template-go repository:
 1. Senzing documentation will be in the "Third party" section.
    `github.com` > `senzing` > `template-go`
 
-1. When published, the reference can be found by clicking on the following badge:
+1. When a versioned release is published with a `v0.0.0` format tag,
+the reference can be found by clicking on the following badge:
 [![Go Reference](https://pkg.go.dev/badge/github.com/senzing/template-go.svg)](https://pkg.go.dev/github.com/senzing/template-go)
 
 ### Docker
