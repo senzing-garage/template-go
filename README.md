@@ -100,7 +100,7 @@ Aspects of the template-go repository:
    `github.com` > `senzing` > `template-go`
 
 1. When a versioned release is published with a `v0.0.0` format tag,
-the reference can be found by clicking on the following badge:
+the reference can be found by clicking on the following badge at the top of the README.md page:
 [![Go Reference](https://pkg.go.dev/badge/github.com/senzing/template-go.svg)](https://pkg.go.dev/github.com/senzing/template-go)
 
 ### Docker
