@@ -101,7 +101,7 @@ Aspects of the template-go repository:
 
 1. When published, the reference can be found by clicking on the following badge:
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/senzing/go-observing.svg)](https://pkg.go.dev/github.com/senzing/go-observing)
+[![Go Reference](https://pkg.go.dev/badge/github.com/senzing/template-go.svg)](https://pkg.go.dev/github.com/senzing/template-go)
 
 ### Docker
 
