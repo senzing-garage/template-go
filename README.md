@@ -4,24 +4,24 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/senzing/template-go)](https://goreportcard.com/report/github.com/senzing/template-go)
 [![go-test.yaml](https://github.com/Senzing/template-go/actions/workflows/go-test.yaml/badge.svg)](https://github.com/Senzing/template-go/actions/workflows/go-test.yaml)
 
-## Syopsis
+## Synopsis
 
 The template-go repository serves as a starting point for new repositories hosting Go code.
-It also shows best practices that can retro-fit into existing repositories hosting Go code.
+It also shows best practices that can be retro-fitted into existing repositories hosting Go code.
 
 ## Overview
 
 Aspects of the template-go repository:
 
 1. **Badges:** Example badges can be seen above.
-1. **.github/workflows:** GitActions tailored to Go programming.
-1. **.github/dependabot.yml** Specifications for keeping Go dependencies up-to-date.
-1. **Example documentation:** Documentation style conducive to the [Go Package library](https://pkg.go.dev).
-1. **Dockerfile:** Containerizing the Go program.
-1. **RPM/DEB builds:** Using `package.Dockerfile` to build `RPM` and `DEB` files for installation.
 1. **Makefile:** Simplifies development lifecycle commands.
 1. **Sample code:** `main.go` and `examplepackage` code examples.
 1. **Sample test cases:** `*_test.go` files showing how to write and document test cases.
+1. **Sample documentation:** Documentation style conducive to the [Go Package library](https://pkg.go.dev).
+1. **Dockerfile:** Containerizing the Go program.
+1. **RPM/DEB builds:** Using `package.Dockerfile` to build `RPM` and `DEB` files for installation.
+1. **.github/workflows:** GitActions tailored to Go programming.
+1. **.github/dependabot.yml** Specifications for keeping Go dependencies up-to-date.
 
 ## Development
 
@@ -38,6 +38,7 @@ Aspects of the template-go repository:
 
     ```
 
+1. Using the environment variables values just set, follow steps in [clone-repository](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/clone-repository.md) to install the Git repository.
 1. Build the binaries.
    Example:
 
@@ -52,6 +53,14 @@ Aspects of the template-go repository:
 
     ```console
     tree ${GIT_REPOSITORY_DIR}/target
+
+    ```
+
+1. Run the binary.
+   Example:
+
+    ```console
+    ${GIT_REPOSITORY_DIR}/target/linux/template-go
 
     ```
 
@@ -74,6 +83,46 @@ Aspects of the template-go repository:
      make test
 
      ```
+
+### Documentation
+
+1. Start `godoc` documentation server.
+   Example:
+
+    ```console
+     cd ${GIT_REPOSITORY_DIR}
+     godoc
+
+    ```
+
+1. Visit [localhost:6060](http://localhost:6060)
+1. Senzing documentation will be in the "Third party" section.
+   `github.com` > `senzing` > `template-go`
+
+1. When a versioned release is published with a `v0.0.0` format tag,
+the reference can be found by clicking on the following badge at the top of the README.md page:
+[![Go Reference](https://pkg.go.dev/badge/github.com/senzing/template-go.svg)](https://pkg.go.dev/github.com/senzing/template-go)
+
+### Docker
+
+1. Use make target to run a docker images that builds RPM and DEB files.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make docker-build
+
+    ```
+
+1. Run docker container.
+   Example:
+
+    ```console
+    docker run \
+      --rm \
+      senzing/template-go
+
+    ```
 
 ### Package
 
