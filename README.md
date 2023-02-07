@@ -56,6 +56,14 @@ Aspects of the template-go repository:
 
     ```
 
+1. Run the binary.
+   Example:
+
+    ```console
+    ${GIT_REPOSITORY_DIR}/target/linux/template-go
+
+    ```
+
 1. Clean up.
    Example:
 
