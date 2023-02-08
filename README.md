@@ -1,13 +1,11 @@
 # template-go
 
+The template-go repository serves as a starting point for new repositories hosting Go code.
+It also shows best practices that can be retro-fitted into existing repositories hosting Go code.
+
 [![Go Reference](https://pkg.go.dev/badge/github.com/senzing/template-go.svg)](https://pkg.go.dev/github.com/senzing/template-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/senzing/template-go)](https://goreportcard.com/report/github.com/senzing/template-go)
 [![go-test.yaml](https://github.com/Senzing/template-go/actions/workflows/go-test.yaml/badge.svg)](https://github.com/Senzing/template-go/actions/workflows/go-test.yaml)
-
-## Synopsis
-
-The template-go repository serves as a starting point for new repositories hosting Go code.
-It also shows best practices that can be retro-fitted into existing repositories hosting Go code.
 
 ## Overview
 
