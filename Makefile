@@ -1,4 +1,4 @@
-# Makefile that builds, tests, and packages the "go" program.
+# Makefile for template-go.
 
 # "Simple expanded" variables (':=')
 
@@ -21,23 +21,19 @@ GO_PACKAGE_NAME := $(shell echo $(GIT_REMOTE_URL) | sed -e 's|^git@github.com:|g
 CC = gcc
 
 # Conditional assignment. ('?=')
+# Can be overridden with "export"
+# Example: "export LD_LIBRARY_PATH=/path/to/my/senzing/g2/lib"
+
+LD_LIBRARY_PATH ?= ${SENZING_G2_DIR}/lib
+
+# Export environment variables.
+
+.EXPORT_ALL_VARIABLES:
 
 # The first "make" target runs as default.
 
 .PHONY: default
 default: help
-
-# -----------------------------------------------------------------------------
-# Export environment variables.
-# -----------------------------------------------------------------------------
-
-.EXPORT_ALL_VARIABLES:
-
-# Flags for the C compiler.
-# Can be overridden with "export"
-# Example: "export LD_LIBRARY_PATH=/path/to/my/senzing/g2/lib"
-
-LD_LIBRARY_PATH ?= ${SENZING_G2_DIR}/lib
 
 # -----------------------------------------------------------------------------
 # Build
@@ -59,12 +55,12 @@ build-linux:
 	@GOOS=linux \
 	GOARCH=amd64 \
 	go build \
-	  -ldflags \
-	    "-X 'main.buildIteration=${BUILD_ITERATION}' \
-	     -X 'main.buildVersion=${BUILD_VERSION}' \
-	     -X 'main.programName=${PROGRAM_NAME}' \
-	    " \
-	  -o $(GO_PACKAGE_NAME)
+		-ldflags \
+			"-X 'main.buildIteration=${BUILD_ITERATION}' \
+			-X 'main.buildVersion=${BUILD_VERSION}' \
+			-X 'main.programName=${PROGRAM_NAME}' \
+			" \
+		-o $(GO_PACKAGE_NAME)
 	@mkdir -p $(TARGET_DIRECTORY)/linux || true
 	@mv $(GO_PACKAGE_NAME) $(TARGET_DIRECTORY)/linux
 
@@ -129,10 +125,10 @@ run:
 .PHONY: docker-run
 docker-run:
 	@docker run \
-	    --interactive \
-	    --tty \
-	    --name $(DOCKER_CONTAINER_NAME) \
-	    $(DOCKER_IMAGE_NAME)
+		--interactive \
+		--tty \
+		--name $(DOCKER_CONTAINER_NAME) \
+		$(DOCKER_IMAGE_NAME)
 
 # -----------------------------------------------------------------------------
 # Utility targets
@@ -141,7 +137,7 @@ docker-run:
 .PHONY: update-pkg-cache
 update-pkg-cache:
 	@GOPROXY=https://proxy.golang.org GO111MODULE=on \
-	go get $(GO_PACKAGE_NAME)@$(BUILD_TAG)
+		go get $(GO_PACKAGE_NAME)@$(BUILD_TAG)
 
 
 .PHONY: clean
