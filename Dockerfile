@@ -29,8 +29,8 @@ COPY . ${GOPATH}/src/${GO_PACKAGE_NAME}
 
 # Copy necessary Senzing files from DockerHub.
 
-COPY --from=${IMAGE_FINAL}  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
-COPY --from=${IMAGE_FINAL}  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
+COPY --from=senzing/senzingapi-runtime:3.4.2  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
+COPY --from=senzing/senzingapi-runtime:3.4.2  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
 
 # Build go program.
 
