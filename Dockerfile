@@ -9,6 +9,8 @@ ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.4.2
 # Stage: go_builder
 # -----------------------------------------------------------------------------
 
+# define where we need to copy senzing files from
+FROM ${IMAGE_FINAL} as senzing-runtime
 FROM ${IMAGE_GO_BUILDER} as go_builder
 ENV REFRESHED_AT 2023-02-22
 LABEL Name="senzing/template-go-builder" \
@@ -29,8 +31,12 @@ COPY . ${GOPATH}/src/${GO_PACKAGE_NAME}
 
 # Copy necessary Senzing files from DockerHub.
 
-COPY --from=senzing/senzingapi-runtime:3.4.2  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
-COPY --from=senzing/senzingapi-runtime:3.4.2  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
+COPY --from=senzing-runtime  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
+COPY --from=senzing-runtime  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
+
+# Set path to Senzing libs.
+
+ENV LD_LIBRARY_PATH=/opt/senzing/g2/lib/
 
 # Build go program.
 
