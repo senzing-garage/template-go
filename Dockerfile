@@ -61,7 +61,7 @@ RUN mkdir -p /output \
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} as final
-ENV REFRESHED_AT 2023-02-22
+ENV REFRESHED_AT=2023-02-22
 LABEL Name="senzing/template-go" \
       Maintainer="support@senzing.com" \
       Version="0.0.5"
