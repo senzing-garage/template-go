@@ -33,7 +33,10 @@ Aspects of the template-go repository:
 
 ## References
 
-- [API documentation](https://pkg.go.dev/github.com/senzing/template-go)
-- [Development](docs/development.md)
-- [Errors](docs/errors.md)
-- [Examples](docs/examples.md)
+1. [API documentation](https://pkg.go.dev/github.com/senzing/template-go)
+1. [Development](docs/development.md)
+1. [Errors](docs/errors.md)
+1. [Examples](docs/examples.md)
+1. Related artifacts:
+    1. [DockerHub](https://hub.docker.com/r/senzing/template-go)
+    1. [Helm Chart](https://github.com/Senzing/charts/tree/main/charts/template-go)

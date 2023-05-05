@@ -30,7 +30,9 @@ LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 
 .EXPORT_ALL_VARIABLES:
 
+# -----------------------------------------------------------------------------
 # The first "make" target runs as default.
+# -----------------------------------------------------------------------------
 
 .PHONY: default
 default: help
@@ -175,6 +177,9 @@ print-make-variables:
 		$(if $(filter-out environment% default automatic, \
 		$(origin $V)),$(warning $V=$($V) ($(value $V)))))
 
+# -----------------------------------------------------------------------------
+# Help
+# -----------------------------------------------------------------------------
 
 .PHONY: help
 help:
