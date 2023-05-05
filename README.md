@@ -1,5 +1,7 @@
 # template-go
 
+## Synopsis
+
 The template-go repository serves as a starting point for new repositories hosting Go code.
 It also shows best practices that can be retro-fitted into existing repositories hosting Go code.
 
@@ -24,3 +26,14 @@ Aspects of the template-go repository:
 1. **RPM/DEB builds:** Using `package.Dockerfile` to build `RPM` and `DEB` files for installation.
 1. **.github/workflows:** GitActions tailored to Go programming.
 1. **.github/dependabot.yml** Specifications for keeping Go dependencies up-to-date.
+
+## Use
+
+(TODO:)
+
+## References
+
+- [API documentation](https://pkg.go.dev/github.com/senzing/template-go)
+- [Development](docs/development.md)
+- [Errors](docs/errors.md)
+- [Examples](docs/examples.md)

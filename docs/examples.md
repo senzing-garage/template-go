@@ -1,1 +1,1 @@
-# Examples
+# template-go examples
