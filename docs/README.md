@@ -2,4 +2,4 @@
 
 Placeholder for [GitHub pages](https://pages.github.com/).
 
-See [https://senzing.github.io/template-go](https://senzing.github.io/template-go).
+See [https://hub.senzing.com/template-go](https://hub.senzing.com/template-go).

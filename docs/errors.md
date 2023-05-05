@@ -1,1 +1,1 @@
-# Errors
+# template-go errors

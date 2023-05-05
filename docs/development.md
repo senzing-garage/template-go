@@ -1,4 +1,4 @@
-# Development
+# template-go development
 
 ## Build
 
