@@ -136,6 +136,7 @@ func PreRun(cobraCommand *cobra.Command, args []string) {
 	cobraCommand.SetVersionTemplate(constant.VersionTemplate)
 }
 
+// Used in construction of cobra.Command
 func RunE(_ *cobra.Command, _ []string) error {
 	var err error = nil
 	ctx := context.TODO()
