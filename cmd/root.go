@@ -22,7 +22,23 @@ const (
 	defaultEngineConfigurationJson string = ""
 	defaultEngineLogLevel          int    = 0
 	defaultLogLevel                string = "INFO"
+	Short                          string = "template-go short description"
+	Use                            string = "template-go"
+	Long                           string = `
+template-go long description.
+	`
 )
+
+// ----------------------------------------------------------------------------
+// Private functions
+// ----------------------------------------------------------------------------
+
+// Since init() is always invoked, define command line parameters.
+func init() {
+	RootCmd.Flags().Int(option.EngineLogLevel, defaultEngineLogLevel, fmt.Sprintf("Log level for Senzing Engine [%s]", envar.EngineLogLevel))
+	RootCmd.Flags().String(option.Configuration, defaultConfiguration, fmt.Sprintf("Path to configuration file [%s]", envar.Configuration))
+	RootCmd.Flags().String(option.EngineConfigurationJson, defaultEngineConfigurationJson, fmt.Sprintf("JSON string sent to Senzing's init() function [%s]", envar.EngineConfigurationJson))
+}
 
 // If a configuration file is present, load it.
 func loadConfigurationFile(cobraCommand *cobra.Command) {
@@ -61,6 +77,7 @@ func loadConfigurationFile(cobraCommand *cobra.Command) {
 
 // Configure Viper with user-specified options.
 func loadOptions(cobraCommand *cobra.Command) {
+	var err error = nil
 	viper.AutomaticEnv()
 	replacer := strings.NewReplacer("-", "_")
 	viper.SetEnvKeyReplacer(replacer)
@@ -73,7 +90,10 @@ func loadOptions(cobraCommand *cobra.Command) {
 	}
 	for optionKey, optionValue := range intOptions {
 		viper.SetDefault(optionKey, optionValue)
-		viper.BindPFlag(optionKey, cobraCommand.Flags().Lookup(optionKey))
+		err = viper.BindPFlag(optionKey, cobraCommand.Flags().Lookup(optionKey))
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	// Strings
@@ -84,33 +104,21 @@ func loadOptions(cobraCommand *cobra.Command) {
 	}
 	for optionKey, optionValue := range stringOptions {
 		viper.SetDefault(optionKey, optionValue)
-		viper.BindPFlag(optionKey, cobraCommand.Flags().Lookup(optionKey))
+		err = viper.BindPFlag(optionKey, cobraCommand.Flags().Lookup(optionKey))
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 
-// RootCmd represents the command.
-var RootCmd = &cobra.Command{
-	Use:   "template-go",
-	Short: "template-go short description",
-	Long: `
-template-go long description.
-	`,
-	PreRun: func(cobraCommand *cobra.Command, args []string) {
-		loadConfigurationFile(cobraCommand)
-		loadOptions(cobraCommand)
-		cobraCommand.SetVersionTemplate(constant.VersionTemplate)
-	},
-	RunE: func(cmd *cobra.Command, args []string) error {
-		var err error = nil
-		ctx := context.TODO()
-		examplePackage := &examplepackage.ExamplePackageImpl{
-			Something: "Main says 'Hi!'",
-		}
-		err = examplePackage.SaySomething(ctx)
-		return err
-	},
-	Version: helper.MakeVersion(githubVersion, githubIteration),
+// Used in construction of cobra.Command
+func Version() string {
+	return helper.MakeVersion(githubVersion, githubIteration)
 }
+
+// ----------------------------------------------------------------------------
+// Public functions
+// ----------------------------------------------------------------------------
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the RootCmd.
@@ -121,9 +129,33 @@ func Execute() {
 	}
 }
 
-// Since init() is always invoked, define command line parameters.
-func init() {
-	RootCmd.Flags().Int(option.EngineLogLevel, defaultEngineLogLevel, fmt.Sprintf("Log level for Senzing Engine [%s]", envar.EngineLogLevel))
-	RootCmd.Flags().String(option.Configuration, defaultConfiguration, fmt.Sprintf("Path to configuration file [%s]", envar.Configuration))
-	RootCmd.Flags().String(option.EngineConfigurationJson, defaultEngineConfigurationJson, fmt.Sprintf("JSON string sent to Senzing's init() function [%s]", envar.EngineConfigurationJson))
+// Used in construction of cobra.Command
+func PreRun(cobraCommand *cobra.Command, args []string) {
+	loadConfigurationFile(cobraCommand)
+	loadOptions(cobraCommand)
+	cobraCommand.SetVersionTemplate(constant.VersionTemplate)
+}
+
+func RunE(_ *cobra.Command, _ []string) error {
+	var err error = nil
+	ctx := context.TODO()
+	examplePackage := &examplepackage.ExamplePackageImpl{
+		Something: "Main says 'Hi!'",
+	}
+	err = examplePackage.SaySomething(ctx)
+	return err
+}
+
+// ----------------------------------------------------------------------------
+// Command
+// ----------------------------------------------------------------------------
+
+// RootCmd represents the command.
+var RootCmd = &cobra.Command{
+	Use:     Use,
+	Short:   Short,
+	Long:    Long,
+	PreRun:  PreRun,
+	RunE:    RunE,
+	Version: Version(),
 }
