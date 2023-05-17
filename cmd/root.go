@@ -112,11 +112,6 @@ func loadOptions(cobraCommand *cobra.Command) {
 	}
 }
 
-// Used in construction of cobra.Command
-func Version() string {
-	return helper.MakeVersion(githubVersion, githubIteration)
-}
-
 // ----------------------------------------------------------------------------
 // Public functions
 // ----------------------------------------------------------------------------
@@ -146,6 +141,11 @@ func RunE(_ *cobra.Command, _ []string) error {
 	}
 	err = examplePackage.SaySomething(ctx)
 	return err
+}
+
+// Used in construction of cobra.Command
+func Version() string {
+	return helper.MakeVersion(githubVersion, githubIteration)
 }
 
 // ----------------------------------------------------------------------------
