@@ -190,6 +190,7 @@ func loadOptions(cobraCommand *cobra.Command) {
 			panic(err)
 		}
 	}
+
 	// StringSlice
 
 	for _, contextVar := range ContextStringSlices {
