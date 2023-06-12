@@ -3,7 +3,7 @@ module github.com/senzing/template-go
 go 1.20
 
 require (
-	github.com/senzing/senzing-tools v0.2.8
+	github.com/senzing/senzing-tools v0.2.9-0.20230608211707-c68079e7b04c
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/viper v1.16.0
 	github.com/stretchr/testify v1.8.4

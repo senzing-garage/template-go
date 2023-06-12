@@ -10,6 +10,7 @@ import (
 
 	"github.com/senzing/senzing-tools/constant"
 	"github.com/senzing/senzing-tools/envar"
+	"github.com/senzing/senzing-tools/help"
 	"github.com/senzing/senzing-tools/helper"
 	"github.com/senzing/senzing-tools/option"
 	"github.com/senzing/template-go/examplepackage"
@@ -18,16 +19,84 @@ import (
 )
 
 const (
-	defaultConfiguration           string = ""
-	defaultEngineConfigurationJson string = ""
-	defaultEngineLogLevel          int    = 0
-	defaultLogLevel                string = "INFO"
-	Short                          string = "template-go short description"
-	Use                            string = "template-go"
-	Long                           string = `
+	Short string = "template-go short description"
+	Use   string = "template-go"
+	Long  string = `
 template-go long description.
-	`
+    `
 )
+
+// ----------------------------------------------------------------------------
+// Context variables
+// ----------------------------------------------------------------------------
+
+var ContextBools = []struct {
+	Dfault bool
+	Envar  string
+	Help   string
+	Option string
+}{
+	{
+		Dfault: false,
+		Envar:  envar.EnableAll,
+		Help:   help.EnableAll,
+		Option: option.EnableAll,
+	},
+}
+
+var ContextInts = []struct {
+	Dfault int
+	Envar  string
+	Help   string
+	Option string
+}{
+	{
+		Dfault: 0,
+		Envar:  envar.EngineLogLevel,
+		Help:   help.EngineLogLevel,
+		Option: option.EngineLogLevel,
+	},
+}
+
+var ContextStrings = []struct {
+	Dfault string
+	Envar  string
+	Help   string
+	Option string
+}{
+	{
+		Dfault: "",
+		Envar:  envar.Configuration,
+		Help:   help.Configuration,
+		Option: option.Configuration,
+	},
+	{
+		Dfault: "",
+		Envar:  envar.EngineConfigurationJson,
+		Help:   help.EngineConfigurationJson,
+		Option: option.EngineConfigurationJson,
+	},
+	{
+		Dfault: "INFO",
+		Envar:  envar.LogLevel,
+		Help:   help.LogLevel,
+		Option: option.LogLevel,
+	},
+}
+
+var ContextStringSlices = []struct {
+	Dfault []string
+	Envar  string
+	Help   string
+	Option string
+}{
+	{
+		Dfault: []string{},
+		Envar:  envar.XtermAllowedHostnames,
+		Help:   help.XtermAllowedHostnames,
+		Option: option.XtermAllowedHostnames,
+	},
+}
 
 // ----------------------------------------------------------------------------
 // Private functions
@@ -35,10 +104,18 @@ template-go long description.
 
 // Since init() is always invoked, define command line parameters.
 func init() {
-	RootCmd.Flags().Int(option.EngineLogLevel, defaultEngineLogLevel, fmt.Sprintf("Log level for Senzing Engine [%s]", envar.EngineLogLevel))
-	RootCmd.Flags().String(option.Configuration, defaultConfiguration, fmt.Sprintf("Path to configuration file [%s]", envar.Configuration))
-	RootCmd.Flags().String(option.EngineConfigurationJson, defaultEngineConfigurationJson, fmt.Sprintf("JSON string sent to Senzing's init() function [%s]", envar.EngineConfigurationJson))
-	RootCmd.Flags().String(option.LogLevel, defaultLogLevel, fmt.Sprintf("Log level [%s]", envar.LogLevel))
+	for _, contextBool := range ContextBools {
+		RootCmd.Flags().Bool(contextBool.Option, contextBool.Dfault, fmt.Sprintf(contextBool.Help, contextBool.Envar))
+	}
+	for _, contextInt := range ContextInts {
+		RootCmd.Flags().Int(contextInt.Option, contextInt.Dfault, fmt.Sprintf(contextInt.Help, contextInt.Envar))
+	}
+	for _, contextString := range ContextStrings {
+		RootCmd.Flags().String(contextString.Option, contextString.Dfault, fmt.Sprintf(contextString.Help, contextString.Envar))
+	}
+	for _, contextStringSlice := range ContextStringSlices {
+		RootCmd.Flags().StringSlice(contextStringSlice.Option, contextStringSlice.Dfault, fmt.Sprintf(contextStringSlice.Help, contextStringSlice.Envar))
+	}
 }
 
 // If a configuration file is present, load it.
@@ -84,14 +161,21 @@ func loadOptions(cobraCommand *cobra.Command) {
 	viper.SetEnvKeyReplacer(replacer)
 	viper.SetEnvPrefix(constant.SetEnvPrefix)
 
+	// Bools
+
+	for _, contextVar := range ContextBools {
+		viper.SetDefault(contextVar.Option, contextVar.Dfault)
+		err = viper.BindPFlag(contextVar.Option, cobraCommand.Flags().Lookup(contextVar.Option))
+		if err != nil {
+			panic(err)
+		}
+	}
+
 	// Ints
 
-	intOptions := map[string]int{
-		option.EngineLogLevel: defaultEngineLogLevel,
-	}
-	for optionKey, optionValue := range intOptions {
-		viper.SetDefault(optionKey, optionValue)
-		err = viper.BindPFlag(optionKey, cobraCommand.Flags().Lookup(optionKey))
+	for _, contextVar := range ContextInts {
+		viper.SetDefault(contextVar.Option, contextVar.Dfault)
+		err = viper.BindPFlag(contextVar.Option, cobraCommand.Flags().Lookup(contextVar.Option))
 		if err != nil {
 			panic(err)
 		}
@@ -99,13 +183,18 @@ func loadOptions(cobraCommand *cobra.Command) {
 
 	// Strings
 
-	stringOptions := map[string]string{
-		option.EngineConfigurationJson: defaultEngineConfigurationJson,
-		option.LogLevel:                defaultLogLevel,
+	for _, contextVar := range ContextStrings {
+		viper.SetDefault(contextVar.Option, contextVar.Dfault)
+		err = viper.BindPFlag(contextVar.Option, cobraCommand.Flags().Lookup(contextVar.Option))
+		if err != nil {
+			panic(err)
+		}
 	}
-	for optionKey, optionValue := range stringOptions {
-		viper.SetDefault(optionKey, optionValue)
-		err = viper.BindPFlag(optionKey, cobraCommand.Flags().Lookup(optionKey))
+	// StringSlice
+
+	for _, contextVar := range ContextStringSlices {
+		viper.SetDefault(contextVar.Option, contextVar.Dfault)
+		err = viper.BindPFlag(contextVar.Option, cobraCommand.Flags().Lookup(contextVar.Option))
 		if err != nil {
 			panic(err)
 		}

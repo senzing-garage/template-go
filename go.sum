@@ -151,8 +151,8 @@ github.com/rogpeppe/go-internal v1.10.0 h1:TMyTOH3F/DB16zRVcYyreMH6GnZZrwQVAoYjR
 github.com/rogpeppe/go-internal v1.10.0/go.mod h1:UQnix2H7Ngw/k4C5ijL5+65zddjncjaFoBhdsK/akog=
 github.com/russross/blackfriday/v2 v2.1.0 h1:JIOH55/0cWyOuilr9/qlrm0BSXldqnqwMsf35Ld67mk=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
-github.com/senzing/senzing-tools v0.2.8 h1:987GLtzkgt0doJ+y9s9TQMMfYXRUF3tPPJiMNXbXDj0=
-github.com/senzing/senzing-tools v0.2.8/go.mod h1:Vt1ik8xpctPao4idGg3E5gbVfNgrYo1fBGGdnPk6xZI=
+github.com/senzing/senzing-tools v0.2.9-0.20230608211707-c68079e7b04c h1:fQ5a1MrHwpD2Joo9oGazaYxjxV8pftgUxEnKkrvjbJE=
+github.com/senzing/senzing-tools v0.2.9-0.20230608211707-c68079e7b04c/go.mod h1:sRgfvAPWhWikBBzdvRC2FDfUb2t0jaUQw2P6iX2QJTc=
 github.com/spf13/afero v1.9.5 h1:stMpOSZFs//0Lv29HduCmli3GUfpFoF3Y1Q/aXj/wVM=
 github.com/spf13/afero v1.9.5/go.mod h1:UBogFpq8E9Hx+xc5CNTTEpTnuHVmXDwZcZcE1eb/UhQ=
 github.com/spf13/cast v1.5.1 h1:R+kOtfhWQE6TVQzY+4D7wJLBgkdVasCEFxSUBYBYIlA=
