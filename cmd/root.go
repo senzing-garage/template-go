@@ -31,70 +31,70 @@ template-go long description.
 // ----------------------------------------------------------------------------
 
 var ContextBools = []struct {
-	Dfault bool
-	Envar  string
-	Help   string
-	Option string
+	Default bool
+	Envar   string
+	Help    string
+	Option  string
 }{
 	{
-		Dfault: false,
-		Envar:  envar.EnableAll,
-		Help:   help.EnableAll,
-		Option: option.EnableAll,
+		Default: false,
+		Envar:   envar.EnableAll,
+		Help:    help.EnableAll,
+		Option:  option.EnableAll,
 	},
 }
 
 var ContextInts = []struct {
-	Dfault int
-	Envar  string
-	Help   string
-	Option string
+	Default int
+	Envar   string
+	Help    string
+	Option  string
 }{
 	{
-		Dfault: 0,
-		Envar:  envar.EngineLogLevel,
-		Help:   help.EngineLogLevel,
-		Option: option.EngineLogLevel,
+		Default: 0,
+		Envar:   envar.EngineLogLevel,
+		Help:    help.EngineLogLevel,
+		Option:  option.EngineLogLevel,
 	},
 }
 
 var ContextStrings = []struct {
-	Dfault string
-	Envar  string
-	Help   string
-	Option string
+	Default string
+	Envar   string
+	Help    string
+	Option  string
 }{
 	{
-		Dfault: "",
-		Envar:  envar.Configuration,
-		Help:   help.Configuration,
-		Option: option.Configuration,
+		Default: "",
+		Envar:   envar.Configuration,
+		Help:    help.Configuration,
+		Option:  option.Configuration,
 	},
 	{
-		Dfault: "",
-		Envar:  envar.EngineConfigurationJson,
-		Help:   help.EngineConfigurationJson,
-		Option: option.EngineConfigurationJson,
+		Default: "",
+		Envar:   envar.EngineConfigurationJson,
+		Help:    help.EngineConfigurationJson,
+		Option:  option.EngineConfigurationJson,
 	},
 	{
-		Dfault: "INFO",
-		Envar:  envar.LogLevel,
-		Help:   help.LogLevel,
-		Option: option.LogLevel,
+		Default: "INFO",
+		Envar:   envar.LogLevel,
+		Help:    help.LogLevel,
+		Option:  option.LogLevel,
 	},
 }
 
 var ContextStringSlices = []struct {
-	Dfault []string
-	Envar  string
-	Help   string
-	Option string
+	Default []string
+	Envar   string
+	Help    string
+	Option  string
 }{
 	{
-		Dfault: []string{},
-		Envar:  envar.XtermAllowedHostnames,
-		Help:   help.XtermAllowedHostnames,
-		Option: option.XtermAllowedHostnames,
+		Default: []string{},
+		Envar:   envar.XtermAllowedHostnames,
+		Help:    help.XtermAllowedHostnames,
+		Option:  option.XtermAllowedHostnames,
 	},
 }
 
@@ -105,16 +105,16 @@ var ContextStringSlices = []struct {
 // Since init() is always invoked, define command line parameters.
 func init() {
 	for _, contextBool := range ContextBools {
-		RootCmd.Flags().Bool(contextBool.Option, contextBool.Dfault, fmt.Sprintf(contextBool.Help, contextBool.Envar))
+		RootCmd.Flags().Bool(contextBool.Option, contextBool.Default, fmt.Sprintf(contextBool.Help, contextBool.Envar))
 	}
 	for _, contextInt := range ContextInts {
-		RootCmd.Flags().Int(contextInt.Option, contextInt.Dfault, fmt.Sprintf(contextInt.Help, contextInt.Envar))
+		RootCmd.Flags().Int(contextInt.Option, contextInt.Default, fmt.Sprintf(contextInt.Help, contextInt.Envar))
 	}
 	for _, contextString := range ContextStrings {
-		RootCmd.Flags().String(contextString.Option, contextString.Dfault, fmt.Sprintf(contextString.Help, contextString.Envar))
+		RootCmd.Flags().String(contextString.Option, contextString.Default, fmt.Sprintf(contextString.Help, contextString.Envar))
 	}
 	for _, contextStringSlice := range ContextStringSlices {
-		RootCmd.Flags().StringSlice(contextStringSlice.Option, contextStringSlice.Dfault, fmt.Sprintf(contextStringSlice.Help, contextStringSlice.Envar))
+		RootCmd.Flags().StringSlice(contextStringSlice.Option, contextStringSlice.Default, fmt.Sprintf(contextStringSlice.Help, contextStringSlice.Envar))
 	}
 }
 
@@ -164,7 +164,7 @@ func loadOptions(cobraCommand *cobra.Command) {
 	// Bools
 
 	for _, contextVar := range ContextBools {
-		viper.SetDefault(contextVar.Option, contextVar.Dfault)
+		viper.SetDefault(contextVar.Option, contextVar.Default)
 		err = viper.BindPFlag(contextVar.Option, cobraCommand.Flags().Lookup(contextVar.Option))
 		if err != nil {
 			panic(err)
@@ -174,7 +174,7 @@ func loadOptions(cobraCommand *cobra.Command) {
 	// Ints
 
 	for _, contextVar := range ContextInts {
-		viper.SetDefault(contextVar.Option, contextVar.Dfault)
+		viper.SetDefault(contextVar.Option, contextVar.Default)
 		err = viper.BindPFlag(contextVar.Option, cobraCommand.Flags().Lookup(contextVar.Option))
 		if err != nil {
 			panic(err)
@@ -184,7 +184,7 @@ func loadOptions(cobraCommand *cobra.Command) {
 	// Strings
 
 	for _, contextVar := range ContextStrings {
-		viper.SetDefault(contextVar.Option, contextVar.Dfault)
+		viper.SetDefault(contextVar.Option, contextVar.Default)
 		err = viper.BindPFlag(contextVar.Option, cobraCommand.Flags().Lookup(contextVar.Option))
 		if err != nil {
 			panic(err)
@@ -194,7 +194,7 @@ func loadOptions(cobraCommand *cobra.Command) {
 	// StringSlice
 
 	for _, contextVar := range ContextStringSlices {
-		viper.SetDefault(contextVar.Option, contextVar.Dfault)
+		viper.SetDefault(contextVar.Option, contextVar.Default)
 		err = viper.BindPFlag(contextVar.Option, cobraCommand.Flags().Lookup(contextVar.Option))
 		if err != nil {
 			panic(err)
