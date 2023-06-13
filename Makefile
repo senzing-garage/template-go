@@ -66,6 +66,7 @@ build-linux:
 	@mkdir -p $(TARGET_DIRECTORY)/linux || true
 	@mv $(GO_PACKAGE_NAME) $(TARGET_DIRECTORY)/linux
 
+
 .PHONY: build-scratch
 build-scratch:
 	@GOOS=linux \
