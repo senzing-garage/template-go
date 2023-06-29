@@ -4,30 +4,82 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 	"os"
-	"strings"
 
-	"github.com/senzing/senzing-tools/constant"
+	"github.com/senzing/senzing-tools/cmdhelper"
 	"github.com/senzing/senzing-tools/envar"
-	"github.com/senzing/senzing-tools/helper"
+	"github.com/senzing/senzing-tools/help"
 	"github.com/senzing/senzing-tools/option"
 	"github.com/senzing/template-go/examplepackage"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 const (
-	defaultConfiguration           string = ""
-	defaultEngineConfigurationJson string = ""
-	defaultEngineLogLevel          int    = 0
-	defaultLogLevel                string = "INFO"
-	Short                          string = "template-go short description"
-	Use                            string = "template-go"
-	Long                           string = `
+	Short string = "template-go short description"
+	Use   string = "template-go"
+	Long  string = `
 template-go long description.
-	`
+    `
 )
+
+// ----------------------------------------------------------------------------
+// Context variables
+// ----------------------------------------------------------------------------
+
+var ContextBools = []cmdhelper.ContextBool{
+	{
+		Default: cmdhelper.OsLookupEnvBool(envar.EnableAll, false),
+		Envar:   envar.EnableAll,
+		Help:    help.EnableAll,
+		Option:  option.EnableAll,
+	},
+}
+
+var ContextInts = []cmdhelper.ContextInt{
+	{
+		Default: cmdhelper.OsLookupEnvInt(envar.EngineLogLevel, 0),
+		Envar:   envar.EngineLogLevel,
+		Help:    help.EngineLogLevel,
+		Option:  option.EngineLogLevel,
+	},
+}
+
+var ContextStrings = []cmdhelper.ContextString{
+	{
+		Default: cmdhelper.OsLookupEnvString(envar.Configuration, ""),
+		Envar:   envar.Configuration,
+		Help:    help.Configuration,
+		Option:  option.Configuration,
+	},
+	{
+		Default: cmdhelper.OsLookupEnvString(envar.EngineConfigurationJson, ""),
+		Envar:   envar.EngineConfigurationJson,
+		Help:    help.EngineConfigurationJson,
+		Option:  option.EngineConfigurationJson,
+	},
+	{
+		Default: cmdhelper.OsLookupEnvString(envar.LogLevel, "INFO"),
+		Envar:   envar.LogLevel,
+		Help:    help.LogLevel,
+		Option:  option.LogLevel,
+	},
+}
+
+var ContextStringSlices = []cmdhelper.ContextStringSlice{
+	{
+		Default: []string{},
+		Envar:   envar.XtermAllowedHostnames,
+		Help:    help.XtermAllowedHostnames,
+		Option:  option.XtermAllowedHostnames,
+	},
+}
+
+var ContextVariables = &cmdhelper.ContextVariables{
+	Bools:        ContextBools,
+	Ints:         ContextInts,
+	Strings:      ContextStrings,
+	StringSlices: ContextStringSlices,
+}
 
 // ----------------------------------------------------------------------------
 // Private functions
@@ -35,81 +87,7 @@ template-go long description.
 
 // Since init() is always invoked, define command line parameters.
 func init() {
-	RootCmd.Flags().Int(option.EngineLogLevel, defaultEngineLogLevel, fmt.Sprintf("Log level for Senzing Engine [%s]", envar.EngineLogLevel))
-	RootCmd.Flags().String(option.Configuration, defaultConfiguration, fmt.Sprintf("Path to configuration file [%s]", envar.Configuration))
-	RootCmd.Flags().String(option.EngineConfigurationJson, defaultEngineConfigurationJson, fmt.Sprintf("JSON string sent to Senzing's init() function [%s]", envar.EngineConfigurationJson))
-	RootCmd.Flags().String(option.LogLevel, defaultLogLevel, fmt.Sprintf("Log level [%s]", envar.LogLevel))
-}
-
-// If a configuration file is present, load it.
-func loadConfigurationFile(cobraCommand *cobra.Command) {
-	configuration := ""
-	configFlag := cobraCommand.Flags().Lookup(option.Configuration)
-	if configFlag != nil {
-		configuration = configFlag.Value.String()
-	}
-	if configuration != "" { // Use configuration file specified as a command line option.
-		viper.SetConfigFile(configuration)
-	} else { // Search for a configuration file.
-
-		// Determine home directory.
-
-		home, err := os.UserHomeDir()
-		cobra.CheckErr(err)
-
-		// Specify configuration file name.
-
-		viper.SetConfigName("template-go")
-		viper.SetConfigType("yaml")
-
-		// Define search path order.
-
-		viper.AddConfigPath(home + "/.senzing-tools")
-		viper.AddConfigPath(home)
-		viper.AddConfigPath("/etc/senzing-tools")
-	}
-
-	// If a config file is found, read it in.
-
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Fprintln(os.Stderr, "Applying configuration file:", viper.ConfigFileUsed())
-	}
-}
-
-// Configure Viper with user-specified options.
-func loadOptions(cobraCommand *cobra.Command) {
-	var err error = nil
-	viper.AutomaticEnv()
-	replacer := strings.NewReplacer("-", "_")
-	viper.SetEnvKeyReplacer(replacer)
-	viper.SetEnvPrefix(constant.SetEnvPrefix)
-
-	// Ints
-
-	intOptions := map[string]int{
-		option.EngineLogLevel: defaultEngineLogLevel,
-	}
-	for optionKey, optionValue := range intOptions {
-		viper.SetDefault(optionKey, optionValue)
-		err = viper.BindPFlag(optionKey, cobraCommand.Flags().Lookup(optionKey))
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	// Strings
-
-	stringOptions := map[string]string{
-		option.EngineConfigurationJson: defaultEngineConfigurationJson,
-		option.LogLevel:                defaultLogLevel,
-	}
-	for optionKey, optionValue := range stringOptions {
-		viper.SetDefault(optionKey, optionValue)
-		err = viper.BindPFlag(optionKey, cobraCommand.Flags().Lookup(optionKey))
-		if err != nil {
-			panic(err)
-		}
-	}
+	cmdhelper.Init(RootCmd, *ContextVariables)
 }
 
 // ----------------------------------------------------------------------------
@@ -127,15 +105,13 @@ func Execute() {
 
 // Used in construction of cobra.Command
 func PreRun(cobraCommand *cobra.Command, args []string) {
-	loadConfigurationFile(cobraCommand)
-	loadOptions(cobraCommand)
-	cobraCommand.SetVersionTemplate(constant.VersionTemplate)
+	cmdhelper.PreRun(cobraCommand, args, Use, *ContextVariables)
 }
 
 // Used in construction of cobra.Command
 func RunE(_ *cobra.Command, _ []string) error {
 	var err error = nil
-	ctx := context.TODO()
+	ctx := context.Background()
 	examplePackage := &examplepackage.ExamplePackageImpl{
 		Something: "Main says 'Hi!'",
 	}
@@ -145,7 +121,7 @@ func RunE(_ *cobra.Command, _ []string) error {
 
 // Used in construction of cobra.Command
 func Version() string {
-	return helper.MakeVersion(githubVersion, githubIteration)
+	return cmdhelper.Version(githubVersion, githubIteration)
 }
 
 // ----------------------------------------------------------------------------
