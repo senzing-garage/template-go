@@ -1,6 +1,6 @@
 ---
 
-name: 'gofmt'
+name: 'go'
     
 on:
   pull_request:
