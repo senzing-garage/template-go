@@ -75,9 +75,10 @@ var ContextStringSlices = []cmdhelper.ContextStringSlice{
 }
 
 var ContextVariables = &cmdhelper.ContextVariables{
-	Bools:   append(ContextBools, ContextBoolsForOsArch...),
-	Ints:    append(ContextInts, ContextIntsForForOsArch...),
-	Strings: append(ContextStrings, ContextStringsForOsArch...),
+	Bools:        append(ContextBools, ContextBoolsForOsArch...),
+	Ints:         append(ContextInts, ContextIntsForForOsArch...),
+	Strings:      append(ContextStrings, ContextStringsForOsArch...),
+	StringSlices: append(ContextStringSlices, ContextStringSlicesForOsArch...),
 }
 
 // ----------------------------------------------------------------------------
