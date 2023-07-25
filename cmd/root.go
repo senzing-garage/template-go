@@ -6,12 +6,12 @@ import (
 	"context"
 	"os"
 
-	"github.com/senzing/senzing-tools/cmdhelper"
-	"github.com/senzing/senzing-tools/envar"
-	"github.com/senzing/senzing-tools/help"
-	"github.com/senzing/senzing-tools/option"
+	"github.com/senzing/go-cmdhelping/cmdhelper"
+	"github.com/senzing/go-cmdhelping/option"
+	"github.com/senzing/go-cmdhelping/option/optiontype"
 	"github.com/senzing/template-go/examplepackage"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 const (
@@ -26,60 +26,22 @@ template-go long description.
 // Context variables
 // ----------------------------------------------------------------------------
 
-var ContextBools = []cmdhelper.ContextBool{
-	{
-		Default: cmdhelper.OsLookupEnvBool(envar.EnableAll, false),
-		Envar:   envar.EnableAll,
-		Help:    help.EnableAll,
-		Option:  option.EnableAll,
-	},
+var SomethingToSay = option.ContextVariable{
+	Arg:     "something-to-say",
+	Default: option.OsLookupEnvString("SENZING_TOOLS_SOMETHING_TO_SAY", "Main says 'Hi!'"),
+	Envar:   "SENZING_TOOLS_SOMETHING_TO_SAY",
+	Help:    "Just a phrase to say [%s]",
+	Type:    optiontype.String,
 }
 
-var ContextInts = []cmdhelper.ContextInt{
-	{
-		Default: cmdhelper.OsLookupEnvInt(envar.EngineLogLevel, 0),
-		Envar:   envar.EngineLogLevel,
-		Help:    help.EngineLogLevel,
-		Option:  option.EngineLogLevel,
-	},
+var ContextVariablesForMultiPlatform = []option.ContextVariable{
+	option.Configuration,
+	option.EngineConfigurationJson,
+	option.LogLevel,
+	SomethingToSay,
 }
 
-var ContextStrings = []cmdhelper.ContextString{
-	{
-		Default: cmdhelper.OsLookupEnvString(envar.Configuration, ""),
-		Envar:   envar.Configuration,
-		Help:    help.Configuration,
-		Option:  option.Configuration,
-	},
-	{
-		Default: cmdhelper.OsLookupEnvString(envar.EngineConfigurationJson, ""),
-		Envar:   envar.EngineConfigurationJson,
-		Help:    help.EngineConfigurationJson,
-		Option:  option.EngineConfigurationJson,
-	},
-	{
-		Default: cmdhelper.OsLookupEnvString(envar.LogLevel, "INFO"),
-		Envar:   envar.LogLevel,
-		Help:    help.LogLevel,
-		Option:  option.LogLevel,
-	},
-}
-
-var ContextStringSlices = []cmdhelper.ContextStringSlice{
-	{
-		Default: []string{},
-		Envar:   envar.XtermAllowedHostnames,
-		Help:    help.XtermAllowedHostnames,
-		Option:  option.XtermAllowedHostnames,
-	},
-}
-
-var ContextVariables = &cmdhelper.ContextVariables{
-	Bools:        append(ContextBools, ContextBoolsForOsArch...),
-	Ints:         append(ContextInts, ContextIntsForForOsArch...),
-	Strings:      append(ContextStrings, ContextStringsForOsArch...),
-	StringSlices: append(ContextStringSlices, ContextStringSlicesForOsArch...),
-}
+var ContextVariables = append(ContextVariablesForMultiPlatform, ContextVariablesForOsArch...)
 
 // ----------------------------------------------------------------------------
 // Private functions
@@ -87,7 +49,7 @@ var ContextVariables = &cmdhelper.ContextVariables{
 
 // Since init() is always invoked, define command line parameters.
 func init() {
-	cmdhelper.Init(RootCmd, *ContextVariables)
+	cmdhelper.Init(RootCmd, ContextVariables)
 }
 
 // ----------------------------------------------------------------------------
@@ -105,7 +67,7 @@ func Execute() {
 
 // Used in construction of cobra.Command
 func PreRun(cobraCommand *cobra.Command, args []string) {
-	cmdhelper.PreRun(cobraCommand, args, Use, *ContextVariables)
+	cmdhelper.PreRun(cobraCommand, args, Use, ContextVariables)
 }
 
 // Used in construction of cobra.Command
@@ -113,7 +75,7 @@ func RunE(_ *cobra.Command, _ []string) error {
 	var err error = nil
 	ctx := context.Background()
 	examplePackage := &examplepackage.ExamplePackageImpl{
-		Something: "Main says 'Hi!'",
+		Something: viper.GetString(SomethingToSay.Arg),
 	}
 	err = examplePackage.SaySomething(ctx)
 	return err
