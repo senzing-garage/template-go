@@ -62,6 +62,10 @@ LABEL Name="senzing/template-go" \
       Maintainer="support@senzing.com" \
       Version="0.0.5"
 
+# Copy local files from the Git repository.
+
+COPY ./rootfs /
+
 # Copy files from prior step.
 
 COPY --from=go_builder "/output/linux-amd64/template-go" "/app/template-go"
