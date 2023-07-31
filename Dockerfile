@@ -33,7 +33,7 @@ ARG GO_PACKAGE_NAME="unknown"
 COPY ./rootfs /
 COPY . ${GOPATH}/src/${GO_PACKAGE_NAME}
 
-# Copy necessary Senzing files from DockerHub.
+# Copy files from prior stage.
 
 COPY --from=senzing_runtime  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
 COPY --from=senzing_runtime  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
@@ -66,7 +66,7 @@ LABEL Name="senzing/template-go" \
 
 COPY ./rootfs /
 
-# Copy files from prior step.
+# Copy files from prior stage.
 
 COPY --from=go_builder "/output/linux-amd64/template-go" "/app/template-go"
 
