@@ -54,7 +54,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
    Example:
 
     ```console
-    ${GIT_REPOSITORY_DIR}/target/linux/template-go
+    ${GIT_REPOSITORY_DIR}/target/linux-amd64/template-go
 
     ```
 

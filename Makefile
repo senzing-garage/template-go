@@ -77,6 +77,7 @@ $(PLATFORMS):
 
 .PHONY: build $(PLATFORMS)
 build: $(PLATFORMS)
+	@mv $(TARGET_DIRECTORY)/windows-amd64/$(PROGRAM_NAME) $(TARGET_DIRECTORY)/windows-amd64/$(PROGRAM_NAME).exe
 
 
 .PHONY: build-scratch
