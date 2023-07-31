@@ -102,9 +102,9 @@ ARG PROGRAM_NAME
 
 # Copy files from prior step.
 
-COPY --from=fpm_builder "/output/*"                              "/output/"
-COPY --from=fpm_builder "/output/darwin-amd64/${PROGRAM_NAME}"   "/output/darwin-amd64/${PROGRAM_NAME}"
-COPY --from=fpm_builder "/output/linux-amd64/${PROGRAM_NAME}"    "/output/linux-amd64/${PROGRAM_NAME}"
-COPY --from=fpm_builder "/output/windows-amd64/${PROGRAM_NAME}"  "/output/windows-amd64/${PROGRAM_NAME}.exe"
+COPY --from=fpm_builder "/output/*"                                  "/output/"
+COPY --from=fpm_builder "/output/darwin-amd64/${PROGRAM_NAME}"       "/output/darwin-amd64/${PROGRAM_NAME}"
+COPY --from=fpm_builder "/output/linux-amd64/${PROGRAM_NAME}"        "/output/linux-amd64/${PROGRAM_NAME}"
+COPY --from=fpm_builder "/output/windows-amd64/${PROGRAM_NAME}.exe"  "/output/windows-amd64/${PROGRAM_NAME}.exe"
 
 CMD ["/bin/bash"]
