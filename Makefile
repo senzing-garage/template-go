@@ -23,11 +23,6 @@ GO_OSARCH = $(subst /, ,$@)
 GO_OS = $(word 1, $(GO_OSARCH))
 GO_ARCH = $(word 2, $(GO_OSARCH))
 
-# Optionally include platform-specific settings
-
--include Makefile.$(OSTYPE)
--include Makefile.$(OSTYPE)_$(OSARCH)
-
 # Recursive assignment ('=')
 
 CC = gcc
@@ -49,8 +44,14 @@ LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 .PHONY: default
 default: help
 
+# Optionally include platform-specific settings and targets
+
+-include Makefile.$(OSTYPE)
+-include Makefile.$(OSTYPE)_$(OSARCH)
+
 # -----------------------------------------------------------------------------
 # Build
+#  - The "build" target is implemented in os/arch specific Makefiles.
 # -----------------------------------------------------------------------------
 
 .PHONY: dependencies
@@ -75,8 +76,8 @@ $(PLATFORMS):
 		-o $(TARGET_DIRECTORY)/$(GO_OS)-$(GO_ARCH)/$(PROGRAM_NAME)
 
 
-.PHONY: build $(PLATFORMS)
-build: $(PLATFORMS)
+.PHONY: build-all $(PLATFORMS)
+build-all: $(PLATFORMS)
 	@mv $(TARGET_DIRECTORY)/windows-amd64/$(PROGRAM_NAME) $(TARGET_DIRECTORY)/windows-amd64/$(PROGRAM_NAME).exe
 
 

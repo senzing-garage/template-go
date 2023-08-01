@@ -14,7 +14,7 @@ FROM ${IMAGE_GO_BUILDER} as go_builder
 ENV REFRESHED_AT=2023-08-01
 LABEL Name="senzing/template-go-builder" \
       Maintainer="support@senzing.com" \
-      Version="0.0.5"
+      Version="0.0.1"
 
 # Build arguments.
 
@@ -31,12 +31,12 @@ COPY . ${GOPATH}/src/${GO_PACKAGE_NAME}
 # Build go program.
 
 WORKDIR ${GOPATH}/src/${GO_PACKAGE_NAME}
-RUN make build
+RUN make build-all
 
 # Copy binaries to /output.
 
 RUN mkdir -p /output \
- && cp -R ${GOPATH}/src/${GO_PACKAGE_NAME}/target/*  /output/
+      && cp -R ${GOPATH}/src/${GO_PACKAGE_NAME}/target/*  /output/
 
 # -----------------------------------------------------------------------------
 # Stage: fpm_builder
@@ -48,7 +48,7 @@ FROM ${IMAGE_FPM_BUILDER} as fpm_builder
 ENV REFRESHED_AT=2023-08-01
 LABEL Name="senzing/template-go-fpm-builder" \
       Maintainer="support@senzing.com" \
-      Version="0.0.5"
+      Version="0.0.1"
 
 # Use arguments from prior stage.
 
