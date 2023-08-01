@@ -64,15 +64,7 @@ PLATFORMS := darwin/amd64 linux/amd64 windows/amd64
 $(PLATFORMS):
 	@echo Building $(TARGET_DIRECTORY)/$(GO_OS)-$(GO_ARCH)/$(PROGRAM_NAME)
 	@mkdir -p $(TARGET_DIRECTORY)/$(GO_OS)-$(GO_ARCH) || true
-	@GOOS=$(GO_OS) \
-	GOARCH=$(GO_ARCH) \
-	go build \
-		-ldflags \
-			"-X 'main.buildIteration=${BUILD_ITERATION}' \
-			-X 'main.buildVersion=${BUILD_VERSION}' \
-			-X 'main.programName=${PROGRAM_NAME}' \
-			" \
-		-o $(TARGET_DIRECTORY)/$(GO_OS)-$(GO_ARCH)/$(PROGRAM_NAME)
+	@GOOS=$(GO_OS) GOARCH=$(GO_ARCH) go build -o $(TARGET_DIRECTORY)/$(GO_OS)-$(GO_ARCH)/$(PROGRAM_NAME)
 
 
 .PHONY: build-all $(PLATFORMS)
@@ -88,13 +80,7 @@ build-scratch:
 	go build \
 		-a \
 		-installsuffix cgo \
-		-ldflags \
-			"-s \
-			-w \
-			-X 'github.com/senzing/senzing-tools/cmd.buildIteration=${BUILD_ITERATION}' \
-			-X 'github.com/senzing/senzing-tools/cmd.buildVersion=${BUILD_VERSION}' \
-			-X 'github.com/senzing/senzing-tools/cmd.programName=${PROGRAM_NAME}' \
-			" \
+		-ldflags "-s -w" \
 		-o $(GO_PACKAGE_NAME)
 	@mkdir -p $(TARGET_DIRECTORY)/scratch || true
 	@mv $(GO_PACKAGE_NAME) $(TARGET_DIRECTORY)/scratch
