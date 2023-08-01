@@ -2,14 +2,15 @@
 # Stages
 # -----------------------------------------------------------------------------
 
+ARG IMAGE_SENZINGAPI_RUNTIME=senzing/senzingapi-runtime:3.6.0
 ARG IMAGE_GO_BUILDER=golang:1.20.4
 ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.6.0
 
 # -----------------------------------------------------------------------------
-# Stage: senzing_runtime
+# Stage: senzingapi_runtime
 # -----------------------------------------------------------------------------
 
-FROM ${IMAGE_FINAL} as senzing_runtime
+FROM ${IMAGE_SENZINGAPI_RUNTIME} as senzingapi_runtime
 
 # -----------------------------------------------------------------------------
 # Stage: go_builder
@@ -19,7 +20,7 @@ FROM ${IMAGE_GO_BUILDER} as go_builder
 ENV REFRESHED_AT=2023-08-01
 LABEL Name="senzing/template-go-builder" \
       Maintainer="support@senzing.com" \
-      Version="0.0.5"
+      Version="0.0.1"
 
 # Build arguments.
 
@@ -35,8 +36,8 @@ COPY . ${GOPATH}/src/${GO_PACKAGE_NAME}
 
 # Copy files from prior stage.
 
-COPY --from=senzing_runtime  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
-COPY --from=senzing_runtime  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
+COPY --from=senzingapi_runtime  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
+COPY --from=senzingapi_runtime  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
 
 # Set path to Senzing libs.
 
@@ -60,7 +61,7 @@ FROM ${IMAGE_FINAL} as final
 ENV REFRESHED_AT=2023-08-01
 LABEL Name="senzing/template-go" \
       Maintainer="support@senzing.com" \
-      Version="0.0.5"
+      Version="0.0.1"
 
 # Copy local files from the Git repository.
 
