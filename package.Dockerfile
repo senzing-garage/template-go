@@ -2,9 +2,16 @@
 # Stages
 # -----------------------------------------------------------------------------
 
+ARG IMAGE_SENZING_RUNTIME=senzing/senzingapi-runtime:3.6.0
 ARG IMAGE_GO_BUILDER=golang:1.20.4
 ARG IMAGE_FPM_BUILDER=dockter/fpm:latest
 ARG IMAGE_FINAL=alpine
+
+# -----------------------------------------------------------------------------
+# Stage: senzing_runtime
+# -----------------------------------------------------------------------------
+
+FROM ${IMAGE_SENZING_RUNTIME} as senzing_runtime
 
 # -----------------------------------------------------------------------------
 # Stage: go_builder
@@ -28,6 +35,11 @@ ARG GO_PACKAGE_NAME="unknown"
 COPY ./rootfs /
 COPY . ${GOPATH}/src/${GO_PACKAGE_NAME}
 
+# Copy files from prior stage.
+
+COPY --from=senzing_runtime  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
+COPY --from=senzing_runtime  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
+
 # Build go program.
 
 WORKDIR ${GOPATH}/src/${GO_PACKAGE_NAME}
@@ -36,7 +48,7 @@ RUN make build-all
 # Copy binaries to /output.
 
 RUN mkdir -p /output \
-      && cp -R ${GOPATH}/src/${GO_PACKAGE_NAME}/target/*  /output/
+ && cp -R ${GOPATH}/src/${GO_PACKAGE_NAME}/target/*  /output/
 
 # -----------------------------------------------------------------------------
 # Stage: fpm_builder
@@ -94,7 +106,7 @@ FROM ${IMAGE_FINAL} as final
 ENV REFRESHED_AT=2023-08-01
 LABEL Name="senzing/template-go" \
       Maintainer="support@senzing.com" \
-      Version="0.0.5"
+      Version="0.0.1"
 
 # Use arguments from prior stage.
 
