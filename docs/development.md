@@ -36,11 +36,11 @@ Since the Senzing library is a prerequisite, it must be installed first.
 1. Build the binaries.
    Example:
 
-     ```console
-     cd ${GIT_REPOSITORY_DIR}
-     make build
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make build
 
-     ```
+    ```
 
 1. The binaries will be found in ${GIT_REPOSITORY_DIR}/target.
    Example:
@@ -51,32 +51,48 @@ Since the Senzing library is a prerequisite, it must be installed first.
     ```
 
 1. Run the binary.
-   Example:
+   Examples:
 
-    ```console
-    ${GIT_REPOSITORY_DIR}/target/linux/template-go
+    1. linux
 
-    ```
+        ```console
+        ${GIT_REPOSITORY_DIR}/target/linux-amd64/template-go
+
+        ```
+
+    1. macOS
+
+        ```console
+        ${GIT_REPOSITORY_DIR}/target/darwin-amd64/template-go
+
+        ```
+
+    1. windows
+
+        ```console
+        ${GIT_REPOSITORY_DIR}/target/windows-amd64/template-go
+
+        ```
 
 1. Clean up.
    Example:
 
-     ```console
-     cd ${GIT_REPOSITORY_DIR}
-     make clean
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make clean
 
-     ```
+    ```
 
 ## Test
 
 1. Run Go tests.
    Example:
 
-     ```console
-     cd ${GIT_REPOSITORY_DIR}
-     make test
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make test
 
-     ```
+    ```
 
 ## Documentation
 
