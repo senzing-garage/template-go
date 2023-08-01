@@ -53,17 +53,17 @@ Since the Senzing library is a prerequisite, it must be installed first.
 1. Run the binary.
    Examples:
 
-    1. macOS
-
-        ```console
-        ${GIT_REPOSITORY_DIR}/target/darwin-amd64/template-go
-
-        ```
-
     1. linux
 
         ```console
         ${GIT_REPOSITORY_DIR}/target/linux-amd64/template-go
+
+        ```
+
+    1. macOS
+
+        ```console
+        ${GIT_REPOSITORY_DIR}/target/darwin-amd64/template-go
 
         ```
 
