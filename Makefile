@@ -4,6 +4,10 @@
 
 include Makefile.osdetect
 
+# -----------------------------------------------------------------------------
+# Variables
+# -----------------------------------------------------------------------------
+
 # "Simple expanded" variables (':=')
 
 # PROGRAM_NAME is the name of the GIT repository.
@@ -44,14 +48,9 @@ LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 .PHONY: default
 default: help
 
-# Optionally include platform-specific settings and targets
-
--include Makefile.$(OSTYPE)
--include Makefile.$(OSTYPE)_$(OSARCH)
-
 # -----------------------------------------------------------------------------
 # Build
-#  - The "build" target is implemented in os/arch specific Makefiles.
+#  - The "build" target is implemented in Makefile.OS.ARCH files.
 # -----------------------------------------------------------------------------
 
 .PHONY: dependencies
@@ -201,3 +200,11 @@ help:
 	@echo "Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION)".
 	@echo "All targets:"
 	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
+
+# -----------------------------------------------------------------------------
+# Optionally include platform-specific settings and targets.
+#  - Note: This is last because the "last one wins" when over-writing targets.
+# -----------------------------------------------------------------------------
+
+-include Makefile.$(OSTYPE)
+-include Makefile.$(OSTYPE)_$(OSARCH)
