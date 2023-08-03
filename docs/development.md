@@ -50,6 +50,8 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
     ```
 
+## Run
+
 1. Run the binary.
    Examples:
 
