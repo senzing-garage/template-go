@@ -72,13 +72,11 @@ func PreRun(cobraCommand *cobra.Command, args []string) {
 
 // Used in construction of cobra.Command
 func RunE(_ *cobra.Command, _ []string) error {
-	var err error = nil
 	ctx := context.Background()
 	examplePackage := &examplepackage.ExamplePackageImpl{
 		Something: viper.GetString(SomethingToSay.Arg),
 	}
-	err = examplePackage.SaySomething(ctx)
-	return err
+	return examplePackage.SaySomething(ctx)
 }
 
 // Used in construction of cobra.Command
