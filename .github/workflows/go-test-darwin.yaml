@@ -5,6 +5,10 @@ name: go-test-darwin.yaml
 
 on: [push]
 
+env:
+  LD_LIBRARY_PATH: /opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
+  DYLD_LIBRARY_PATH: /opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
+
 jobs:
   build:
     runs-on: macos-latest
