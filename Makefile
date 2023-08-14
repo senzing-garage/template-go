@@ -42,15 +42,19 @@ LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 
 .EXPORT_ALL_VARIABLES:
 
--include Makefile.$(OSTYPE)
--include Makefile.$(OSTYPE)_$(OSARCH)
-
 # -----------------------------------------------------------------------------
 # The first "make" target runs as default.
 # -----------------------------------------------------------------------------
 
 .PHONY: default
 default: help
+
+# -----------------------------------------------------------------------------
+# Operating System / Architecture targets
+# -----------------------------------------------------------------------------
+
+-include Makefile.$(OSTYPE)
+-include Makefile.$(OSTYPE)_$(OSARCH)
 
 # -----------------------------------------------------------------------------
 # Build
