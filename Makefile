@@ -24,13 +24,13 @@ BUILD_ITERATION := $(shell git log $(BUILD_TAG)..HEAD --oneline | wc -l | sed 's
 GIT_REMOTE_URL := $(shell git config --get remote.origin.url)
 GO_PACKAGE_NAME := $(shell echo $(GIT_REMOTE_URL) | sed -e 's|^git@github.com:|github.com/|' -e 's|\.git$$||' -e 's|Senzing|senzing|')
 PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
-GO_OSARCH = $(subst /, ,$@)
-GO_OS = $(word 1, $(GO_OSARCH))
-GO_ARCH = $(word 2, $(GO_OSARCH))
 
 # Recursive assignment ('=')
 
 CC = gcc
+GO_OSARCH = $(subst /, ,$@)
+GO_OS = $(word 1, $(GO_OSARCH))
+GO_ARCH = $(word 2, $(GO_OSARCH))
 
 # Conditional assignment. ('?=')
 # Can be overridden with "export"
@@ -154,10 +154,7 @@ docker-run:
 # Utility targets
 # -----------------------------------------------------------------------------
 
-.PHONY: update-pkg-cache
-update-pkg-cache:
-	@GOPROXY=https://proxy.golang.org GO111MODULE=on \
-		go get $(GO_PACKAGE_NAME)@$(BUILD_TAG)
+
 
 
 .PHONY: clean
@@ -176,6 +173,19 @@ print-make-variables:
 		$(if $(filter-out environment% default automatic, \
 		$(origin $V)),$(warning $V=$($V) ($(value $V)))))
 
+
+.PHONY: setup
+setup:
+	@mkdir -p $(shell dirname $(SENZING_TOOLS_DATABASE_PATH))
+	@if [ ! -f $(SENZING_TOOLS_DATABASE_PATH) ]; then cp testdata/sqlite/G2C.db $(SENZING_TOOLS_DATABASE_PATH); fi
+
+
+.PHONY: update-pkg-cache
+update-pkg-cache:
+	@GOPROXY=https://proxy.golang.org GO111MODULE=on \
+		go get $(GO_PACKAGE_NAME)@$(BUILD_TAG)
+
+
 # -----------------------------------------------------------------------------
 # Help
 # -----------------------------------------------------------------------------
@@ -185,11 +195,3 @@ help:
 	@echo "Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION)".
 	@echo "Makefile targets:"
 	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
-
-# -----------------------------------------------------------------------------
-# Optionally include platform-specific settings and targets.
-#  - Note: This is last because the "last one wins" when over-writing targets.
-# -----------------------------------------------------------------------------
-
-# -include Makefile.$(OSTYPE)
-# -include Makefile.$(OSTYPE)_$(OSARCH)
