@@ -1,6 +1,6 @@
 # Makefile for template-go.
 
-# Detect the operating system and architecture
+# Detect the operating system and architecture.
 
 include Makefile.osdetect
 
@@ -57,8 +57,7 @@ default: help
 -include Makefile.$(OSTYPE)_$(OSARCH)
 
 # -----------------------------------------------------------------------------
-# Build
-#  - The "build" target is implemented in Makefile.OS.ARCH files.
+# Dependency management
 # -----------------------------------------------------------------------------
 
 .PHONY: dependencies
@@ -67,6 +66,11 @@ dependencies:
 	@go get -t -u ./...
 	@go mod tidy
 
+# -----------------------------------------------------------------------------
+# Build
+#  - The "build" target is implemented in Makefile.OS.ARCH files.
+#  - docker-build: https://docs.docker.com/engine/reference/commandline/build/
+# -----------------------------------------------------------------------------
 
 PLATFORMS := darwin/amd64 linux/amd64 windows/amd64
 $(PLATFORMS):
@@ -93,15 +97,6 @@ build-scratch:
 	@mkdir -p $(TARGET_DIRECTORY)/scratch || true
 	@mv $(GO_PACKAGE_NAME) $(TARGET_DIRECTORY)/scratch
 
-# -----------------------------------------------------------------------------
-# Test
-#  - The "test" target is implemented in Makefile.OS.ARCH files.
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
-# docker-build
-#  - https://docs.docker.com/engine/reference/commandline/build/
-# -----------------------------------------------------------------------------
 
 .PHONY: docker-build
 docker-build:
@@ -115,6 +110,33 @@ docker-build:
 		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
 		.
 
+# -----------------------------------------------------------------------------
+# Test
+#  - The "test" target is implemented in Makefile.OS.ARCH files.
+# -----------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------
+# Run
+# -----------------------------------------------------------------------------
+
+.PHONY: docker-run
+docker-run:
+	@docker run \
+		--interactive \
+		--tty \
+		--name $(DOCKER_CONTAINER_NAME) \
+		$(DOCKER_IMAGE_NAME)
+
+
+.PHONY: run
+run:
+	@go run main.go
+
+# -----------------------------------------------------------------------------
+# Package
+#  - The "package" target is implemented in Makefile.OS.ARCH files.
+# -----------------------------------------------------------------------------
 
 .PHONY: docker-build-package
 docker-build-package:
@@ -129,33 +151,8 @@ docker-build-package:
 		.
 
 # -----------------------------------------------------------------------------
-# Package
-#  - The "package" target is implemented in Makefile.OS.ARCH files.
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
-# Run
-# -----------------------------------------------------------------------------
-
-.PHONY: run
-run:
-	@go run main.go
-
-
-.PHONY: docker-run
-docker-run:
-	@docker run \
-		--interactive \
-		--tty \
-		--name $(DOCKER_CONTAINER_NAME) \
-		$(DOCKER_IMAGE_NAME)
-
-# -----------------------------------------------------------------------------
 # Utility targets
 # -----------------------------------------------------------------------------
-
-
-
 
 .PHONY: clean
 clean:
@@ -167,6 +164,13 @@ clean:
 	@rm -f $(GOPATH)/bin/$(PROGRAM_NAME) || true
 
 
+.PHONY: help
+help:
+	@echo "Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION)".
+	@echo "Makefile targets:"
+	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
+
+
 .PHONY: print-make-variables
 print-make-variables:
 	@$(foreach V,$(sort $(.VARIABLES)), \
@@ -176,22 +180,10 @@ print-make-variables:
 
 .PHONY: setup
 setup:
-	@mkdir -p $(shell dirname $(SENZING_TOOLS_DATABASE_PATH))
-	@if [ ! -f $(SENZING_TOOLS_DATABASE_PATH) ]; then cp testdata/sqlite/G2C.db $(SENZING_TOOLS_DATABASE_PATH); fi
+	@echo "No setup required."
 
 
 .PHONY: update-pkg-cache
 update-pkg-cache:
 	@GOPROXY=https://proxy.golang.org GO111MODULE=on \
 		go get $(GO_PACKAGE_NAME)@$(BUILD_TAG)
-
-
-# -----------------------------------------------------------------------------
-# Help
-# -----------------------------------------------------------------------------
-
-.PHONY: help
-help:
-	@echo "Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION)".
-	@echo "Makefile targets:"
-	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
