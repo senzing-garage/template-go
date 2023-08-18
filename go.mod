@@ -1,6 +1,6 @@
 module github.com/senzing/template-go
 
-go 1.21
+go 1.20
 
 require (
 	github.com/senzing/go-cmdhelping v0.1.5
