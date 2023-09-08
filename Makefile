@@ -130,6 +130,7 @@ test: test-osarch-specific
 docker-run:
 	@docker run \
 		--interactive \
+		--rm \
 		--tty \
 		--name $(DOCKER_CONTAINER_NAME) \
 		$(DOCKER_IMAGE_NAME)
