@@ -10,7 +10,7 @@ env:
   DYLD_LIBRARY_PATH: /opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
 
 jobs:
-  build:
+  go-test-darwin:
     runs-on: macos-latest
     strategy:
       matrix:
