@@ -106,11 +106,6 @@ build-scratch:
 .PHONY: docker-build
 docker-build:
 	@docker build \
-		--build-arg BUILD_ITERATION=$(BUILD_ITERATION) \
-		--build-arg BUILD_VERSION=$(BUILD_VERSION) \
-		--build-arg GO_PACKAGE_NAME=$(GO_PACKAGE_NAME) \
-		--build-arg PROGRAM_NAME=$(PROGRAM_NAME) \
-		--file Dockerfile \
 		--tag $(DOCKER_IMAGE_NAME) \
 		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
 		.
