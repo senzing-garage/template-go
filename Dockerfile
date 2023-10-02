@@ -2,9 +2,9 @@
 # Stages
 # -----------------------------------------------------------------------------
 
-ARG IMAGE_SENZINGAPI_RUNTIME=senzing/senzingapi-runtime:3.6.0
+ARG IMAGE_SENZINGAPI_RUNTIME=senzing/senzingapi-runtime:3.7.1
 ARG IMAGE_GO_BUILDER=golang:1.21.0-bullseye
-ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.6.0
+ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.7.1
 
 # -----------------------------------------------------------------------------
 # Stage: senzingapi_runtime
@@ -17,22 +17,15 @@ FROM ${IMAGE_SENZINGAPI_RUNTIME} as senzingapi_runtime
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_GO_BUILDER} as go_builder
-ENV REFRESHED_AT=2023-08-01
+ENV REFRESHED_AT=2023-10-02
 LABEL Name="senzing/template-go-builder" \
       Maintainer="support@senzing.com" \
       Version="0.0.1"
 
-# Build arguments.
-
-ARG PROGRAM_NAME="unknown"
-ARG BUILD_VERSION=0.0.0
-ARG BUILD_ITERATION=0
-ARG GO_PACKAGE_NAME="unknown"
-
 # Copy local files from the Git repository.
 
 COPY ./rootfs /
-COPY . ${GOPATH}/src/${GO_PACKAGE_NAME}
+COPY . ${GOPATH}/src/template-go
 
 # Copy files from prior stage.
 
@@ -45,13 +38,13 @@ ENV LD_LIBRARY_PATH=/opt/senzing/g2/lib/
 
 # Build go program.
 
-WORKDIR ${GOPATH}/src/${GO_PACKAGE_NAME}
+WORKDIR ${GOPATH}/src/template-go
 RUN make build
 
 # Copy binaries to /output.
 
 RUN mkdir -p /output \
- && cp -R ${GOPATH}/src/${GO_PACKAGE_NAME}/target/*  /output/
+ && cp -R ${GOPATH}/src/template-go/target/*  /output/
 
 # -----------------------------------------------------------------------------
 # Stage: final
