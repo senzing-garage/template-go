@@ -6,16 +6,17 @@ name: go-test-darwin.yaml
 on: [push]
 
 env:
-  LD_LIBRARY_PATH: /opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
   DYLD_LIBRARY_PATH: /opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
+  LD_LIBRARY_PATH: /opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
 
 jobs:
   go-test-darwin:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         go: ["1.21"]
-    name: Go ${{ matrix.go }} - darwin
+        os: [macos-latest]
+    name: "go ... with OS: ${{ matrix.os }}; Go: ${{ matrix.go }}"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
