@@ -2,7 +2,7 @@
 
 # Detect the operating system and architecture.
 
-include Makefile.osdetect
+include makefiles/osdetect.Makefile
 
 # -----------------------------------------------------------------------------
 # Variables
@@ -52,8 +52,8 @@ default: help
 # Operating System / Architecture targets
 # -----------------------------------------------------------------------------
 
--include Makefile.$(OSTYPE)
--include Makefile.$(OSTYPE)_$(OSARCH)
+-include makefiles/$(OSTYPE).Makefile
+-include makefiles/$(OSTYPE)_$(OSARCH).Makefile
 
 
 .PHONY: hello-world
