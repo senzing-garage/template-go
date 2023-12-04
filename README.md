@@ -12,7 +12,7 @@ It also shows best practices that can be retro-fitted into existing repositories
 
 [![go-test-linux.yaml](https://github.com/Senzing/template-go/actions/workflows/go-test-linux.yaml/badge.svg)](https://github.com/Senzing/template-go/actions/workflows/go-test-linux.yaml)
 [![go-test-darwin.yaml](https://github.com/Senzing/template-go/actions/workflows/go-test-darwin.yaml/badge.svg)](https://github.com/Senzing/template-go/actions/workflows/go-test-darwin.yaml)
-[![bob-go-test-windows.yaml](https://github.com/Senzing/template-go/actions/workflows/go-test-windows.yaml/badge.svg)](https://github.com/Senzing/template-go/actions/workflows/go-test-windows.yaml)
+[![bob-go-test-windows.yaml](https://github.com/Senzing/template-go/actions/workflows/go-test-windows.yaml/badge.svg?event=bob)](https://github.com/Senzing/template-go/actions/workflows/go-test-windows.yaml)
 
 ## Overview
 
