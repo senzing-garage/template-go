@@ -9,6 +9,10 @@
 # OS specific targets
 # -----------------------------------------------------------------------------
 
+.PHONY: build-osarch-specific
+build-osarch-specific: linux/amd64
+
+
 .PHONY: clean-osarch-specific
 clean-osarch-specific:
 	@docker rm --force $(DOCKER_CONTAINER_NAME) 2> /dev/null || true
