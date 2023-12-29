@@ -43,7 +43,7 @@ RUN make build
 # Copy binaries to /output.
 
 RUN mkdir -p /output \
-      && cp -R ${GOPATH}/src/template-go/target/*  /output/
+ && cp -R ${GOPATH}/src/template-go/target/*  /output/
 
 # -----------------------------------------------------------------------------
 # Stage: final
