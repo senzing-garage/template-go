@@ -4,4 +4,4 @@ on:
     branches: [main]
 jobs:
   gofmt:
-    uses: Senzing/build-resources/.github/workflows/gofmt.yaml@main
+    uses: senzing-factory/build-resources/.github/workflows/gofmt.yaml@main
