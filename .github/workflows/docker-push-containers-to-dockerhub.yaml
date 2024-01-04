@@ -1,3 +1,5 @@
+---
+
 name: docker-push-containers-to-dockerhub.yaml
 
 on:
@@ -10,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build docker image and push to DockerHub
-        uses: Senzing/github-action-docker-buildx-build@latest
+        uses: senzing-factory/github-action-docker-buildx-build@v1
         with:
           build-options: "--push"
           image-repository: senzing/test-ground

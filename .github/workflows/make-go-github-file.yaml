@@ -1,4 +1,5 @@
 ---
+
 name: make-go-github-file.yaml
 
 on:
@@ -8,7 +9,7 @@ on:
 
 jobs:
   make-go-github-file:
-    uses: Senzing/build-resources/.github/workflows/make-go-github-file.yaml@main
+    uses: senzing-factory/build-resources/.github/workflows/make-go-github-file.yaml@v1
     secrets:
       SENZING_GITHUB_GPG_PRIVATE_KEY: ${{ secrets.SENZING_GITHUB_GPG_PRIVATE_KEY }}
       SENZING_GITHUB_GPG_PASSPHRASE: ${{ secrets.SENZING_GITHUB_GPG_PASSPHRASE }}

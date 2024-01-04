@@ -1,0 +1,18 @@
+---
+
+name: add-labels-to-issue.yaml
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+jobs:
+
+  add-issue-labels:
+    # Manages customer submission and triage labels
+    uses: senzing-factory/build-resources/.github/workflows/add-labels-to-issue.yaml@v1
+    secrets:
+      ORG_MEMBERSHIP_TOKEN: ${{ secrets.ORG_MEMBERSHIP_TOKEN }}
+      SENZING_MEMBERS: ${{ secrets.SENZING_MEMBERS }}

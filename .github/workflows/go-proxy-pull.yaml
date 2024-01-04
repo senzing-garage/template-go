@@ -1,3 +1,5 @@
+---
+
 # Based on
 # - https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 # - https://github.com/marketplace/actions/go-proxy-warming
@@ -18,4 +20,4 @@ jobs:
       - name: Pull new module version
         uses: andrewslotin/go-proxy-pull-action@v1.1.0
         with:
-          import_path: github.com/senzing/template-go
+          import_path: github.com/senzing-factory/template-go

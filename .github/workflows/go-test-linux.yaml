@@ -1,3 +1,5 @@
+---
+
 # Based on
 # - https://github.com/marketplace/actions/setup-go-environment
 
@@ -13,6 +15,7 @@ jobs:
         go: ["1.21"]
         os: [ubuntu-latest]
     name: "go test with OS: ${{ matrix.os }}; Go: ${{ matrix.go }}"
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

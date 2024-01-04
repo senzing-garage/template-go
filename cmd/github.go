@@ -9,7 +9,7 @@ var (
 	githubIteration      string = "0"
 	githubRef            string = "refs/tags/0.2.4"
 	githubRefName        string = "0.2.4"
-	githubRepository     string = "Senzing/template-go"
+	githubRepository     string = "senzing-factory/template-go"
 	githubRepositoryName string = "template-go"
 	githubVersion        string = "0.2.4"
 )

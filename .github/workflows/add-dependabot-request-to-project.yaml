@@ -1,0 +1,33 @@
+---
+
+name: add-dependabot-request-to-project.yaml
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+
+jobs:
+
+  add-dependabot-request-to-project:
+    name: Add dependabot pull request to projects
+    strategy:
+      matrix:
+        # List of org/projects to add the pull request to
+        include:
+          - org: "senzing-factory"
+            project-number: "1"
+          - org: "senzing-garage"
+            project-number: "3"
+
+    # This workflow is only intended to be used for pull requests created by dependabot
+    if: ${{ contains( github.event.pull_request.user.login, 'dependabot' ) }}
+    uses: senzing-factory/build-resources/.github/workflows/add-to-project.yaml@v1
+    with:
+      classic: false
+      org: ${{ matrix.org }}
+      project-number: ${{ matrix.project-number }}
+    secrets:
+      SENZING_GITHUB_PROJECT_RW_TOKEN: ${{ secrets.SENZING_GITHUB_PROJECT_RW_TOKEN }}
+        

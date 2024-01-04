@@ -9,7 +9,7 @@ import (
 // ----------------------------------------------------------------------------
 
 func ExampleExamplePackageImpl_SaySomething() {
-	// For more information, visit https://github.com/Senzing/template-go/blob/main/examplepackage/examplepackage_test.go
+	// For more information, visit https://github.com/senzing-factory/template-go/blob/main/examplepackage/examplepackage_test.go
 	ctx := context.TODO()
 	examplePackage := &ExamplePackageImpl{
 		Something: "I'm here",
