@@ -1,7 +1,6 @@
 ---
 
 name: docker-push-containers-to-dockerhub.yaml
-
 on:
   push:
     tags:

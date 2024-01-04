@@ -1,11 +1,9 @@
 ---
 
 name: move-pr-to-done.yaml
-
 on:
   pull_request:
     types: [closed]
-
 jobs:
   move-pr-to-done:
     uses: senzing-factory/build-resources/.github/workflows/move-pr-to-done.yaml@v1
