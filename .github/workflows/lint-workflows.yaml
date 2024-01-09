@@ -12,6 +12,10 @@ on:
 
 jobs:
   lint-code-base:
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
     uses: senzing-factory/build-resources/.github/workflows/linter.yaml@main
     with:
       filter-regex-include: ".*.github/workflows/.*"
