@@ -34,3 +34,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # only lint new and modified files
           # VALIDATE_ALL_CODEBASE: false
+          YAML_CONFIG_FILE: .yaml-lint.yml
