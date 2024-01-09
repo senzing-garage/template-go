@@ -1,23 +1,36 @@
-name: 'lint workflows'
-
+name: linter
+  
 on:
   push:
     branches-ignore: [main]
     paths:
-      - .github/**
+       - .github/**
   pull_request:
     branches: [main]
     paths:
       - .github/workflows/**
-
+  
 jobs:
-  lint-code-base:
+  lint-workflows:
+    name: Lint Workflows
+    runs-on: ubuntu-latest
+  
     permissions:
       contents: read
       packages: read
       statuses: write
-    uses: senzing-factory/build-resources/.github/workflows/linter.yaml@main
-    with:
-      filter-regex-include: ".*.github/workflows/.*"
-      # temp for initial full test
-      validate-all-codebase: true
+  
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+  
+      - name: Lint Code Base
+        uses: github/super-linter@v5
+        env:
+          DEFAULT_BRANCH: main
+          FILTER_REGEX_INCLUDE: .*.github/workflows/.*
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # only lint new and modified files
+          VALIDATE_ALL_CODEBASE: false
