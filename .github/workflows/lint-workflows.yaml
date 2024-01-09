@@ -1,31 +1,31 @@
 name: linter
-  
+
 on:
   push:
     branches-ignore: [main]
     paths:
-       - .github/**
+      - .github/**
   pull_request:
     branches: [main]
     paths:
       - .github/workflows/**
-  
+
 jobs:
   lint-workflows:
     name: Lint Workflows
     runs-on: ubuntu-latest
-  
+
     permissions:
       contents: read
       packages: read
       statuses: write
-  
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-  
+
       - name: Lint Code Base
         uses: github/super-linter@v5
         env:
@@ -33,4 +33,4 @@ jobs:
           FILTER_REGEX_INCLUDE: .*.github/workflows/.*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # only lint new and modified files
-          VALIDATE_ALL_CODEBASE: false
+          # VALIDATE_ALL_CODEBASE: false
