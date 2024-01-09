@@ -1,0 +1,19 @@
+name: 'lint workflows'
+
+on:
+  push:
+    branches-ignore: [main]
+    paths:
+      - .github/**
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/**
+
+jobs:
+  lint-code-base:
+    uses: senzing-factory/build-resources/.github/workflows/linter.yaml@main
+    with:
+      filter-regex-include: ".*.github/workflows/.*"
+      # temp for initial full test
+      validate-all-codebase: true
