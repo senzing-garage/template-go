@@ -1,20 +1,24 @@
-name: add-label-customer-submission.yaml
+name: 'add label customer submission'
+
 on:
   issues:
     types:
       - opened
-env:
-  MEMBER_LIST: ${{ secrets.SENZING_MEMBERS }}
-  CREATOR: ${{ github.actor }}
+
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
-  automate-issues-labels:
-    name: Add customer-submission label to issue
+  add-customer-submission-label:
+    name: Add customer-submission label
     runs-on: ubuntu-latest
     steps:
       - name: Add customer-submission label
-        env:
-          BOOL: ${{ contains( env.MEMBER_LIST, env.CREATOR ) }}
-        if: ${{ env.BOOL == 'false' }}
+        if: ${{ env.SENZING_MEMBER == 'false' }}
         uses: andymckay/labeler@1.0.4
         with:
           add-labels: "customer-submission"
+        env:
+          GITHUB_TOKEN: ${{ secrets.ORG_MEMBERSHIP_TOKEN }}
+          SENZING_MEMBER: ${{ contains( secrets.SENZING_MEMBERS, github.actor ) }}

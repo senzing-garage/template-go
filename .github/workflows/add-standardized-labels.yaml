@@ -1,0 +1,14 @@
+name: 'add standardized labels'
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  add-issue-labels:
+    uses: senzing-factory/build-resources/.github/workflows/add-labels-to-issue.yaml@v1
+    secrets:
+      ORG_MEMBERSHIP_TOKEN: ${{ secrets.ORG_MEMBERSHIP_TOKEN }}
+      SENZING_MEMBERS: ${{ secrets.SENZING_MEMBERS }}

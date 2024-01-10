@@ -1,11 +1,11 @@
-# Based on
-# - https://github.com/marketplace/actions/setup-go-environment
+name: 'go test darwin'
 
-name: go-test-darwin.yaml
 on: [push]
+
 env:
   DYLD_LIBRARY_PATH: /opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
   LD_LIBRARY_PATH: /opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
+
 jobs:
   go-test-darwin:
     runs-on: ${{ matrix.os }}
@@ -19,9 +19,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Setup go
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
+
       - name: Run go test
         run: go test -v -p 1 ./...
