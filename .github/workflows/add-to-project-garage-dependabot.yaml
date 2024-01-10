@@ -10,10 +10,10 @@ env:
 jobs:
   add-pr-to-project:
     if: ${{ github.actor == 'dependabot[bot]' && ( github.event.action  == 'opened' || github.event.action  == 'reopened' ) }}
+    secrets:
+      SENZING_GITHUB_PROJECT_RW_TOKEN: ${{ secrets.SENZING_GITHUB_PROJECT_RW_TOKEN }}
     uses: senzing-factory/build-resources/.github/workflows/add-to-project.yaml@v1
     with:
       classic: false
       org: ${{ vars.SENZING_GITHUB_ACCOUNT_NAME }}
       project-number: ${{ vars.SENZING_PROJECT_GARAGE }}
-    secrets:
-      SENZING_GITHUB_PROJECT_RW_TOKEN: ${{ secrets.SENZING_GITHUB_PROJECT_RW_TOKEN }}
