@@ -1,6 +1,5 @@
 # template-go
 
-
 If you are beginning your journey with
 [Senzing](https://senzing.com/),
 please start with
