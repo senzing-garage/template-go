@@ -1,8 +1,10 @@
-# Based on
-# - https://github.com/marketplace/actions/setup-go-environment
+name: 'go test linux'
 
-name: go-test-linux.yaml
 on: [push]
+
+permissions:
+  contents: read
+
 jobs:
   go-test-linux:
     runs-on: ${{ matrix.os }}
@@ -16,9 +18,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Setup go
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
+
       - name: Run go test
         run: go test -v -p 1 ./...

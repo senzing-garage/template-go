@@ -1,9 +1,11 @@
-name: add-to-project-garage.yaml
+name: 'add to project garage'
+
 on:
   issues:
     types:
-      - reopened
       - opened
+      - reopened
+
 jobs:
   add-to-project:
     name: Add issue to project
