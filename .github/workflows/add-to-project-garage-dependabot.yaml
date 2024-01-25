@@ -4,16 +4,11 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  CREATOR: ${{ github.event.pull_request.user.login }}
-
 jobs:
-  add-pr-to-project:
-    if: ${{ github.actor == 'dependabot[bot]' && ( github.event.action  == 'opened' || github.event.action  == 'reopened' ) }}
+
+  add-issue-labels:
     secrets:
       SENZING_GITHUB_PROJECT_RW_TOKEN: ${{ secrets.SENZING_GITHUB_PROJECT_RW_TOKEN }}
-    uses: senzing-factory/build-resources/.github/workflows/add-to-project.yaml@v1
+    uses: senzing-factory/build-resources/.github/workflows/add-to-project-dependabot.yaml@main
     with:
-      classic: false
-      org: ${{ vars.SENZING_GITHUB_ACCOUNT_NAME }}
-      project-number: ${{ vars.SENZING_PROJECT_GARAGE }}
+      project: ${{ vars.SENZING_PROJECT_GARAGE }}
