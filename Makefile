@@ -64,6 +64,13 @@ hello-world: hello-world-osarch-specific
 # Dependency management
 # -----------------------------------------------------------------------------
 
+.PHONY: make-dependencies
+make-dependencies:
+	@go install github.com/vladopajic/go-test-coverage/v2@latest
+	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.58.1
+	golangci-lint --version
+
+
 .PHONY: dependencies
 dependencies:
 	@go get -u ./...
@@ -123,17 +130,12 @@ test: test-osarch-specific
 # Coverage
 # -----------------------------------------------------------------------------
 
-.PHONY: install-go-test-coverage
-install-go-test-coverage:
-	go install github.com/vladopajic/go-test-coverage/v2@latest
-
-
 .PHONY: coverage
 coverage: coverage-osarch-specific
 
 
 .PHONY: check-coverage
-check-coverage: install-go-test-coverage
+check-coverage:
 	go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
 	${GOBIN}/go-test-coverage --config=./.testcoverage.yml
 
