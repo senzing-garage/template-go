@@ -2,8 +2,8 @@
 # Stages
 # -----------------------------------------------------------------------------
 
-ARG IMAGE_GO_BUILDER=golang:1.21.4-bullseye
-ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.8.0
+ARG IMAGE_GO_BUILDER=golang:1.22.3-bullseye
+ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.10.1
 
 # -----------------------------------------------------------------------------
 # Stage: senzingapi_runtime
@@ -16,7 +16,7 @@ FROM ${IMAGE_FINAL} as senzingapi_runtime
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_GO_BUILDER} as go_builder
-ENV REFRESHED_AT=2023-12-04
+ENV REFRESHED_AT=2024-06-01
 LABEL Name="senzing/template-go-builder" \
       Maintainer="support@senzing.com" \
       Version="0.0.1"
@@ -50,10 +50,11 @@ RUN mkdir -p /output \
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} as final
-ENV REFRESHED_AT=2023-12-04
+ENV REFRESHED_AT=2024-06-01
 LABEL Name="senzing/template-go" \
       Maintainer="support@senzing.com" \
       Version="0.0.1"
+HEALTHCHECK CMD ["/app/healthcheck.sh"]
 
 # Copy local files from the Git repository.
 
@@ -63,8 +64,6 @@ COPY ./rootfs /
 
 COPY --from=go_builder "/output/linux/template-go" "/app/template-go"
 
-HEALTHCHECK CMD ["/app/healthcheck.sh"]
-
 # Runtime environment variables.
 
 ENV LD_LIBRARY_PATH=/opt/senzing/g2/lib/
@@ -72,6 +71,5 @@ ENV LD_LIBRARY_PATH=/opt/senzing/g2/lib/
 # Runtime execution.
 
 USER 1001
-
 WORKDIR /app
 ENTRYPOINT ["/app/template-go"]
