@@ -1,2 +1,2 @@
-quite: true
+quiet: true
 skip-check: CKV_DOCKER_7
