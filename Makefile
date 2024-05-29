@@ -68,7 +68,6 @@ hello-world: hello-world-osarch-specific
 make-dependencies:
 	@go install github.com/vladopajic/go-test-coverage/v2@latest
 	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.58.1
-	golangci-lint --version
 
 
 .PHONY: dependencies
@@ -145,7 +144,7 @@ check-coverage:
 
 .PHONY: run-golangci-lint
 run-golangci-lint:
-	golangci-lint run --config=.github/linters/.golangci.yml
+	${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yml
 
 # -----------------------------------------------------------------------------
 # Run
