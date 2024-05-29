@@ -30,3 +30,6 @@ go.work
 
 # Makefile
 target/
+
+cover.out
+coverage.html

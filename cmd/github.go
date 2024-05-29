@@ -5,11 +5,11 @@
 package cmd
 
 var (
-	githubDate           string = "2023-10-23"
-	githubIteration      string = "0"
-	githubRef            string = "refs/tags/0.2.4"
-	githubRefName        string = "0.2.4"
-	githubRepository     string = "Senzing/template-go"
-	githubRepositoryName string = "template-go"
-	githubVersion        string = "0.2.4"
+	githubDate           = "2023-10-23"
+	githubIteration      = "0"
+	githubRef            = "refs/tags/0.2.4"
+	githubRefName        = "0.2.4"
+	githubRepository     = "Senzing/template-go"
+	githubRepositoryName = "template-go"
+	githubVersion        = "0.2.4"
 )

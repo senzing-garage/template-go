@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 // ----------------------------------------------------------------------------
@@ -28,12 +28,12 @@ func TestMain(m *testing.M) {
 }
 
 func setup() error {
-	var err error = nil
+	var err error
 	return err
 }
 
 func teardown() error {
-	var err error = nil
+	var err error
 	return err
 }
 
@@ -43,9 +43,9 @@ func teardown() error {
 
 func TestExamplePackageImpl_SaySomething(test *testing.T) {
 	ctx := context.TODO()
-	testObject := &ExamplePackageImpl{
+	testObject := &ExampleImpl{
 		Something: "I'm here",
 	}
 	err := testObject.SaySomething(ctx)
-	assert.Nil(test, err)
+	require.NoError(test, err)
 }
