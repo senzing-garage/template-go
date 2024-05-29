@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestMain(test *testing.T) {
+func Test_Main(test *testing.T) {
 	_ = test
 	main()
 }
