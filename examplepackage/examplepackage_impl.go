@@ -9,8 +9,8 @@ import (
 // Types
 // ----------------------------------------------------------------------------
 
-// ExamplePackageImpl is an example type-struct.
-type ExamplePackageImpl struct {
+// ExampleImpl is an example type-struct.
+type ExampleImpl struct {
 	Something string
 }
 
@@ -34,7 +34,8 @@ Output
   - Nothing is returned, except for an error.  However, something is printed.
     See the example output.
 */
-func (examplepackage *ExamplePackageImpl) SaySomething(ctx context.Context) error {
+func (examplepackage *ExampleImpl) SaySomething(ctx context.Context) error {
+	_ = ctx
 	fmt.Printf("%s: %s\n", exampleConstant, examplepackage.Something)
 	return nil
 }
