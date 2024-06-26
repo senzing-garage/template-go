@@ -25,6 +25,11 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
 
+      - name: Set up gotestfmt
+        uses: gotesttools/gotestfmt-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: run go test
         run: |
           go test -v -p 1 -coverprofile=cover -covermode=atomic -coverpkg=./... ./...

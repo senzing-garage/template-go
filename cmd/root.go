@@ -36,7 +36,7 @@ var SomethingToSay = option.ContextVariable{
 
 var ContextVariablesForMultiPlatform = []option.ContextVariable{
 	option.Configuration,
-	option.EngineConfigurationJson,
+	option.EngineConfigurationJSON,
 	option.LogLevel,
 	SomethingToSay,
 }
