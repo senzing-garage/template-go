@@ -145,7 +145,7 @@ check-coverage:
 
 .PHONY: run-golangci-lint
 run-golangci-lint:
-	${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yml
+	${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yaml
 
 # -----------------------------------------------------------------------------
 # Run

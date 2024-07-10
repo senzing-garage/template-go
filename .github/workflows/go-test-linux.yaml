@@ -41,10 +41,10 @@ jobs:
           senzingapi-runtime-version: ${{ matrix.senzingapi-version }}
 
       - name: Copy /etc files
-        run: sudo cp testdata/senzing-license/g2.lic /etc/opt/senzing/g2.lic
+        run: sudo mkdir -p /etc/opt/senzing && sudo cp testdata/senzing-license/g2.lic /etc/opt/senzing/g2.lic
 
       - name: Copy test database files
-        run: mkdir /tmp/sqlite && cp testdata/sqlite/G2C.db /tmp/sqlite/G2C.db
+        run: mkdir -p /tmp/sqlite && cp testdata/sqlite/G2C.db /tmp/sqlite/G2C.db
 
       - name: Run go test
         run: go test -json -v -p 1 -coverprofile=./cover.out -covermode=atomic -coverpkg=./... ./...  2>&1 | tee /tmp/gotest.log | gotestfmt

@@ -4,9 +4,11 @@
 
 - Used by [???](https://)
 
-## .golangci.yml
+## .golangci.yaml
 
 - Used by [golangci-lint.yaml](../workflows/golangci-lint.yaml)
+- [golangci-lint](https://golangci-lint.run/)
+    - [Configuration](https://golangci-lint.run/usage/configuration/)
 
 ## .jscpd.json
 
