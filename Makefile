@@ -63,7 +63,7 @@ hello-world: hello-world-osarch-specific
 # -----------------------------------------------------------------------------
 
 .PHONY: dependencies-for-make
-make-dependencies:
+dependencies-for-make:
 	@go install github.com/gotesttools/gotestfmt/v2/cmd/gotestfmt@latest
 	@go install github.com/vladopajic/go-test-coverage/v2@latest
 	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.58.1
@@ -87,7 +87,7 @@ setup: setup-osarch-specific
 # -----------------------------------------------------------------------------
 
 .PHONY: lint
-run-golangci-lint:
+lint:
 	${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yaml
 
 # -----------------------------------------------------------------------------

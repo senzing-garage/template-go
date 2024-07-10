@@ -48,29 +48,28 @@ func Test_RunE(test *testing.T) {
 	require.NoError(test, err)
 }
 
-
 func Test_RootCmd(test *testing.T) {
 	_ = test
 	err := RootCmd.Execute()
-	testError(err)
+	require.NoError(test, err)
 	err = RootCmd.RunE(RootCmd, []string{})
-	testError(err)
+	require.NoError(test, err)
 }
 
 func Test_completionCmd(test *testing.T) {
 	_ = test
 	err := completionCmd.Execute()
-	testError(err)
+	require.NoError(test, err)
 	err = completionCmd.RunE(completionCmd, []string{})
-	testError(err)
+	require.NoError(test, err)
 }
 
 func Test_docsCmd(test *testing.T) {
 	_ = test
 	err := docsCmd.Execute()
-	testError(err)
+	require.NoError(test, err)
 	err = docsCmd.RunE(docsCmd, []string{})
-	testError(err)
+	require.NoError(test, err)
 }
 
 // ----------------------------------------------------------------------------

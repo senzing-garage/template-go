@@ -10,11 +10,16 @@ SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/C:\Temp\sqlite\G2C.db
 # OS specific targets
 # -----------------------------------------------------------------------------
 
+.PHONY: build-osarch-specific
+build-osarch-specific: windows/amd64
+	@mv $(TARGET_DIRECTORY)/windows-amd64/$(PROGRAM_NAME) $(TARGET_DIRECTORY)/windows-amd64/$(PROGRAM_NAME).exe
+
+
 .PHONY: clean-osarch-specific
 clean-osarch-specific:
 	del /F /S /Q $(GOPATH)/bin/$(PROGRAM_NAME)
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.html
-	del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.out
+	del /F /S /Q $(MAKEFILE_DIRECTORY)/cover.out
 	del /F /S /Q $(TARGET_DIRECTORY)
 	del /F /S /Q C:\Temp\sqlite
 
@@ -46,7 +51,7 @@ setup-osarch-specific:
 	@mkdir C:\Temp\sqlite
 	@copy testdata\sqlite\G2C.db C:\Temp\sqlite\G2C.db
 	@mkdir $(TARGET_DIRECTORY)\
-	@mkdir $(TARGET_DIRECTORY)\$(GO_OS)-$(GO_ARCH)	
+	@mkdir $(TARGET_DIRECTORY)\$(GO_OS)-$(GO_ARCH)
 
 
 .PHONY: test-osarch-specific
