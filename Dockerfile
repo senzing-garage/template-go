@@ -56,6 +56,8 @@ LABEL Name="senzing/template-go" \
       Version="0.0.1"
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 
+USER root
+
 # Copy local files from the Git repository.
 
 COPY ./rootfs /
@@ -63,6 +65,8 @@ COPY ./rootfs /
 # Copy files from prior stage.
 
 COPY --from=go_builder "/output/linux/template-go" "/app/template-go"
+
+# Install packages via apt-get.
 
 # Runtime environment variables.
 

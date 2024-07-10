@@ -10,8 +10,7 @@ include makefiles/osdetect.mk
 
 # "Simple expanded" variables (':=')
 
-# PROGRAM_NAME is the name of the GIT repository.
-PROGRAM_NAME := $(shell basename `git rev-parse --show-toplevel`)
+PROGRAM_NAME := $(shell basename `git rev-parse --show-toplevel`) # Name of the GIT repository.
 MAKEFILE_PATH := $(abspath $(firstword $(MAKEFILE_LIST)))
 MAKEFILE_DIRECTORY := $(shell dirname $(MAKEFILE_PATH))
 TARGET_DIRECTORY := $(MAKEFILE_DIRECTORY)/target
@@ -33,7 +32,6 @@ GO_ARCH = $(word 2, $(GO_OSARCH))
 
 # Conditional assignment. ('?=')
 # Can be overridden with "export"
-# Example: "export LD_LIBRARY_PATH=/path/to/my/senzing-garage/g2/lib"
 
 LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 GOBIN ?= $(shell go env GOPATH)/bin
@@ -64,7 +62,7 @@ hello-world: hello-world-osarch-specific
 # Dependency management
 # -----------------------------------------------------------------------------
 
-.PHONY: make-dependencies
+.PHONY: dependencies-for-make
 make-dependencies:
 	@go install github.com/gotesttools/gotestfmt/v2/cmd/gotestfmt@latest
 	@go install github.com/vladopajic/go-test-coverage/v2@latest
@@ -76,6 +74,21 @@ dependencies:
 	@go get -u ./...
 	@go get -t -u ./...
 	@go mod tidy
+
+# -----------------------------------------------------------------------------
+# Setup
+# -----------------------------------------------------------------------------
+
+.PHONY: setup
+setup: setup-osarch-specific
+
+# -----------------------------------------------------------------------------
+# Lint
+# -----------------------------------------------------------------------------
+
+.PHONY: lint
+run-golangci-lint:
+	${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yaml
 
 # -----------------------------------------------------------------------------
 # Build
@@ -137,15 +150,7 @@ coverage: coverage-osarch-specific
 check-coverage: export SENZING_LOG_LEVEL=TRACE
 check-coverage:
 	go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
-	${GOBIN}/go-test-coverage --config=./.testcoverage.yaml
-
-# -----------------------------------------------------------------------------
-# Lint
-# -----------------------------------------------------------------------------
-
-.PHONY: run-golangci-lint
-run-golangci-lint:
-	${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yaml
+	${GOBIN}/go-test-coverage --config=.github/coverage/.testcoverage.yaml
 
 # -----------------------------------------------------------------------------
 # Run
@@ -185,7 +190,7 @@ docker-build-package:
 package: package-osarch-specific
 
 # -----------------------------------------------------------------------------
-# Utility targets
+# Clean
 # -----------------------------------------------------------------------------
 
 .PHONY: clean
@@ -193,6 +198,9 @@ clean: clean-osarch-specific
 	@go clean -cache
 	@go clean -testcache
 
+# -----------------------------------------------------------------------------
+# Utility targets
+# -----------------------------------------------------------------------------
 
 .PHONY: help
 help:
@@ -206,10 +214,6 @@ print-make-variables:
 	@$(foreach V,$(sort $(.VARIABLES)), \
 		$(if $(filter-out environment% default automatic, \
 		$(origin $V)),$(warning $V=$($V) ($(value $V)))))
-
-
-.PHONY: setup
-setup: setup-osarch-specific
 
 
 .PHONY: update-pkg-cache

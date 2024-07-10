@@ -4,6 +4,8 @@
 # Variables
 # -----------------------------------------------------------------------------
 
+LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
+SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/tmp/sqlite/G2C.db
 
 # -----------------------------------------------------------------------------
 # OS specific targets
@@ -17,6 +19,7 @@ clean-osarch-specific:
 	@rm -f  $(MAKEFILE_DIRECTORY)/coverage.html || true
 	@rm -f  $(MAKEFILE_DIRECTORY)/coverage.out || true
 	@rm -fr $(TARGET_DIRECTORY) || true
+	@rm -fr /tmp/sqlite || true
 
 
 .PHONY: coverage-osarch-specific
@@ -47,7 +50,9 @@ run-osarch-specific:
 
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
-	@echo "No setup required."
+	@mkdir /tmp/sqlite
+	@cp testdata/sqlite/G2C.db /tmp/sqlite/G2C.db
+	@mkdir -p $(TARGET_DIRECTORY)/$(GO_OS)-$(GO_ARCH) || true
 
 
 .PHONY: test-osarch-specific

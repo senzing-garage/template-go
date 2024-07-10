@@ -4,6 +4,7 @@
 # Variables
 # -----------------------------------------------------------------------------
 
+SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/C:\Temp\sqlite\G2C.db
 
 # -----------------------------------------------------------------------------
 # OS specific targets
@@ -15,6 +16,7 @@ clean-osarch-specific:
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.html
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.out
 	del /F /S /Q $(TARGET_DIRECTORY)
+	del /F /S /Q C:\Temp\sqlite
 
 
 .PHONY: coverage-osarch-specific
@@ -41,12 +43,15 @@ run-osarch-specific:
 
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
-	@echo "No setup required."
+	@mkdir C:\Temp\sqlite
+	@copy testdata\sqlite\G2C.db C:\Temp\sqlite\G2C.db
+	@mkdir $(TARGET_DIRECTORY)\
+	@mkdir $(TARGET_DIRECTORY)\$(GO_OS)-$(GO_ARCH)	
 
 
 .PHONY: test-osarch-specific
 test-osarch-specific:
-	@go test -v -p 1 ./...
+	@go test -json -v -p 1 ./... 2>&1 | tee /tmp/gotest.log | gotestfmt
 
 # -----------------------------------------------------------------------------
 # Makefile targets supported only by this platform.
