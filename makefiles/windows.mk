@@ -22,13 +22,20 @@ clean-osarch-specific:
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/cover.out
 	del /F /S /Q $(TARGET_DIRECTORY)
 	del /F /S /Q C:\Temp\sqlite
+	taskkill /f /t/im godoc
 
 
 .PHONY: coverage-osarch-specific
 coverage-osarch-specific:
 	@go test -v -coverprofile=coverage.out -p 1 ./...
 	@go tool cover -html="coverage.out" -o coverage.html
-	@xdg-open file://$(MAKEFILE_DIRECTORY)/coverage.html
+	@explorer file://$(MAKEFILE_DIRECTORY)/coverage.html
+
+
+.PHONY: documentation-osarch-specific
+documentation-osarch-specific:
+	@start /b godoc
+	@explorer http://localhost:6060
 
 
 .PHONY: hello-world-osarch-specific
