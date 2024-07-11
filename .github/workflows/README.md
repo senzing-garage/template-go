@@ -55,15 +55,27 @@
     - [actions/upload-artifact]
     - [senzing-factory/build-resources/.../go-coverage.yaml]
 
-    - [golangci/golangci-lint-action]
-
 ## go-test-linux.yaml
 
 - [Go Test Linux GitHub action]
+  - uses:
+    - [actions/checkout]
+    - [actions/setup-go]
+    - [gotesttools/gotestfmt-action]
+    - [senzing-factory/github-action-install-senzing-api]
+    - [actions/upload-artifact]
+    - [senzing-factory/build-resources/.../go-coverage.yaml]
 
 ## go-test-windows.yaml
 
 - [Go Test Windows GitHub action]
+  - uses:
+    - [actions/checkout]
+    - [actions/setup-go]
+    - [gotesttools/gotestfmt-action]
+    - [senzing-factory/github-action-install-senzing-api]
+    - [actions/upload-artifact]
+    - [senzing-factory/build-resources/.../go-coverage.yaml]
 
 ## lint-workflows.yaml
 
