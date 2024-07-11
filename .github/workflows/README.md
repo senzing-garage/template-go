@@ -169,7 +169,7 @@ this action moves the PR on the "Garage" project board to "Done".
 [Go Test Linux GitHub action]: go-test-linux.yaml
 [Go Test Windows GitHub action]: go-test-windows.yaml
 [Go]: https://go.dev/
-[golang-lint configuration]: ../../.github/.golangci.yaml
+[golang-lint configuration]: ../linters/.golangci.yaml
 [Golangci Lint GitHub action]: golangci-lint.yaml
 [golangci-lint]: https://github.com/golangci/golangci-lint
 [golangci/golangci-lint-action]: https://github.com/golangci/golangci-lint-action
@@ -191,5 +191,5 @@ this action moves the PR on the "Garage" project board to "Done".
 [senzing-factory/github-action-docker-buildx-build]: https://github.com/senzing-factory/github-action-docker-buildx-build
 [senzing-factory/github-action-install-senzing-api]: https://github.com/senzing-factory/github-action-install-senzing-api
 [senzing-factory/github-action-make-go-tag]: https://github.com/senzing-factory/github-action-make-go-tag
-[super-linter configuration] ../../.github/linters/.yaml-lint.yml
-[super-linter]: <https://github.com/super-linter/super-linter>
+[super-linter configuration]: ../linters/.yaml-lint.yml
+[super-linter]: https://github.com/super-linter/super-linter
