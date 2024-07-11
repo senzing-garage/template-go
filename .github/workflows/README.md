@@ -3,7 +3,7 @@
 ## add-labels-standardized.yaml
 
 - [Add Labels Standardized GitHub action]
-  - uses [senzing-factory/build-resources/...add-labels-to-issue.yaml]
+  - uses [senzing-factory/build-resources/.../add-labels-to-issue.yaml]
 
 ## add-to-project-garage-dependabot.yaml
 
@@ -95,3 +95,5 @@
 [Make Go GitHub File GitHub action]: make-go-github-file.yaml
 [Make Go Tag GitHub action]: make-go-tag.yaml
 [Move PR to Done Dependabot GitHub action]: move-pr-to-done-dependabot.yaml
+[senzing-factory/build-resources/.../add-labels-to-issue.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-labels-to-issue.yaml
+[senzing-factory/build-resources/.../add-to-project-dependabot.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project-dependabot.yaml
