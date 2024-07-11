@@ -38,6 +38,7 @@ The PR remains on the "Garage" project board as "In Progress" for notification.
 
 When a Pull Request is made against the `main` branch,
 this action verifies that the `Dockerfile` can be successfully built.
+
 *Note:* The Docker image is **not** pushed to [DockerHub].
 
 - [Docker Build Container GitHub action]
@@ -45,10 +46,16 @@ this action verifies that the `Dockerfile` can be successfully built.
 
 ## docker-push-containers-to-dockerhub.yaml
 
+After a [Semantic Version] release is created,
+this action builds Docker images on multiple architectures and pushes the Docker images to [DockerHub].
+
 - [Docker Push Containers to DockerHub GitHub action]
   - uses [senzing-factory/github-action-docker-buildx-build]
 
 ## golangci-lint.yaml
+
+When a change is committed to GitHub or a Pull Request is made against the `main` branch,
+this action runs [golangci-lint] to run multiple linters against the code.
 
 - [Golangci Lint GitHub action]
   - uses:
@@ -59,10 +66,16 @@ this action verifies that the `Dockerfile` can be successfully built.
 
 ## go-proxy-pull.yaml
 
+After a [Semantic Version] release is created,
+this action expedites the Go publishing process.
+
 - [Go Proxy Pull GitHub action]
   - uses [andrewslotin/go-proxy-pull-action]
 
 ## go-test-darwin.yaml
+
+When a Pull Request is made against the `main` branch,
+this action runs `go test` with coverage testing.
 
 - [Go Test Darwin GitHub action]
   - uses:
@@ -75,6 +88,9 @@ this action verifies that the `Dockerfile` can be successfully built.
 
 ## go-test-linux.yaml
 
+When a change is committed to GitHub or a Pull Request is made against the `main` branch,
+this action runs `go test` with coverage testing.
+
 - [Go Test Linux GitHub action]
   - uses:
     - [actions/checkout]
@@ -85,6 +101,9 @@ this action verifies that the `Dockerfile` can be successfully built.
     - [senzing-factory/build-resources/.../go-coverage.yaml]
 
 ## go-test-windows.yaml
+
+When a change is committed to GitHub or a Pull Request is made against the `main` branch,
+this action runs `go test` with coverage testing.
 
 - [Go Test Windows GitHub action]
   - uses:
@@ -97,15 +116,26 @@ this action verifies that the `Dockerfile` can be successfully built.
 
 ## lint-workflows.yaml
 
+When a change is committed to GitHub or a Pull Request is made against the `main` branch,
+this action runs [super-linter] to run multiple linters against the code.
+
 - [Lint Workflows GitHub action]
   - uses [senzing-factory/build-resources/.../lint-workflows.yaml]
 
 ## make-go-github-file.yaml
 
+After a [Semantic Version] release is created,
+this action creates a Pull Request for an updated [github.go] file
+for the **next** Semantic Version release by increasing the Semantic Version's Patch value.
+
 - [Make Go GitHub File GitHub action]
   - uses [senzing-factory/build-resources/.../make-go-github-file.yaml]
 
 ## make-go-tag.yaml
+
+After a [Semantic Version] release is created,
+this action creates a tag in the form `vM.m.P` using the SHA of `M.m.P`.
+The `v` prefix is standard usage in [Go].
 
 - [Make Go Tag GitHub action]
   - uses:
@@ -113,6 +143,9 @@ this action verifies that the `Dockerfile` can be successfully built.
     - [senzing-factory/github-action-make-go-tag]
 
 ## move-pr-to-done-dependabot.yaml
+
+When a Pull Request is made against the `main` branch,
+this action moves the PR to the "Garage" project board to "Done".
 
 - [Move PR to Done Dependabot GitHub action]
   - uses [senzing-factory/build-resources/.../move-pr-to-done-dependabot.yaml]
@@ -127,17 +160,21 @@ this action verifies that the `Dockerfile` can be successfully built.
 [Dependabot Approve and Merge GitHub action]: dependabot-approve-and-merge.yaml
 [Docker Build Container GitHub action]: docker-build-container.yaml
 [Docker Push Containers to DockerHub GitHub action]: docker-push-containers-to-dockerhub.yaml
+[DockerHub]: https://hub.docker.com/
+[github.go]: ../../cmd/github.go
 [Go Proxy Pull GitHub action]: go-proxy-pull.yaml
 [Go Test Darwin GitHub action]: go-test-darwin.yaml
 [Go Test Linux GitHub action]: go-test-linux.yaml
 [Go Test Windows GitHub action]: go-test-windows.yaml
 [Golangci Lint GitHub action]: golangci-lint.yaml
+[golangci-lint]: https://github.com/golangci/golangci-lint
 [golangci/golangci-lint-action]: https://github.com/golangci/golangci-lint-action
 [gotesttools/gotestfmt-action]: https://github.com/gotesttools/gotestfmt-action
 [Lint Workflows GitHub action]: lint-workflows.yaml
 [Make Go GitHub File GitHub action]: make-go-github-file.yaml
 [Make Go Tag GitHub action]: make-go-tag.yaml
 [Move PR to Done Dependabot GitHub action]: move-pr-to-done-dependabot.yaml
+[Semantic Version]: https://semver.org/
 [senzing-factory/build-resources/.../add-labels-to-issue.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-labels-to-issue.yaml
 [senzing-factory/build-resources/.../add-to-project-dependabot.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project-dependabot.yaml
 [senzing-factory/build-resources/.../add-to-project.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project.yaml
@@ -149,4 +186,4 @@ this action verifies that the `Dockerfile` can be successfully built.
 [senzing-factory/github-action-docker-buildx-build]: https://github.com/senzing-factory/github-action-docker-buildx-build
 [senzing-factory/github-action-install-senzing-api]: https://github.com/senzing-factory/github-action-install-senzing-api
 [senzing-factory/github-action-make-go-tag]: https://github.com/senzing-factory/github-action-make-go-tag
-[DockerHub](https://hub.docker.com/)
+[super-linter]: https://github.com/super-linter/super-linter
