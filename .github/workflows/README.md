@@ -159,10 +159,10 @@ this action moves the PR on the "Garage" project board to "Done".
 - [Move PR to Done Dependabot GitHub action]
   - Uses: [senzing-factory/build-resources/.../move-pr-to-done-dependabot.yaml]
 
-[.checkov.yaml]:  ../linters/.checkov.yaml
-[.golangci.yaml]: ../linters/.golangci.yaml
-[.jscpd.json]: ../linters/.jscpd.json
-[.yaml-lint.yml]: ../linters/.yaml-lint.yml
+[.checkov.yaml]:  ../linters/README.md#checkovyaml
+[.golangci.yaml]: ../linters/README.md#golangciyaml
+[.jscpd.json]: ../linters/README.md#jscpdjson
+[.yaml-lint.yml]: ../linters/README.md#yaml-lintyml
 [actions/checkout]: https://github.com/actions/checkout
 [actions/setup-go]: https://github.com/actions/setup-go
 [actions/upload-artifact]: https://github.com/actions/upload-artifact
@@ -202,4 +202,4 @@ this action moves the PR on the "Garage" project board to "Done".
 [senzing-factory/github-action-install-senzing-api]: https://github.com/senzing-factory/github-action-install-senzing-api
 [senzing-factory/github-action-make-go-tag]: https://github.com/senzing-factory/github-action-make-go-tag
 [super-linter]: https://github.com/super-linter/super-linter
-[testcoverage.yaml]:  ../coverage/testcoverage.yaml
+[testcoverage.yaml]:  ../coverage/README.md#testcoverageyaml
