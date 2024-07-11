@@ -7,6 +7,6 @@
   - [go-test-linux.yaml]
   - [go-test-windows.yaml]
 
-[go-test-darwin.yaml]: ../workflows/go-test-darwin.yaml
-[go-test-linux.yaml]: ../workflows/go-test-linux.yaml
-[go-test-windows.yaml]: ../workflows/go-test-windows.yaml
+[go-test-darwin.yaml]: ../workflows/README.md#go-test-darwinyaml
+[go-test-linux.yaml]: ../workflows/README.md#go-test-linuxyaml
+[go-test-windows.yaml]: ../workflows/README.md#go-test-windowsyaml
