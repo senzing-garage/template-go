@@ -10,7 +10,8 @@ include makefiles/osdetect.mk
 
 # "Simple expanded" variables (':=')
 
-PROGRAM_NAME := $(shell basename `git rev-parse --show-toplevel`) # Name of the GIT repository.
+# PROGRAM_NAME is the name of the GIT repository.
+PROGRAM_NAME := $(shell basename `git rev-parse --show-toplevel`)
 MAKEFILE_PATH := $(abspath $(firstword $(MAKEFILE_LIST)))
 MAKEFILE_DIRECTORY := $(shell dirname $(MAKEFILE_PATH))
 TARGET_DIRECTORY := $(MAKEFILE_DIRECTORY)/target
@@ -88,7 +89,7 @@ setup: setup-osarch-specific
 
 .PHONY: lint
 lint:
-	${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yaml
+	@${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yaml
 
 # -----------------------------------------------------------------------------
 # Build
@@ -126,7 +127,7 @@ build-scratch:
 
 .PHONY: docker-build
 docker-build:
-	@docker build \
+	docker build \
 		--tag $(DOCKER_IMAGE_NAME) \
 		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
 		.
