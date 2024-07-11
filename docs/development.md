@@ -159,7 +159,9 @@ Create a code coverage map.
    `github.com` > `senzing-garage` > `template-go`
 
 1. When a versioned release is published with a `v0.0.0` format tag,
-the reference can be found by clicking on the following badge at the top of the README.md page:
+the reference can be found by clicking on the following badge at the top of the README.md page.
+Example:
+
 [![Go Reference](https://pkg.go.dev/badge/github.com/senzing-garage/template-go.svg)](https://pkg.go.dev/github.com/senzing-garage/template-go)
 
 ## Docker
