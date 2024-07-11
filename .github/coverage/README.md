@@ -17,4 +17,4 @@
 [testcoverage.yaml]: testcoverage.yaml
 [go-test-coverage]: https://github.com/vladopajic/go-test-coverage
 [go-test-coverage configuration]: https://github.com/vladopajic/go-test-coverage?tab=readme-ov-file#config
-[go-test-coverage badge] <https://github.com/vladopajic/go-test-coverage/blob/main/docs/badge.md>
+[go-test-coverage badge]: https://github.com/vladopajic/go-test-coverage/blob/main/docs/badge.md
