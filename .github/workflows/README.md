@@ -13,7 +13,7 @@
 ## add-to-project-garage.yaml
 
 - [Add to Project Garage GitHub action]
-  - uses
+  - uses [senzing-factory/build-resources/.../add-to-project.yaml]
 
 ## dependabot-approve-and-merge.yaml
 
@@ -91,6 +91,7 @@
 [Move PR to Done Dependabot GitHub action]: move-pr-to-done-dependabot.yaml
 [senzing-factory/build-resources/.../add-labels-to-issue.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-labels-to-issue.yaml
 [senzing-factory/build-resources/.../add-to-project-dependabot.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project-dependabot.yaml
+[senzing-factory/build-resources/.../add-to-project.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project.yaml
 [senzing-factory/build-resources/.../dependabot-approve-and-merge.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/dependabot-approve-and-merge.yaml
 [senzing-factory/build-resources/.../lint-workflows.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/lint-workflows.yaml
 [senzing-factory/build-resources/.../make-go-github-file.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/make-go-github-file.yaml
