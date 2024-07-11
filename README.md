@@ -8,7 +8,7 @@ Although this GitHub repository may help you understand an approach to using Sen
 it's not considered to be "production ready" and is not considered to be part of the Senzing product.
 Heck, it may not even be appropriate for your application of Senzing!
 
-## :warning: WARNING: senzing-tools is still in development :warning: _
+## :warning: WARNING: template-go is still in development :warning: _
 
 At the moment, this is "work-in-progress" with Semantic Versions of `0.n.x`.
 Although it can be reviewed and commented on,
@@ -43,7 +43,7 @@ Aspects of the template-go repository:
 
 ## Use
 
-(TODO:)
+See [main.go] for an example of use.
 
 ## References
 
@@ -61,6 +61,7 @@ Aspects of the template-go repository:
 [Errors]: docs/errors.md
 [Examples]: docs/examples.md
 [Helm Chart]: https://github.com/senzing-garage/charts/tree/main/charts/template-go
+[main.go]: main.go
 [Senzing Garage]: https://github.com/senzing-garage-garage
 [Senzing Quick Start guides]: https://docs.senzing.com/quickstart/
 [Senzing]: https://senzing.com/
