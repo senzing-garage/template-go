@@ -45,7 +45,7 @@
 [checkov configuration]: https://www.checkov.io/2.Basics/CLI%20Command%20Reference.html
 [checkov]: https://www.checkov.io/
 [golangci-lint configuration]: https://golangci-lint.run/usage/configuration/
-[golangci-lint.yaml]: ../workflows/README.md#golangci-lint.yaml
+[golangci-lint.yaml]: ../workflows/README.md#golangci-lintyaml
 [golangci-lint]: https://golangci-lint.run/
 [jscpd configuration]: https://github.com/kucherenko/jscpd/tree/master/apps/jscpd#options
 [jscpd]: https://github.com/kucherenko/jscpd
