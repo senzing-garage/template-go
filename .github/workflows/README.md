@@ -7,7 +7,7 @@ this action adds appropriate labels to the issue.
 (e.g. "triage", "customer-submission")
 
 - [Add Labels Standardized GitHub action]
-  - uses [senzing-factory/build-resources/.../add-labels-to-issue.yaml]
+  - Uses: [senzing-factory/build-resources/.../add-labels-to-issue.yaml]
 
 ## add-to-project-garage-dependabot.yaml
 
@@ -15,7 +15,7 @@ When a Dependabot Pull Request (PR) is made against `main` branch,
 this action adds the PR to the "Garage" project board as "In Progress".
 
 - [Add to Project Garage Dependabot GitHub action]
-  - uses [senzing-factory/build-resources/.../add-to-project-dependabot.yaml]
+  - Uses: [senzing-factory/build-resources/.../add-to-project-dependabot.yaml]
 
 ## add-to-project-garage.yaml
 
@@ -23,7 +23,7 @@ When an issue is created,
 this action adds the issue to the "Garage" board as "Backlog".
 
 - [Add to Project Garage GitHub action]
-  - uses [senzing-factory/build-resources/.../add-to-project.yaml]
+  - Uses: [senzing-factory/build-resources/.../add-to-project.yaml]
 
 ## dependabot-approve-and-merge.yaml
 
@@ -32,7 +32,7 @@ this action determines if it should be automatically approved and merged into th
 Once this action occurs [move-pr-to-done-dependabot.yaml] moves the PR on the "Garage" project board to "Done".
 
 - [Dependabot Approve and Merge GitHub action]
-  - uses [senzing-factory/build-resources/.../dependabot-approve-and-merge.yaml]
+  - Uses: [senzing-factory/build-resources/.../dependabot-approve-and-merge.yaml]
 
 ## docker-build-container.yaml
 
@@ -42,7 +42,7 @@ this action verifies that the `Dockerfile` can be successfully built.
 *Note:* The Docker image is **not** pushed to [DockerHub].
 
 - [Docker Build Container GitHub action]
-  - uses [senzing-factory/github-action-docker-buildx-build]
+  - Uses: [senzing-factory/github-action-docker-buildx-build]
 
 ## docker-push-containers-to-dockerhub.yaml
 
@@ -50,7 +50,7 @@ After a [Semantic Version] release is created,
 this action builds Docker images on multiple architectures and pushes the Docker images to [DockerHub].
 
 - [Docker Push Containers to DockerHub GitHub action]
-  - uses [senzing-factory/github-action-docker-buildx-build]
+  - Uses: [senzing-factory/github-action-docker-buildx-build]
 
 ## golangci-lint.yaml
 
@@ -58,8 +58,9 @@ When a change is committed to GitHub or a Pull Request is made against the `main
 this action runs [golangci-lint] to run multiple linters against the code.
 
 - [Golangci Lint GitHub action]
-  - [golang-lint configuration]
-  - uses:
+  - Configuration:
+    - [.golangci.yaml]
+  - Uses:
     - [actions/checkout]
     - [senzing-factory/github-action-install-senzing-api]
     - [actions/setup-go]
@@ -71,7 +72,7 @@ After a [Semantic Version] release is created,
 this action expedites the Go publishing process.
 
 - [Go Proxy Pull GitHub action]
-  - uses [andrewslotin/go-proxy-pull-action]
+  - Uses: [andrewslotin/go-proxy-pull-action]
 
 ## go-test-darwin.yaml
 
@@ -79,7 +80,8 @@ When a Pull Request is made against the `main` branch,
 this action runs `go test` with coverage testing on macOS.
 
 - [Go Test Darwin GitHub action]
-  - uses:
+  - Configuration: [testcoverage.yaml]
+  - Uses:
     - [actions/checkout]
     - [actions/setup-go]
     - [gotesttools/gotestfmt-action]
@@ -93,7 +95,9 @@ When a change is committed to GitHub or a Pull Request is made against the `main
 this action runs `go test` with coverage testing on Linux.
 
 - [Go Test Linux GitHub action]
-  - uses:
+  - Configuration:
+    - [testcoverage.yaml]
+  - Uses:
     - [actions/checkout]
     - [actions/setup-go]
     - [gotesttools/gotestfmt-action]
@@ -107,7 +111,9 @@ When a Pull Request is made against the `main` branch,
 this action runs `go test` with coverage testing on Windows.
 
 - [Go Test Windows GitHub action]
-  - uses:
+  - Configuration:
+    - [testcoverage.yaml]
+  - Uses:
     - [actions/checkout]
     - [actions/setup-go]
     - [gotesttools/gotestfmt-action]
@@ -121,8 +127,11 @@ When a change is committed to GitHub or a Pull Request is made against the `main
 this action runs [super-linter] to run multiple linters against the code.
 
 - [Lint Workflows GitHub action]
-  - [super-linter configuration]
-  - uses [senzing-factory/build-resources/.../lint-workflows.yaml]
+  - Configuration:
+    - [.checkov.yaml]
+    - [.jscpd.json]
+    - [.yaml-lint.yml]
+  - Uses: [senzing-factory/build-resources/.../lint-workflows.yaml]
 
 ## make-go-github-file.yaml
 
@@ -131,7 +140,7 @@ this action creates a Pull Request for an updated [github.go] file
 for the **next** Semantic Version release by increasing the Semantic Version's Patch value.
 
 - [Make Go GitHub File GitHub action]
-  - uses [senzing-factory/build-resources/.../make-go-github-file.yaml]
+  - Uses: [senzing-factory/build-resources/.../make-go-github-file.yaml]
 
 ## make-go-tag.yaml
 
@@ -140,7 +149,7 @@ this action creates a tag in the form `vM.m.P` using the SHA of the `M.m.P` rele
 The `v` prefix is standard usage in [Go].
 
 - [Make Go Tag GitHub action]
-  - uses:
+  - Uses:
     - [actions/checkout]
     - [senzing-factory/github-action-make-go-tag]
 
@@ -150,8 +159,12 @@ When a Pull Request is merged into the `main` branch,
 this action moves the PR on the "Garage" project board to "Done".
 
 - [Move PR to Done Dependabot GitHub action]
-  - uses [senzing-factory/build-resources/.../move-pr-to-done-dependabot.yaml]
+  - Uses: [senzing-factory/build-resources/.../move-pr-to-done-dependabot.yaml]
 
+[.checkov.yaml]:  ../linters/.checkov.yaml
+[.golangci.yaml]: ../linters/.golangci.yaml
+[.jscpd.json]: ../linters/.jscpd.json
+[.yaml-lint.yml]: ../linters/.yaml-lint.yml
 [actions/checkout]: https://github.com/actions/checkout
 [actions/setup-go]: https://github.com/actions/setup-go
 [actions/upload-artifact]: https://github.com/actions/upload-artifact
@@ -169,7 +182,6 @@ this action moves the PR on the "Garage" project board to "Done".
 [Go Test Linux GitHub action]: go-test-linux.yaml
 [Go Test Windows GitHub action]: go-test-windows.yaml
 [Go]: https://go.dev/
-[golang-lint configuration]: ../linters/.golangci.yaml
 [Golangci Lint GitHub action]: golangci-lint.yaml
 [golangci-lint]: https://github.com/golangci/golangci-lint
 [golangci/golangci-lint-action]: https://github.com/golangci/golangci-lint-action
@@ -191,5 +203,4 @@ this action moves the PR on the "Garage" project board to "Done".
 [senzing-factory/github-action-docker-buildx-build]: https://github.com/senzing-factory/github-action-docker-buildx-build
 [senzing-factory/github-action-install-senzing-api]: https://github.com/senzing-factory/github-action-install-senzing-api
 [senzing-factory/github-action-make-go-tag]: https://github.com/senzing-factory/github-action-make-go-tag
-[super-linter configuration]: ../linters/.yaml-lint.yml
 [super-linter]: https://github.com/super-linter/super-linter
