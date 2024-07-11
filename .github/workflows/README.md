@@ -95,8 +95,7 @@ When a change is committed to GitHub or a Pull Request is made against the `main
 this action runs `go test` with coverage testing on Linux.
 
 - [Go Test Linux GitHub action]
-  - Configuration:
-    - [testcoverage.yaml]
+  - Configuration: [testcoverage.yaml]
   - Uses:
     - [actions/checkout]
     - [actions/setup-go]
@@ -111,8 +110,7 @@ When a Pull Request is made against the `main` branch,
 this action runs `go test` with coverage testing on Windows.
 
 - [Go Test Windows GitHub action]
-  - Configuration:
-    - [testcoverage.yaml]
+  - Configuration: [testcoverage.yaml]
   - Uses:
     - [actions/checkout]
     - [actions/setup-go]
