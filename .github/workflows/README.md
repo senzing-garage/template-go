@@ -2,25 +2,43 @@
 
 ## add-labels-standardized.yaml
 
+When issues are opened,
+this action adds appropriate labels to the issue.
+(e.g. "triage", "customer-submission")
+
 - [Add Labels Standardized GitHub action]
   - uses [senzing-factory/build-resources/.../add-labels-to-issue.yaml]
 
 ## add-to-project-garage-dependabot.yaml
+
+When a Dependabot Pull Request (PR) is made against `main` branch,
+this action adds the PR to the "Garage" project board as "In Progress".
 
 - [Add to Project Garage Dependabot GitHub action]
   - uses [senzing-factory/build-resources/.../add-to-project-dependabot.yaml]
 
 ## add-to-project-garage.yaml
 
+When an issue is created,
+this action adds the issue to the "Garage" board as "Backlog".
+
 - [Add to Project Garage GitHub action]
   - uses [senzing-factory/build-resources/.../add-to-project.yaml]
 
 ## dependabot-approve-and-merge.yaml
 
+When a Dependabot Pull Request (PR) is made against the `main` branch,
+this action determines if it should be automatically approved and merged into the `main` branch.
+The PR remains on the "Garage" project board as "In Progress" for notification.
+
 - [Dependabot Approve and Merge GitHub action]
   - uses [senzing-factory/build-resources/.../dependabot-approve-and-merge.yaml]
 
 ## docker-build-container.yaml
+
+When a Pull Request is made against the `main` branch,
+this action verifies that the `Dockerfile` can be successfully built.
+*Note:* The Docker image is **not** pushed to [DockerHub].
 
 - [Docker Build Container GitHub action]
   - uses [senzing-factory/github-action-docker-buildx-build]
@@ -131,3 +149,4 @@
 [senzing-factory/github-action-docker-buildx-build]: https://github.com/senzing-factory/github-action-docker-buildx-build
 [senzing-factory/github-action-install-senzing-api]: https://github.com/senzing-factory/github-action-install-senzing-api
 [senzing-factory/github-action-make-go-tag]: https://github.com/senzing-factory/github-action-make-go-tag
+[DockerHub](https://hub.docker.com/)
