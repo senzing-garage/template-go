@@ -134,7 +134,7 @@ for the **next** Semantic Version release by increasing the Semantic Version's P
 ## make-go-tag.yaml
 
 After a [Semantic Version] release is created,
-this action creates a tag in the form `vM.m.P` using the SHA of `M.m.P`.
+this action creates a tag in the form `vM.m.P` using the SHA of the `M.m.P` release.
 The `v` prefix is standard usage in [Go].
 
 - [Make Go Tag GitHub action]
@@ -145,7 +145,7 @@ The `v` prefix is standard usage in [Go].
 ## move-pr-to-done-dependabot.yaml
 
 When a Pull Request is made against the `main` branch,
-this action moves the PR to the "Garage" project board to "Done".
+this action moves the PR on the "Garage" project board to "Done".
 
 - [Move PR to Done Dependabot GitHub action]
   - uses [senzing-factory/build-resources/.../move-pr-to-done-dependabot.yaml]
@@ -166,24 +166,25 @@ this action moves the PR to the "Garage" project board to "Done".
 [Go Test Darwin GitHub action]: go-test-darwin.yaml
 [Go Test Linux GitHub action]: go-test-linux.yaml
 [Go Test Windows GitHub action]: go-test-windows.yaml
+[Go](https://go.dev/)
 [Golangci Lint GitHub action]: golangci-lint.yaml
-[golangci-lint]: https://github.com/golangci/golangci-lint
-[golangci/golangci-lint-action]: https://github.com/golangci/golangci-lint-action
-[gotesttools/gotestfmt-action]: https://github.com/gotesttools/gotestfmt-action
+[golangci-lint]: <https://github.com/golangci/golangci-lint>
+[golangci/golangci-lint-action]: <https://github.com/golangci/golangci-lint-action>
+[gotesttools/gotestfmt-action]: <https://github.com/gotesttools/gotestfmt-action>
 [Lint Workflows GitHub action]: lint-workflows.yaml
 [Make Go GitHub File GitHub action]: make-go-github-file.yaml
 [Make Go Tag GitHub action]: make-go-tag.yaml
 [Move PR to Done Dependabot GitHub action]: move-pr-to-done-dependabot.yaml
-[Semantic Version]: https://semver.org/
-[senzing-factory/build-resources/.../add-labels-to-issue.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-labels-to-issue.yaml
-[senzing-factory/build-resources/.../add-to-project-dependabot.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project-dependabot.yaml
-[senzing-factory/build-resources/.../add-to-project.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project.yaml
-[senzing-factory/build-resources/.../dependabot-approve-and-merge.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/dependabot-approve-and-merge.yaml
-[senzing-factory/build-resources/.../go-coverage.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/go-coverage.yaml
-[senzing-factory/build-resources/.../lint-workflows.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/lint-workflows.yaml
-[senzing-factory/build-resources/.../make-go-github-file.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/make-go-github-file.yaml
-[senzing-factory/build-resources/.../move-pr-to-done-dependabot.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/move-pr-to-done-dependabot.yaml
-[senzing-factory/github-action-docker-buildx-build]: https://github.com/senzing-factory/github-action-docker-buildx-build
-[senzing-factory/github-action-install-senzing-api]: https://github.com/senzing-factory/github-action-install-senzing-api
-[senzing-factory/github-action-make-go-tag]: https://github.com/senzing-factory/github-action-make-go-tag
-[super-linter]: https://github.com/super-linter/super-linter
+[Semantic Version]: <https://semver.org/>
+[senzing-factory/build-resources/.../add-labels-to-issue.yaml]: <https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-labels-to-issue.yaml>
+[senzing-factory/build-resources/.../add-to-project-dependabot.yaml]: <https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project-dependabot.yaml>
+[senzing-factory/build-resources/.../add-to-project.yaml]: <https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project.yaml>
+[senzing-factory/build-resources/.../dependabot-approve-and-merge.yaml]: <https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/dependabot-approve-and-merge.yaml>
+[senzing-factory/build-resources/.../go-coverage.yaml]: <https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/go-coverage.yaml>
+[senzing-factory/build-resources/.../lint-workflows.yaml]: <https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/lint-workflows.yaml>
+[senzing-factory/build-resources/.../make-go-github-file.yaml]: <https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/make-go-github-file.yaml>
+[senzing-factory/build-resources/.../move-pr-to-done-dependabot.yaml]: <https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/move-pr-to-done-dependabot.yaml>
+[senzing-factory/github-action-docker-buildx-build]: <https://github.com/senzing-factory/github-action-docker-buildx-build>
+[senzing-factory/github-action-install-senzing-api]: <https://github.com/senzing-factory/github-action-install-senzing-api>
+[senzing-factory/github-action-make-go-tag]: <https://github.com/senzing-factory/github-action-make-go-tag>
+[super-linter]: <https://github.com/super-linter/super-linter>
