@@ -75,7 +75,7 @@ this action expedites the Go publishing process.
 ## go-test-darwin.yaml
 
 When a Pull Request is made against the `main` branch,
-this action runs `go test` with coverage testing.
+this action runs `go test` with coverage testing on macOS.
 
 - [Go Test Darwin GitHub action]
   - uses:
@@ -89,7 +89,7 @@ this action runs `go test` with coverage testing.
 ## go-test-linux.yaml
 
 When a change is committed to GitHub or a Pull Request is made against the `main` branch,
-this action runs `go test` with coverage testing.
+this action runs `go test` with coverage testing on Linux.
 
 - [Go Test Linux GitHub action]
   - uses:
@@ -102,8 +102,8 @@ this action runs `go test` with coverage testing.
 
 ## go-test-windows.yaml
 
-When a change is committed to GitHub or a Pull Request is made against the `main` branch,
-this action runs `go test` with coverage testing.
+When a Pull Request is made against the `main` branch,
+this action runs `go test` with coverage testing on Windows.
 
 - [Go Test Windows GitHub action]
   - uses:
