@@ -90,7 +90,9 @@
 ## make-go-tag.yaml
 
 - [Make Go Tag GitHub action]
-  - uses [senzing-factory/github-action-make-go-tag]
+  - uses:
+    - [actions/checkout]
+    - [senzing-factory/github-action-make-go-tag]
 
 ## move-pr-to-done-dependabot.yaml
 
