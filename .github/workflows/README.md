@@ -144,7 +144,7 @@ The `v` prefix is standard usage in [Go].
 
 ## move-pr-to-done-dependabot.yaml
 
-When a Pull Request is made against the `main` branch,
+When a Pull Request is merged into the `main` branch,
 this action moves the PR on the "Garage" project board to "Done".
 
 - [Move PR to Done Dependabot GitHub action]
