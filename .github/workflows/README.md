@@ -29,7 +29,7 @@ this action adds the issue to the "Garage" board as "Backlog".
 
 When a Dependabot Pull Request (PR) is made against the `main` branch,
 this action determines if it should be automatically approved and merged into the `main` branch.
-The PR remains on the "Garage" project board as "In Progress" for notification.
+Once this action occurs [move-pr-to-done-dependabot.yaml] moves the PR on the "Garage" project board to "Done".
 
 - [Dependabot Approve and Merge GitHub action]
   - uses [senzing-factory/build-resources/.../dependabot-approve-and-merge.yaml]
@@ -58,6 +58,7 @@ When a change is committed to GitHub or a Pull Request is made against the `main
 this action runs [golangci-lint] to run multiple linters against the code.
 
 - [Golangci Lint GitHub action]
+  - [golang-lint configuration]
   - uses:
     - [actions/checkout]
     - [senzing-factory/github-action-install-senzing-api]
@@ -120,6 +121,7 @@ When a change is committed to GitHub or a Pull Request is made against the `main
 this action runs [super-linter] to run multiple linters against the code.
 
 - [Lint Workflows GitHub action]
+  - [super-linter configuration]
   - uses [senzing-factory/build-resources/.../lint-workflows.yaml]
 
 ## make-go-github-file.yaml
@@ -167,6 +169,7 @@ this action moves the PR on the "Garage" project board to "Done".
 [Go Test Linux GitHub action]: go-test-linux.yaml
 [Go Test Windows GitHub action]: go-test-windows.yaml
 [Go]: https://go.dev/
+[golang-lint configuration]: ../../.github/.golangci.yaml
 [Golangci Lint GitHub action]: golangci-lint.yaml
 [golangci-lint]: https://github.com/golangci/golangci-lint
 [golangci/golangci-lint-action]: https://github.com/golangci/golangci-lint-action
@@ -175,6 +178,7 @@ this action moves the PR on the "Garage" project board to "Done".
 [Make Go GitHub File GitHub action]: make-go-github-file.yaml
 [Make Go Tag GitHub action]: make-go-tag.yaml
 [Move PR to Done Dependabot GitHub action]: move-pr-to-done-dependabot.yaml
+[move-pr-to-done-dependabot.yaml]: move-pr-to-done-dependabotyaml
 [Semantic Version]: https://semver.org/
 [senzing-factory/build-resources/.../add-labels-to-issue.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-labels-to-issue.yaml
 [senzing-factory/build-resources/.../add-to-project-dependabot.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/add-to-project-dependabot.yaml
@@ -187,4 +191,5 @@ this action moves the PR on the "Garage" project board to "Done".
 [senzing-factory/github-action-docker-buildx-build]: https://github.com/senzing-factory/github-action-docker-buildx-build
 [senzing-factory/github-action-install-senzing-api]: https://github.com/senzing-factory/github-action-install-senzing-api
 [senzing-factory/github-action-make-go-tag]: https://github.com/senzing-factory/github-action-make-go-tag
-[super-linter]: https://github.com/super-linter/super-linter
+[super-linter configuration] ../../.github/linters/.yaml-lint.yml
+[super-linter]: <https://github.com/super-linter/super-linter>
