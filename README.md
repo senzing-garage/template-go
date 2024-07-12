@@ -1,16 +1,18 @@
 # template-go
 
-If you are beginning your journey with
-[Senzing](https://senzing.com/),
-please start with
-[Senzing Quick Start guides](https://docs.senzing.com/quickstart/).
+If you are beginning your journey with [Senzing],
+please start with [Senzing Quick Start guides].
 
-You are in the
-[Senzing Garage](https://github.com/senzing-garage)
-where projects are "tinkered" on.
+You are in the [Senzing Garage] where projects are "tinkered" on.
 Although this GitHub repository may help you understand an approach to using Senzing,
 it's not considered to be "production ready" and is not considered to be part of the Senzing product.
 Heck, it may not even be appropriate for your application of Senzing!
+
+## :warning: WARNING: template-go is still in development :warning: _
+
+At the moment, this is "work-in-progress" with Semantic Versions of `0.n.x`.
+Although it can be reviewed and commented on,
+the recommendation is not to use it yet.
 
 ## Synopsis
 
@@ -21,7 +23,6 @@ It also shows best practices that can be retro-fitted into existing repositories
 [![Go Report Card](https://goreportcard.com/badge/github.com/senzing-garage/template-go)](https://goreportcard.com/report/github.com/senzing-garage/template-go)
 [![License](https://img.shields.io/badge/License-Apache2-brightgreen.svg)](https://github.com/senzing-garage/template-go/blob/main/LICENSE)
 
-[![gosec.yaml](https://github.com/senzing-garage/template-go/actions/workflows/gosec.yaml/badge.svg)](https://github.com/senzing-garage/template-go/actions/workflows/gosec.yaml)
 [![go-test-linux.yaml](https://github.com/senzing-garage/template-go/actions/workflows/go-test-linux.yaml/badge.svg)](https://github.com/senzing-garage/template-go/actions/workflows/go-test-linux.yaml)
 [![go-test-darwin.yaml](https://github.com/senzing-garage/template-go/actions/workflows/go-test-darwin.yaml/badge.svg)](https://github.com/senzing-garage/template-go/actions/workflows/go-test-darwin.yaml)
 [![go-test-windows.yaml](https://github.com/senzing-garage/template-go/actions/workflows/go-test-windows.yaml/badge.svg)](https://github.com/senzing-garage/template-go/actions/workflows/go-test-windows.yaml)
@@ -42,14 +43,25 @@ Aspects of the template-go repository:
 
 ## Use
 
-(TODO:)
+See [main.go] for an example of use.
 
 ## References
 
-1. [API documentation](https://pkg.go.dev/github.com/senzing-garage/template-go)
-1. [Development](docs/development.md)
-1. [Errors](docs/errors.md)
-1. [Examples](docs/examples.md)
+1. [API documentation]
+1. [Development]
+1. [Errors]
+1. [Examples]
 1. Related artifacts:
-    1. [DockerHub](https://hub.docker.com/r/senzing/template-go)
-    1. [Helm Chart](https://github.com/senzing-garage/charts/tree/main/charts/template-go)
+    1. [DockerHub]
+    1. [Helm Chart]
+
+[API documentation]: https://pkg.go.dev/github.com/senzing-garage/template-go
+[Development]: docs/development.md
+[DockerHub]: https://hub.docker.com/r/senzing/template-go
+[Errors]: docs/errors.md
+[Examples]: docs/examples.md
+[Helm Chart]: https://github.com/senzing-garage/charts/tree/main/charts/template-go
+[main.go]: main.go
+[Senzing Garage]: https://github.com/senzing-garage-garage
+[Senzing Quick Start guides]: https://docs.senzing.com/quickstart/
+[Senzing]: https://senzing.com/

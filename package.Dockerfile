@@ -18,7 +18,7 @@ FROM ${IMAGE_SENZINGAPI_RUNTIME} as senzingapi_runtime
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_GO_BUILDER} as go_builder
-ENV REFRESHED_AT=2025-06-01
+ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/template-go-builder" \
       Maintainer="support@senzing.com" \
       Version="0.0.1"
@@ -57,7 +57,7 @@ RUN mkdir -p /output \
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FPM_BUILDER} as fpm_builder
-ENV REFRESHED_AT=2024-06-01
+ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/template-go-fpm-builder" \
       Maintainer="support@senzing.com" \
       Version="0.0.1"
@@ -101,7 +101,7 @@ RUN fpm \
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} as final
-ENV REFRESHED_AT=2024-06-01
+ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/template-go" \
       Maintainer="support@senzing.com" \
       Version="0.0.1"

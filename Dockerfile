@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 
 ARG IMAGE_GO_BUILDER=golang:1.22.3-bullseye
-ARG IMAGE_FINAL=senzing/senzingapi-runtime:3.10.1
+ARG IMAGE_FINAL=senzing/senzingapi-runtime-staging:latest
 
 # -----------------------------------------------------------------------------
 # Stage: senzingapi_runtime
@@ -16,7 +16,7 @@ FROM ${IMAGE_FINAL} as senzingapi_runtime
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_GO_BUILDER} as go_builder
-ENV REFRESHED_AT=2024-06-01
+ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/template-go-builder" \
       Maintainer="support@senzing.com" \
       Version="0.0.1"
@@ -50,11 +50,12 @@ RUN mkdir -p /output \
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} as final
-ENV REFRESHED_AT=2024-06-01
+ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/template-go" \
       Maintainer="support@senzing.com" \
       Version="0.0.1"
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
+USER root
 
 # Copy local files from the Git repository.
 
@@ -63,6 +64,8 @@ COPY ./rootfs /
 # Copy files from prior stage.
 
 COPY --from=go_builder "/output/linux/template-go" "/app/template-go"
+
+# Install packages via apt-get.
 
 # Runtime environment variables.
 
