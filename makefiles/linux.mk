@@ -6,6 +6,7 @@
 
 LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/tmp/sqlite/G2C.db
+PATH := $(MAKEFILE_DIRECTORY)/bin:/$(HOME)/go/bin:$(PATH)
 
 # -----------------------------------------------------------------------------
 # OS specific targets
@@ -38,8 +39,8 @@ coverage-osarch-specific:
 
 .PHONY: documentation-osarch-specific
 documentation-osarch-specific:
-	godoc &
-	xdg-open http://localhost:6060
+	@godoc &
+	@xdg-open http://localhost:6060
 
 
 .PHONY: hello-world-osarch-specific
@@ -51,8 +52,8 @@ hello-world-osarch-specific:
 package-osarch-specific: docker-build-package
 	@mkdir -p $(TARGET_DIRECTORY) || true
 	@CONTAINER_ID=$$(docker create $(DOCKER_BUILD_IMAGE_NAME)); \
-	docker cp $$CONTAINER_ID:/output/. $(TARGET_DIRECTORY)/; \
-	docker rm -v $$CONTAINER_ID
+	@docker cp $$CONTAINER_ID:/output/. $(TARGET_DIRECTORY)/; \
+	@docker rm -v $$CONTAINER_ID
 
 
 .PHONY: run-osarch-specific

@@ -43,7 +43,7 @@ coverage-osarch-specific:
 
 .PHONY: documentation-osarch-specific
 documentation-osarch-specific:
-	godoc &
+	@godoc &
 	@open http://localhost:6060
 
 

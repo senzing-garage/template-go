@@ -127,7 +127,7 @@ build-scratch:
 
 .PHONY: docker-build
 docker-build:
-	docker build \
+	@docker build \
 		--tag $(DOCKER_IMAGE_NAME) \
 		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
 		.
@@ -150,8 +150,8 @@ coverage: coverage-osarch-specific
 .PHONY: check-coverage
 check-coverage: export SENZING_LOG_LEVEL=TRACE
 check-coverage:
-	go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
-	${GOBIN}/go-test-coverage --config=.github/coverage/.testcoverage.yaml
+	@go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
+	@${GOBIN}/go-test-coverage --config=.github/coverage/.testcoverage.yaml
 
 # -----------------------------------------------------------------------------
 # Run

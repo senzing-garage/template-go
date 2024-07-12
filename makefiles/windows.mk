@@ -17,13 +17,13 @@ build-osarch-specific: windows/amd64
 
 .PHONY: clean-osarch-specific
 clean-osarch-specific:
-	del /F /S /Q $(GOPATH)/bin/$(PROGRAM_NAME)
-	del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.html
-	del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.out
-	del /F /S /Q $(MAKEFILE_DIRECTORY)/cover.out
-	del /F /S /Q $(TARGET_DIRECTORY)
-	del /F /S /Q C:\Temp\sqlite
-	taskkill /f /t/im godoc
+	@del /F /S /Q $(GOPATH)/bin/$(PROGRAM_NAME)
+	@del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.html
+	@del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.out
+	@del /F /S /Q $(MAKEFILE_DIRECTORY)/cover.out
+	@del /F /S /Q $(TARGET_DIRECTORY)
+	@del /F /S /Q C:\Temp\sqlite
+	@taskkill /f /t/im godoc
 
 
 .PHONY: coverage-osarch-specific
