@@ -187,9 +187,7 @@ Example:
    Example:
 
     ```console
-    docker run \
-      --rm \
-      senzing/template-go
+    docker run --rm senzing/template-go
 
     ```
 
