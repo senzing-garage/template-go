@@ -34,8 +34,8 @@ GO_ARCH = $(word 2, $(GO_OSARCH))
 # Conditional assignment. ('?=')
 # Can be overridden with "export"
 
-LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 GOBIN ?= $(shell go env GOPATH)/bin
+LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 
 # Export environment variables.
 
