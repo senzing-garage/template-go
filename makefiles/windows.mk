@@ -39,6 +39,14 @@ documentation-osarch-specific:
 	@explorer http://localhost:6060
 
 
+.PHONY: docker-build-osarch-specific
+docker-build-osarch-specific:
+	@docker build \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
+		.
+
+
 .PHONY: hello-world-osarch-specific
 hello-world-osarch-specific:
 	@echo "Hello World, from windows."

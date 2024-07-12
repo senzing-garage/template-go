@@ -41,6 +41,14 @@ coverage-osarch-specific:
 	@open file://$(MAKEFILE_DIRECTORY)/coverage.html
 
 
+.PHONY: docker-build-osarch-specific
+docker-build-osarch-specific:
+	@docker build \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
+		.
+
+
 .PHONY: documentation-osarch-specific
 documentation-osarch-specific:
 	@godoc &
