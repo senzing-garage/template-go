@@ -1,4 +1,4 @@
-# Makefile for template-go.
+# Makefile for Go project
 
 # Detect the operating system and architecture.
 
