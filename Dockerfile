@@ -17,9 +17,9 @@ FROM ${IMAGE_FINAL} as senzingapi_runtime
 
 FROM ${IMAGE_GO_BUILDER} as go_builder
 ENV REFRESHED_AT=2024-07-01
-LABEL Name="senzing/template-go-builder" \
+LABEL Name="senzing/go-builder" \
       Maintainer="support@senzing.com" \
-      Version="0.0.1"
+      Version="0.1.0"
 
 # Copy local files from the Git repository.
 

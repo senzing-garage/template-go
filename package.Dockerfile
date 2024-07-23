@@ -19,9 +19,9 @@ FROM ${IMAGE_SENZINGAPI_RUNTIME} as senzingapi_runtime
 
 FROM ${IMAGE_GO_BUILDER} as go_builder
 ENV REFRESHED_AT=2024-07-01
-LABEL Name="senzing/template-go-builder" \
+LABEL Name="senzing/go-builder" \
       Maintainer="support@senzing.com" \
-      Version="0.0.1"
+      Version="0.1.0"
 
 # Build arguments.
 
@@ -58,9 +58,9 @@ RUN mkdir -p /output \
 
 FROM ${IMAGE_FPM_BUILDER} as fpm_builder
 ENV REFRESHED_AT=2024-07-01
-LABEL Name="senzing/template-go-fpm-builder" \
+LABEL Name="senzing/fpm-builder" \
       Maintainer="support@senzing.com" \
-      Version="0.0.1"
+      Version="0.1.0"
 
 # Use arguments from prior stage.
 
@@ -102,9 +102,9 @@ RUN fpm \
 
 FROM ${IMAGE_FINAL} as final
 ENV REFRESHED_AT=2024-07-01
-LABEL Name="senzing/template-go" \
+LABEL Name="senzing/final-stage" \
       Maintainer="support@senzing.com" \
-      Version="0.0.1"
+      Version="0.1.0"
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 
 # Copy local files from the Git repository.
