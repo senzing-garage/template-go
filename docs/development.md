@@ -149,8 +149,8 @@ Create a code coverage map.
    Example:
 
     ```console
-     cd ${GIT_REPOSITORY_DIR}
-     make clean documentation
+    cd ${GIT_REPOSITORY_DIR}
+    make clean documentation
 
     ```
 
@@ -167,8 +167,8 @@ Example:
 1. To stop the `godoc` server, run
 
     ```console
-     cd ${GIT_REPOSITORY_DIR}
-     make clean
+    cd ${GIT_REPOSITORY_DIR}
+    make clean
 
     ```
 
