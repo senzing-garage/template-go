@@ -22,6 +22,8 @@ BUILD_VERSION := $(shell git describe --always --tags --abbrev=0 --dirty  | sed 
 BUILD_TAG := $(shell git describe --always --tags --abbrev=0  | sed 's/v//')
 BUILD_ITERATION := $(shell git log $(BUILD_TAG)..HEAD --oneline | wc -l | sed 's/^ *//')
 GIT_REMOTE_URL := $(shell git config --get remote.origin.url)
+GIT_REPOSITORY_NAME := $(shell basename `git rev-parse --show-toplevel`)
+GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\-0//' -e 's/\-g.......//')
 GO_PACKAGE_NAME := $(shell echo $(GIT_REMOTE_URL) | sed -e 's|^git@github.com:|github.com/|' -e 's|\.git$$||' -e 's|Senzing|senzing|')
 PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
 
@@ -63,8 +65,8 @@ hello-world: hello-world-osarch-specific
 # Dependency management
 # -----------------------------------------------------------------------------
 
-.PHONY: dependencies-for-make
-dependencies-for-make:
+.PHONY: dependencies-for-development
+dependencies-for-development:
 	@go install github.com/gotesttools/gotestfmt/v2/cmd/gotestfmt@latest
 	@go install github.com/vladopajic/go-test-coverage/v2@latest
 	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.58.1
@@ -167,34 +169,7 @@ docker-run:
 run: run-osarch-specific
 
 # -----------------------------------------------------------------------------
-# Documentation
-# -----------------------------------------------------------------------------
-
-.PHONY: documentation
-documentation: documentation-osarch-specific
-
-# -----------------------------------------------------------------------------
-# Package
-# -----------------------------------------------------------------------------
-
-.PHONY: docker-build-package
-docker-build-package:
-	@docker build \
-		--build-arg BUILD_ITERATION=$(BUILD_ITERATION) \
-		--build-arg BUILD_VERSION=$(BUILD_VERSION) \
-		--build-arg GO_PACKAGE_NAME=$(GO_PACKAGE_NAME) \
-		--build-arg PROGRAM_NAME=$(PROGRAM_NAME) \
-		--no-cache \
-		--file package.Dockerfile \
-		--tag $(DOCKER_BUILD_IMAGE_NAME) \
-		.
-
-
-.PHONY: package
-package: package-osarch-specific
-
-# -----------------------------------------------------------------------------
-# Clean
+# Utility targets
 # -----------------------------------------------------------------------------
 
 .PHONY: clean

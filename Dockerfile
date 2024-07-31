@@ -67,12 +67,15 @@ COPY --from=go_builder "/output/linux/template-go" "/app/template-go"
 
 # Install packages via apt-get.
 
+# Run as non-root container
+
+USER 1001
+
 # Runtime environment variables.
 
 ENV LD_LIBRARY_PATH=/opt/senzing/g2/lib/
 
 # Runtime execution.
 
-USER 1001
 WORKDIR /app
 ENTRYPOINT ["/app/template-go"]

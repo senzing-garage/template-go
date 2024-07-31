@@ -37,7 +37,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
-    make dependencies-for-make
+    make dependencies-for-development
 
     ```
 
