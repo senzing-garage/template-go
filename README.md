@@ -54,7 +54,6 @@ See [main.go] for an example of use.
 1. [Examples]
 1. Related artifacts:
     1. [DockerHub]
-    1. [Helm Chart]
 
 [API documentation]: https://pkg.go.dev/github.com/senzing-garage/template-go
 [Development]: docs/development.md
@@ -73,11 +72,10 @@ See [main.go] for an example of use.
 [go-test-windows.yaml]: https://github.com/senzing-garage/template-go/actions/workflows/go-test-windows.yaml
 [golangci-lint.yaml Badge]: https://github.com/senzing-garage/template-go/actions/workflows/golangci-lint.yaml/badge.svg
 [golangci-lint.yaml]: https://github.com/senzing-garage/template-go/actions/workflows/golangci-lint.yaml
-[Helm Chart]: https://github.com/senzing-garage/charts/tree/main/charts/template-go
 [License Badge]: https://img.shields.io/badge/License-Apache2-brightgreen.svg
 [License]: https://github.com/senzing-garage/template-go/blob/main/LICENSE
 [main.go]: main.go
 [Package reference]: https://pkg.go.dev/github.com/senzing-garage/template-go
-[Senzing Garage]: https://github.com/senzing-garage-garage
+[Senzing Garage]: https://github.com/senzing-garage
 [Senzing Quick Start guides]: https://docs.senzing.com/quickstart/
 [Senzing]: https://senzing.com/
