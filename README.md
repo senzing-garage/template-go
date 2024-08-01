@@ -22,7 +22,6 @@ It also shows best practices that can be retro-fitted into existing repositories
 [![Go Reference](https://pkg.go.dev/badge/github.com/senzing-garage/template-go.svg)](https://pkg.go.dev/github.com/senzing-garage/template-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/senzing-garage/template-go)](https://goreportcard.com/report/github.com/senzing-garage/template-go)
 [![License](https://img.shields.io/badge/License-Apache2-brightgreen.svg)](https://github.com/senzing-garage/template-go/blob/main/LICENSE)
-
 [![go-test-linux.yaml](https://github.com/senzing-garage/template-go/actions/workflows/go-test-linux.yaml/badge.svg)](https://github.com/senzing-garage/template-go/actions/workflows/go-test-linux.yaml)
 [![go-test-darwin.yaml](https://github.com/senzing-garage/template-go/actions/workflows/go-test-darwin.yaml/badge.svg)](https://github.com/senzing-garage/template-go/actions/workflows/go-test-darwin.yaml)
 [![go-test-windows.yaml](https://github.com/senzing-garage/template-go/actions/workflows/go-test-windows.yaml/badge.svg)](https://github.com/senzing-garage/template-go/actions/workflows/go-test-windows.yaml)
