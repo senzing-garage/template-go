@@ -93,8 +93,7 @@ setup: setup-osarch-specific
 # -----------------------------------------------------------------------------
 
 .PHONY: lint
-lint:
-	@${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yaml
+lint: golangci-lint
 
 # -----------------------------------------------------------------------------
 # Build
@@ -160,7 +159,7 @@ test: test-osarch-specific
 
 .PHONY: docker-test
 docker-test:
-	@docker-compose -f docker-compose.test.yml up
+	@docker-compose -f docker-compose.test.yaml up
 
 # -----------------------------------------------------------------------------
 # Coverage
@@ -189,6 +188,19 @@ documentation: documentation-osarch-specific
 
 .PHONY: package
 package: clean package-osarch-specific
+
+
+.PHONY: docker-build-package
+docker-build-package:
+	@docker build \
+		--build-arg BUILD_ITERATION=$(BUILD_ITERATION) \
+		--build-arg BUILD_VERSION=$(BUILD_VERSION) \
+		--build-arg GO_PACKAGE_NAME=$(GO_PACKAGE_NAME) \
+		--build-arg PROGRAM_NAME=$(PROGRAM_NAME) \
+		--no-cache \
+		--file package.Dockerfile \
+		--tag $(DOCKER_BUILD_IMAGE_NAME) \
+		.
 
 # -----------------------------------------------------------------------------
 # Clean
@@ -232,3 +244,7 @@ update-pkg-cache:
 # -----------------------------------------------------------------------------
 # Specific programs
 # -----------------------------------------------------------------------------
+
+.PHONY: golangci-lint
+golangci-lint:
+	@${GOBIN}/golangci-lint run --config=.github/linters/.golangci.yaml
