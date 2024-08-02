@@ -8,18 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Thing 6
 - Thing 5
-- Thing 4
 
 ## [1.0.1] - yyyy-mm-dd
 
 ### Added to 1.0.1
 
-- Thing 3
+- Thing 4
 
 ### Fixed in 1.0.1
 
-- Thing 2
+- Thing 3
 
 ## [1.0.0] - yyyy-mm-dd
 

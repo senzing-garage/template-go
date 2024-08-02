@@ -1,8 +1,20 @@
 # template-go development
 
-## Install Go
+The following instructions are useful during development.
 
-1. See Go's [Download and install].
+**Note:** This has been tested on Linux and Darwin/macOS.
+It has not been tested on Windows.
+
+## Prerequisites for development
+
+:thinking: The following tasks need to be complete before proceeding.
+These are "one-time tasks" which may already have been completed.
+
+1. The following software programs need to be installed:
+    1. [git]
+    1. [make]
+    1. [docker]
+    1. [go]
 
 ## Install Senzing C library
 
@@ -37,7 +49,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
-    make dependencies-for-make
+    make dependencies-for-development
 
     ```
 
@@ -47,6 +59,17 @@ Since the Senzing library is a prerequisite, it must be installed first.
     ```console
     cd ${GIT_REPOSITORY_DIR}
     make dependencies
+
+    ```
+
+## Lint
+
+1. Run linting.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make lint
 
     ```
 
@@ -71,10 +94,10 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
 ## Run
 
-1. Run the binary.
+1. Run program.
    Examples:
 
-    1. linux
+    1. Linux
 
         ```console
         ${GIT_REPOSITORY_DIR}/target/linux-amd64/template-go
@@ -88,7 +111,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
         ```
 
-    1. windows
+    1. Windows
 
         ```console
         ${GIT_REPOSITORY_DIR}/target/windows-amd64/template-go
@@ -104,20 +127,9 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
     ```
 
-## Lint
-
-1. Run Go tests.
-   Example:
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    make lint
-
-    ```
-
 ## Test
 
-1. Run Go tests.
+1. Run tests.
    Example:
 
     ```console
@@ -145,7 +157,7 @@ Create a code coverage map.
 
 ## Documentation
 
-1. Start [godoc] documentation server.
+1. View documentation.
    Example:
 
     ```console
@@ -162,7 +174,7 @@ Create a code coverage map.
 the reference can be found by clicking on the following badge at the top of the README.md page.
 Example:
 
-    [![Go Reference](https://pkg.go.dev/badge/github.com/senzing-garage/template-go.svg)](https://pkg.go.dev/github.com/senzing-garage/template-go)
+    [![Go Reference Badge]][Go Reference]
 
 1. To stop the `godoc` server, run
 
@@ -188,6 +200,15 @@ Example:
 
     ```console
     docker run --rm senzing/template-go
+
+    ```
+
+1. **Optional:** Test using `docker-compose`.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make docker-test
 
     ```
 
@@ -247,10 +268,15 @@ Example:
 
     ```
 
+## References
+
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
-[Download and install]: https://go.dev/doc/install
-[Go]: https://go.dev/
-[godoc]: https://pkg.go.dev/golang.org/x/tools/cmd/godoc
+[docker]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md
+[git]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/git.md
+[Go Reference Badge]: https://pkg.go.dev/badge/github.com/senzing-garage/template-go.svg
+[Go Reference]: https://pkg.go.dev/github.com/senzing-garage/template-go
+[go]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/go.md
 [How to Install Senzing for Go Development]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-senzing-for-go-development.md
 [localhost:6060]: http://localhost:6060/pkg/github.com/senzing-garage/template-go/
+[make]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md
 [testcoverage.yaml]: ../.github/coverage/testcoverage.yaml

@@ -1,5 +1,8 @@
 # template-go
 
-Placeholder for [GitHub pages](https://pages.github.com/).
+Placeholder for [GitHub pages].
 
-See [https://garage.senzing.com/template-go](https://garage.senzing.com/template-go).
+See [GitHub page].
+
+[GitHub page]: https://garage.senzing.com/template-go
+[GitHub pages]: https://pages.github.com/
