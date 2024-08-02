@@ -167,7 +167,7 @@ Create a code coverage map.
 the reference can be found by clicking on the following badge at the top of the README.md page.
 Example:
 
-    [![Go Reference](https://pkg.go.dev/badge/github.com/senzing-garage/template-go.svg)](https://pkg.go.dev/github.com/senzing-garage/template-go)
+    [![Go Reference Badge]][Go Reference]
 
 1. To stop the `godoc` server, run
 
@@ -263,8 +263,9 @@ Example:
 
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
 [Download and install]: https://go.dev/doc/install
+[Go Reference Badge]: https://pkg.go.dev/badge/github.com/senzing-garage/template-go.svg
+[Go Reference]: https://pkg.go.dev/github.com/senzing-garage/template-go
 [Go]: https://go.dev/
-[godoc]: https://pkg.go.dev/golang.org/x/tools/cmd/godoc
 [How to Install Senzing for Go Development]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-senzing-for-go-development.md
 [localhost:6060]: http://localhost:6060/pkg/github.com/senzing-garage/template-go/
 [testcoverage.yaml]: ../.github/coverage/testcoverage.yaml
