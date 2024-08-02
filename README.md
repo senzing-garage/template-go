@@ -52,6 +52,7 @@ See [main.go] for an example of use.
 1. [Development]
 1. [Errors]
 1. [Examples]
+1. [Package reference]
 1. Related artifacts:
     1. [DockerHub]
 
