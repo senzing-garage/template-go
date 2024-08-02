@@ -134,27 +134,6 @@ build-scratch:
 docker-build: docker-build-osarch-specific
 
 # -----------------------------------------------------------------------------
-# Test
-# -----------------------------------------------------------------------------
-
-.PHONY: test
-test: test-osarch-specific
-
-# -----------------------------------------------------------------------------
-# Coverage
-# -----------------------------------------------------------------------------
-
-.PHONY: coverage
-coverage: coverage-osarch-specific
-
-
-.PHONY: check-coverage
-check-coverage: export SENZING_LOG_LEVEL=TRACE
-check-coverage:
-	@go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
-	@${GOBIN}/go-test-coverage --config=.github/coverage/.testcoverage.yaml
-
-# -----------------------------------------------------------------------------
 # Run
 # -----------------------------------------------------------------------------
 
@@ -170,6 +149,32 @@ docker-run:
 
 .PHONY: run
 run: run-osarch-specific
+
+# -----------------------------------------------------------------------------
+# Test
+# -----------------------------------------------------------------------------
+
+.PHONY: test
+test: test-osarch-specific
+
+
+.PHONY: docker-test
+docker-test:
+	@docker-compose -f docker-compose.test.yml up
+
+# -----------------------------------------------------------------------------
+# Coverage
+# -----------------------------------------------------------------------------
+
+.PHONY: coverage
+coverage: coverage-osarch-specific
+
+
+.PHONY: check-coverage
+check-coverage: export SENZING_LOG_LEVEL=TRACE
+check-coverage:
+	@go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
+	@${GOBIN}/go-test-coverage --config=.github/coverage/.testcoverage.yaml
 
 # -----------------------------------------------------------------------------
 # Documentation
