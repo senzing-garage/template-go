@@ -54,7 +54,7 @@ docker-build-osarch-specific:
 
 .PHONY: hello-world-osarch-specific
 hello-world-osarch-specific:
-	@echo "Hello World, from linux."
+	$(info Hello World, from linux.)
 
 
 .PHONY: package-osarch-specific
@@ -87,4 +87,4 @@ test-osarch-specific:
 
 .PHONY: only-linux
 only-linux:
-	@echo "Only linux has this Makefile target."
+	$(info Only linux has this Makefile target.)

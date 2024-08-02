@@ -1,5 +1,10 @@
 # template-go development
 
+The following instructions are useful during development.
+
+**Note:** This has been tested on Linux and Darwin/macOS.
+It has not been tested on Windows.
+
 ## Install Go
 
 1. See Go's [Download and install].
@@ -71,7 +76,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
 ## Run
 
-1. Run the binary.
+1. Run program.
    Examples:
 
     1. linux
@@ -106,7 +111,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
 ## Lint
 
-1. Run Go tests.
+1. Run linting.
    Example:
 
     ```console
@@ -117,7 +122,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
 ## Test
 
-1. Run Go tests.
+1. Run tests.
    Example:
 
     ```console
@@ -145,7 +150,7 @@ Create a code coverage map.
 
 ## Documentation
 
-1. Start [godoc] documentation server.
+1. View documentation.
    Example:
 
     ```console
@@ -188,6 +193,15 @@ Example:
 
     ```console
     docker run --rm senzing/template-go
+
+    ```
+
+1. **Optional:** Test using `docker-compose`.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make docker-test
 
     ```
 
