@@ -9,13 +9,13 @@ ARG IMAGE_FINAL=senzing/senzingapi-runtime-staging:latest
 # Stage: senzingapi_runtime
 # -----------------------------------------------------------------------------
 
-FROM ${IMAGE_FINAL} as senzingapi_runtime
+FROM ${IMAGE_FINAL} AS senzingapi_runtime
 
 # -----------------------------------------------------------------------------
 # Stage: builder
 # -----------------------------------------------------------------------------
 
-FROM ${IMAGE_BUILDER} as builder
+FROM ${IMAGE_BUILDER} AS builder
 ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/go-builder" \
       Maintainer="support@senzing.com" \
@@ -53,7 +53,7 @@ RUN mkdir -p /output \
 # Stage: final
 # -----------------------------------------------------------------------------
 
-FROM ${IMAGE_FINAL} as final
+FROM ${IMAGE_FINAL} AS final
 ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/template-go" \
       Maintainer="support@senzing.com" \
