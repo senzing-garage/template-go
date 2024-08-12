@@ -46,7 +46,7 @@ documentation-osarch-specific:
 
 .PHONY: docker-build-osarch-specific
 docker-build-osarch-specific:
-	@docker build \
+	@$(DOCKER_BUILDKIT) docker build \
 		--tag $(DOCKER_IMAGE_NAME) \
 		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
 		.
@@ -61,8 +61,8 @@ hello-world-osarch-specific:
 package-osarch-specific: docker-build-package
 	@mkdir -p $(TARGET_DIRECTORY) || true
 	@CONTAINER_ID=$$(docker create $(DOCKER_BUILD_IMAGE_NAME)); \
-	docker cp $$CONTAINER_ID:/output/. $(TARGET_DIRECTORY)/; \
-	docker rm -v $$CONTAINER_ID
+	@docker cp $$CONTAINER_ID:/output/. $(TARGET_DIRECTORY)/; \
+	@docker rm -v $$CONTAINER_ID
 
 
 .PHONY: run-osarch-specific
