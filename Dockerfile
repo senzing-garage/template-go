@@ -32,12 +32,12 @@ COPY . ${GOPATH}/src/template-go
 
 # Copy files from prior stage.
 
-COPY --from=senzingapi_runtime  "/opt/senzing/g2/lib/"   "/opt/senzing/g2/lib/"
-COPY --from=senzingapi_runtime  "/opt/senzing/g2/sdk/c/" "/opt/senzing/g2/sdk/c/"
+COPY --from=senzingapi_runtime  "/opt/senzing/er/lib/"   "/opt/senzing/er/lib/"
+COPY --from=senzingapi_runtime  "/opt/senzing/er/sdk/c/" "/opt/senzing/er/sdk/c/"
 
 # Set path to Senzing libs.
 
-ENV LD_LIBRARY_PATH=/opt/senzing/g2/lib/
+ENV LD_LIBRARY_PATH=/opt/senzing/er/lib/
 
 # Build go program.
 
@@ -77,7 +77,7 @@ USER 1001
 
 # Runtime environment variables.
 
-ENV LD_LIBRARY_PATH=/opt/senzing/g2/lib/
+ENV LD_LIBRARY_PATH=/opt/senzing/er/lib/
 
 # Runtime execution.
 
