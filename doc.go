@@ -1,5 +1,6 @@
 /*
-One or two sentence synopsys of the module.  The Senzing XXXX module is...
+Module template-go...
+One or two sentence synopsys of the module.
 
 # Overview
 
