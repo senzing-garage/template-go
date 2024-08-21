@@ -2,7 +2,7 @@
 # Stages
 # -----------------------------------------------------------------------------
 
-ARG IMAGE_SENZINGAPI_RUNTIME=senzing/senzingapi-runtime:3.10.1
+ARG IMAGE_SENZINGAPI_RUNTIME=senzing/senzingapi-runtime-staging:latest
 ARG IMAGE_GO_BUILDER=golang:1.22.3-bullseye
 ARG IMAGE_FPM_BUILDER=dockter/fpm:latest
 ARG IMAGE_FINAL=alpine
@@ -48,7 +48,7 @@ RUN make linux/amd64
 # Copy binaries to /output.
 
 RUN mkdir -p /output \
- && cp -R ${GOPATH}/src/${GO_PACKAGE_NAME}/target/*  /output/
+      && cp -R ${GOPATH}/src/${GO_PACKAGE_NAME}/target/*  /output/
 
 # -----------------------------------------------------------------------------
 # Stage: fpm_builder
@@ -117,8 +117,8 @@ ARG PROGRAM_NAME
 
 # Copy files from prior step.
 
-COPY --from=fpm_builder "/output/*"                                  "/output/"
-COPY --from=fpm_builder "/output/linux-amd64/${PROGRAM_NAME}"        "/output/linux-amd64/${PROGRAM_NAME}"
+COPY --from=fpm_builder "/output/*"                           "/output/"
+COPY --from=fpm_builder "/output/linux-amd64/${PROGRAM_NAME}" "/output/linux-amd64/${PROGRAM_NAME}"
 
 USER 1001
 CMD ["/bin/bash"]
