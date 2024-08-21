@@ -29,6 +29,7 @@ clean-osarch-specific:
 	@rm -fr /tmp/sqlite || true
 	@pkill godoc || true
 	@docker-compose -f docker-compose.test.yaml down 2> /dev/null
+	@docker-compose -f docker-compose.test.yaml down 2> /dev/null || true
 
 
 .PHONY: coverage-osarch-specific
