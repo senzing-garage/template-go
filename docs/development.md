@@ -212,6 +212,14 @@ Example:
 
     ```
 
+   To bring the `docker-compose` formation, run
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make clean
+
+    ```
+
 ## Package
 
 ### Package RPM and DEB files
