@@ -58,6 +58,7 @@ docker-build-osarch-specific:
 
 .PHONY: documentation-osarch-specific
 documentation-osarch-specific:
+	@pkill godoc || true
 	@godoc &
 	@open http://localhost:6060
 
