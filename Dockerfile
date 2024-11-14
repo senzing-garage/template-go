@@ -69,7 +69,7 @@ COPY ./rootfs /
 
 # Copy files from prior stage.
 
-COPY --from=builder "/output/linux/template-go" "/app/template-go"
+COPY --from=builder /output/linux/template-go /app/template-go
 
 # Run as non-root container
 
