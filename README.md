@@ -48,7 +48,7 @@ See [main.go] for an example of use.
 
 ## References
 
-1. [SDK documentation]
+1. [API documentation]
 1. [Development]
 1. [Errors]
 1. [Examples]
@@ -56,7 +56,7 @@ See [main.go] for an example of use.
 1. Related artifacts:
     1. [DockerHub]
 
-[SDK documentation]: https://pkg.go.dev/github.com/senzing-garage/template-go
+[API documentation]: https://pkg.go.dev/github.com/senzing-garage/template-go
 [Development]: docs/development.md
 [DockerHub]: https://hub.docker.com/r/senzing/template-go
 [Errors]: docs/errors.md
