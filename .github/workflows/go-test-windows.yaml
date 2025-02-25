@@ -42,7 +42,7 @@ jobs:
 
       - name: Find path
         run: |
-          echon %HOMEDRIVE%%HOMEPATH%
+          echo %HOMEDRIVE%%HOMEPATH%
           cd
           dir /s
 
