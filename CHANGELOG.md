@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- Thing 7
 - Thing 6
 - Thing 5
 
