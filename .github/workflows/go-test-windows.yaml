@@ -51,6 +51,9 @@ jobs:
       - name: Find path 3
         run: ls
 
+      - name: Find path 4
+        run: ls ${HOME}
+
       - name: Add to "Path" environment variable
         run: |
           # shellcheck disable=SC2028
