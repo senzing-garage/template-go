@@ -40,6 +40,12 @@ jobs:
         with:
           senzingsdk-repository-path: ${{ secrets.SENZING_WIN_BETA_REPOSITORY }}
 
+      - name: Find path
+        run: |
+          echon %HOMEDRIVE%%HOMEPATH%
+          cd
+          dir /s
+
       - name: Add to "Path" environment variable
         run: |
           # shellcheck disable=SC2028
