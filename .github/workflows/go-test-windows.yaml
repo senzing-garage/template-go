@@ -40,20 +40,6 @@ jobs:
         with:
           senzingsdk-repository-path: ${{ secrets.SENZING_WIN_BETA_REPOSITORY }}
 
-      - name: Find path 1
-        run: |
-          "echo HOME: ${HOME}"
-          "echo GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-
-      - name: Find path 2
-        run: pwd
-
-      - name: Find path 3
-        run: ls
-
-      - name: Find path 4
-        run: ls "${HOME}"
-
       - name: Add to "Path" environment variable
         run: |
           # shellcheck disable=SC2028
