@@ -44,8 +44,14 @@ jobs:
         run: |
           "echo HOME: ${HOME}"
           "echo GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-          "pwd"
-          "ls -la"
+          pwd
+          ls -la
+
+      - name: Find path 2
+        run: pwd
+
+      - name: Find path 3
+        run: ls -la
 
       - name: Add to "Path" environment variable
         run: |
