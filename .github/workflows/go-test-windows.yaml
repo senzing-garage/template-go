@@ -42,14 +42,10 @@ jobs:
 
       - name: Find path
         run: |
-          echo %HOMEDRIVE%%HOMEPATH%
-          echo %HOME%
-          echo $HOME
-          echo ${HOME}
-          echo %GITHUB_WORKSPACE%
-          echo ${GITHUB_WORKSPACE}
-          cd
-          dir \s
+          "echo HOME: ${HOME}"
+          "echo GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          "cd"
+          "dir /s"
 
       - name: Add to "Path" environment variable
         run: |
