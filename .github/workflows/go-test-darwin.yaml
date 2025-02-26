@@ -47,11 +47,17 @@ jobs:
       - name: Copy test database files
         run: mkdir -p /tmp/sqlite && cp testdata/sqlite/G2C.db /tmp/sqlite/
 
-      - name: Run go test
+      - name: Run go test without SENZING_PATH environment variable
         run: |
-          # shellcheck disable=SC2034
-          DYLD_LIBRARY_PATH="${HOME}/senzing/er/lib":"${HOME}/senzing/er/lib/macos"
-          LD_LIBRARY_PATH="${HOME}/senzing/er/lib":"${HOME}/senzing/er/lib/macos"
+          export DYLD_LIBRARY_PATH="${HOME}/senzing/er/lib:${HOME}/senzing/er/lib/macos"
+          export LD_LIBRARY_PATH="${HOME}/senzing/er/lib:${HOME}/senzing/er/lib/macos"
+          go test -exec "${GITHUB_WORKSPACE}/bin/macos_exec_dyld.sh" -json -v -p 1 ./...  2>&1 | tee /tmp/gotest.log | gotestfmt
+
+      - name: Run go test with SENZING_PATH environment variable
+        run: |
+          export SENZING_PATH="${HOME}/senzing"
+          export DYLD_LIBRARY_PATH="${SENZING_PATH}/er/lib:${SENZING_PATH}/er/lib/macos"
+          export LD_LIBRARY_PATH="${SENZING_PATH}/er/lib:${SENZING_PATH}/er/lib/macos"
           go test -exec "${GITHUB_WORKSPACE}/bin/macos_exec_dyld.sh" -json -v -p 1 -coverprofile=./cover.out -covermode=atomic -coverpkg=./... ./...  2>&1 | tee /tmp/gotest.log | gotestfmt
 
       - name: Store coverage file
