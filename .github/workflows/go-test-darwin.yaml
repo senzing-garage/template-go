@@ -52,8 +52,8 @@ jobs:
 
       - name: Copy /etc files
         run: |
-          mkdir -p "${SENZING_PATH}/etc"
-          cp testdata/senzing-license/g2.lic "${SENZING_PATH}/er/etc/g2.lic"
+          sudo mkdir -p "${SENZING_PATH}/etc"
+          sudo cp testdata/senzing-license/g2.lic "${SENZING_PATH}/er/etc/g2.lic"
 
       - name: Copy test database files
         run: |
