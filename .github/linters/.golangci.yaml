@@ -1,16 +1,8 @@
+version: "2"
 run:
   modules-download-mode: readonly
-  timeout: 10m
-
-output:
-  print-linter-name: false
-  show-stats: true
-  sort-results: true
-
 linters:
   enable:
-    # List generated from: https://golangci-lint.run/usage/linters/
-    # We are enabling all defaults as well as any bug/security related
     - asasalint
     - asciicheck
     - bidichk
@@ -18,19 +10,14 @@ linters:
     - contextcheck
     - copyloopvar
     - durationcheck
-    - errcheck
     - errchkjson
     - errorlint
     - exhaustive
     - gocheckcompilerdirectives
     - gochecksumtype
     - gocritic
-    - gofmt
     - gosec
-    - gosimple
     - gosmopolitan
-    - govet
-    - ineffassign
     - loggercheck
     - makezero
     - musttag
@@ -42,7 +29,23 @@ linters:
     - rowserrcheck
     - spancheck
     - sqlclosecheck
-    - staticcheck
     - testifylint
-    - unused
     - zerologlint
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
