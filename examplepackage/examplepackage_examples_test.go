@@ -19,6 +19,6 @@ func ExampleExampleImpl_SaySomething() {
 	if err != nil {
 		fmt.Print(err)
 	}
-	//Output:
-	//examplePackage: I'm here
+	// Output:
+	// examplePackage: I'm here
 }
