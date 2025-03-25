@@ -28,6 +28,10 @@ threshold:
 override:
   - threshold: 70
     path: ^cmd/
+
+exclude:
+  paths:
+    - ^cmd
 #
 # Holds regexp rules which will override thresholds for matched files or packages
 # using their paths.
