@@ -1,7 +1,6 @@
 package examplepackage_test
 
 import (
-	"context"
 	"fmt"
 	"os"
 	"testing"
@@ -48,7 +47,7 @@ func teardown() error {
 // ----------------------------------------------------------------------------
 
 func TestBasicExamplePackage_SaySomething(test *testing.T) {
-	ctx := context.TODO()
+	ctx := test.Context()
 	testObject := &examplepackage.BasicExamplePackage{
 		Something: "I'm here",
 	}
