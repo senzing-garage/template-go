@@ -10,8 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// completionCmd represents the completion command.
-var completionCmd = &cobra.Command{
+// CompletionCmd represents the completion command.
+var CompletionCmd = &cobra.Command{
 	Use:   "completion",
 	Short: "Generate bash completion for the command",
 	Long: `To load completions, run:
@@ -29,7 +29,7 @@ source < (template-go completion)
 }
 
 func init() {
-	RootCmd.AddCommand(completionCmd)
+	RootCmd.AddCommand(CompletionCmd)
 }
 
 func completionAction(out io.Writer) error {
