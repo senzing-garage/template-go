@@ -3,13 +3,14 @@
 package cmd
 
 import (
+	"fmt"
 	"io"
 	"os"
 
 	"github.com/spf13/cobra"
 )
 
-// completionCmd represents the completion command
+// completionCmd represents the completion command.
 var completionCmd = &cobra.Command{
 	Use:   "completion",
 	Short: "Generate bash completion for the command",
@@ -22,6 +23,7 @@ source < (template-go completion)
 	RunE: func(cmd *cobra.Command, args []string) error {
 		_ = cmd
 		_ = args
+
 		return completionAction(os.Stdout)
 	},
 }
@@ -31,5 +33,10 @@ func init() {
 }
 
 func completionAction(out io.Writer) error {
-	return RootCmd.GenBashCompletion(out)
+	err := RootCmd.GenBashCompletion(out)
+	if err != nil {
+		return fmt.Errorf("completionAction: %w", err)
+	}
+
+	return nil
 }

@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/cobra/doc"
 )
 
-// docsCmd represents the docs command
+// docsCmd represents the docs command.
 var docsCmd = &cobra.Command{
 	Use:   "docs",
 	Short: "Generate documentation for the command",
@@ -19,13 +19,14 @@ var docsCmd = &cobra.Command{
 		_ = args
 		dir, err := cmd.Flags().GetString("dir")
 		if err != nil {
-			return err
+			return fmt.Errorf("getting 'dir' value: %w", err)
 		}
 		if dir == "" {
 			if dir, err = os.MkdirTemp("", "template-go"); err != nil {
-				return err
+				return fmt.Errorf("constructing cobra.Command: %w", err)
 			}
 		}
+
 		return docsAction(os.Stdout, dir)
 	},
 }
@@ -37,8 +38,12 @@ func init() {
 
 func docsAction(out io.Writer, dir string) error {
 	if err := doc.GenMarkdownTree(RootCmd, dir); err != nil {
-		return err
+		return fmt.Errorf("docsAction: %w", err)
 	}
-	_, err := fmt.Fprintf(out, "Documentation successfully created in %s\n", dir)
-	return err
+
+	if _, err := fmt.Fprintf(out, "Documentation successfully created in %s\n", dir); err != nil {
+		return fmt.Errorf("printing succsss: %w", err)
+	}
+
+	return nil
 }

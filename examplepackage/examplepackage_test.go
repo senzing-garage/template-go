@@ -1,4 +1,4 @@
-package examplepackage
+package examplepackage_test
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/senzing-garage/template-go/examplepackage"
 	"github.com/stretchr/testify/require"
 )
 
@@ -19,21 +20,26 @@ func TestMain(m *testing.M) {
 		fmt.Print(err)
 		os.Exit(1)
 	}
+
 	code := m.Run()
+
 	err = teardown()
 	if err != nil {
 		fmt.Print(err)
 	}
+
 	os.Exit(code)
 }
 
 func setup() error {
 	var err error
+
 	return err
 }
 
 func teardown() error {
 	var err error
+
 	return err
 }
 
@@ -41,9 +47,9 @@ func teardown() error {
 // Test interface functions
 // ----------------------------------------------------------------------------
 
-func TestExamplePackageImpl_SaySomething(test *testing.T) {
+func TestBasicExamplePackage_SaySomething(test *testing.T) {
 	ctx := context.TODO()
-	testObject := &ExampleImpl{
+	testObject := &examplepackage.BasicExamplePackage{
 		Something: "I'm here",
 	}
 	err := testObject.SaySomething(ctx)
