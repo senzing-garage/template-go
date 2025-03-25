@@ -33,8 +33,7 @@ func init() {
 }
 
 func completionAction(out io.Writer) error {
-	err := RootCmd.GenBashCompletion(out)
-	if err != nil {
+	if err := RootCmd.GenBashCompletion(out); err != nil {
 		return fmt.Errorf("completionAction: %w", err)
 	}
 
