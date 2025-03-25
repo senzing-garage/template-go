@@ -10,7 +10,6 @@ linters:
     - canonicalheader
     - contextcheck
     - copyloopvar
-    - depguard
     - durationcheck
     - err113
     - errchkjson
@@ -60,15 +59,6 @@ linters:
       - third_party$
       - builtin$
       - examples$
-  depguard:
-    rules:
-      main:
-        list-mode: original
-        files:
-          - $all
-          - "!$test"
-        allow:
-          - $gostd
 formatters:
   enable:
     - gci
