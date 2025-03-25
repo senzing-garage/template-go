@@ -1,8 +1,6 @@
 module github.com/senzing-garage/template-go
 
-go 1.23.0
-
-toolchain go1.23.2
+go 1.24
 
 require (
 	github.com/senzing-garage/go-cmdhelping v0.3.3
