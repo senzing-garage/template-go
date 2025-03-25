@@ -7,12 +7,18 @@ linters:
     - asciicheck
     - bidichk
     - bodyclose
+    - canonicalheader
     - contextcheck
     - copyloopvar
+    - depguard
     - durationcheck
+    - err113
     - errchkjson
+    - errname
     - errorlint
     - exhaustive
+    - exhaustruct
+    - exptostd
     - gocheckcompilerdirectives
     - gochecksumtype
     - gocritic
@@ -30,6 +36,7 @@ linters:
     - spancheck
     - sqlclosecheck
     - testifylint
+    - unparam
     - zerologlint
   exclusions:
     generated: lax
@@ -43,6 +50,11 @@ linters:
       - builtin$
       - examples$
 formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
   exclusions:
     generated: lax
     paths:
