@@ -4,6 +4,7 @@ package cmd
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"github.com/senzing-garage/go-cmdhelping/cmdhelper"
@@ -70,21 +71,26 @@ func Execute() {
 	}
 }
 
-// Used in construction of cobra.Command
+// Used in construction of cobra.Command.
 func PreRun(cobraCommand *cobra.Command, args []string) {
 	cmdhelper.PreRun(cobraCommand, args, Use, ContextVariables)
 }
 
-// Used in construction of cobra.Command
+// Used in construction of cobra.Command.
 func RunE(_ *cobra.Command, _ []string) error {
 	ctx := context.Background()
-	examplePackage := &examplepackage.ExampleImpl{
+	examplePackage := &examplepackage.BasicExamplePackage{
 		Something: viper.GetString(SomethingToSay.Arg),
 	}
-	return examplePackage.SaySomething(ctx)
+
+	if err := examplePackage.SaySomething(ctx); err != nil {
+		return fmt.Errorf("examplePackage.SaySomething failed: %w", err)
+	}
+
+	return nil
 }
 
-// Used in construction of cobra.Command
+// Used in construction of cobra.Command.
 func Version() string {
 	return cmdhelper.Version(githubVersion, githubIteration)
 }
