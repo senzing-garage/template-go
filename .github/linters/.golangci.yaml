@@ -29,8 +29,8 @@ linters:
     - fatcontext
     - forbidigo
     - forcetypeassert
-    - funlen
     - funcorder
+    - funlen
     - ginkgolinter
     - gocheckcompilerdirectives
     - gochecknoglobals
