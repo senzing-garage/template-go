@@ -32,8 +32,8 @@ linters:
     - funlen
     - ginkgolinter
     - gocheckcompilerdirectives
-    # - gochecknoglobals
-    # - gochecknoinits
+    - gochecknoglobals
+    - gochecknoinits
     - gochecksumtype
     - gocognit
     - goconst
@@ -106,6 +106,9 @@ linters:
     - wrapcheck
     - wsl
     - zerologlint
+  disable:
+    - gochecknoglobals
+    - gochecknoinits
   exclusions:
     generated: lax
     presets:
