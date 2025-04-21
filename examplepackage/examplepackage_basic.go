@@ -37,7 +37,7 @@ Output
 func (examplepackage *BasicExamplePackage) SaySomething(ctx context.Context) error {
 	_ = ctx
 
-	fmt.Printf("%s: %s\n", exampleConstant, examplepackage.Something)
+	fmt.Printf("%s: %s\n", exampleConstant, examplepackage.Something) //nolint
 
 	return nil
 }
