@@ -30,6 +30,7 @@ linters:
     - forbidigo
     - forcetypeassert
     - funlen
+    - funcorder
     - ginkgolinter
     - gocheckcompilerdirectives
     - gochecknoglobals
