@@ -12,6 +12,7 @@
       "OSARCH",
       "OSTYPE",
       "SENZINGSDK",
+      "Senzing",
       "coverprofile",
       "dockter",
       "examplepackage",
@@ -23,11 +24,15 @@
       "pkill",
       "rootfs",
       "stackoverflow",
+      "szconfig",
+      "szconfigmanager",
+      "szdiagnostic",
+      "szengine",
+      "szhelpers",
+      "szproduct",
       "taskkill",
       "testcoverage",
-      "testdata",
-      "Senzing",
-      "sz*"
+      "testdata"
     ],
     "ignorePaths": [
       "Makefile",
