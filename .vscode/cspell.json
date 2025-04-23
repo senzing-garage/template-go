@@ -15,6 +15,7 @@
       "Senzing",
       "coverprofile",
       "dockter",
+      "dylib",
       "examplepackage",
       "godoc",
       "golangci",
