@@ -1,0 +1,38 @@
+{
+    // Version of the setting file.  Always 0.2
+    "version": "0.2",
+    // language - current active spelling language
+    "language": "en",
+    // words - list of words to be always considered correct
+    "words": [
+      "Senzing",
+      "SENZINGSDK",
+      "GOPATH",
+      "OSARCH",
+      "pkill",
+      "rootfs",
+      "DYLD",
+      "godoc",
+      "taskkill",
+      "dockter",
+      "gotest",
+      "gotestfmt",
+      "golangci",
+      "examplepackage",
+      "OSTYPE",
+      "ICLA",
+      "CCLA",
+      "stackoverflow",
+      "testcoverage",
+      "coverprofile",
+      "testdata"
+    ],
+    "ignorePaths": [
+      "Makefile",
+      // using misspell via golangci-lint for go files
+      // https://github.com/golangci/misspell
+      "**/*.go",
+      "**/*.mod",
+      "**/*.sum"
+    ]
+}
