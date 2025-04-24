@@ -77,6 +77,7 @@ dependencies-for-development: dependencies-for-development-osarch-specific
 	@go install golang.org/x/tools/cmd/godoc@latest
 	@go install golang.org/x/vuln/cmd/govulncheck@latest
 	@docker-compose pull 2>/dev/null || true
+	@sudo npm install -g cspell@latest
 
 
 .PHONY: dependencies
@@ -97,7 +98,7 @@ setup: setup-osarch-specific
 # -----------------------------------------------------------------------------
 
 .PHONY: lint
-lint: golangci-lint govulncheck
+lint: golangci-lint govulncheck cspell
 
 # -----------------------------------------------------------------------------
 # Build
@@ -248,6 +249,11 @@ update-pkg-cache:
 # -----------------------------------------------------------------------------
 # Specific programs
 # -----------------------------------------------------------------------------
+
+.PHONY: cspell
+cspell:
+	@cspell .
+
 
 .PHONY: golangci-lint
 golangci-lint:
