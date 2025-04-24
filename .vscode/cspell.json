@@ -7,6 +7,7 @@
     "buildx",
     "CCLA",
     "CODEOWNER",
+    "CONFIGPATH",
     "covermode",
     "coverpkg",
     "coverprofile",
@@ -29,11 +30,13 @@
     "OSARCH",
     "OSTYPE",
     "pkill",
+    "RESOURCEPATH",
     "rootfs",
     "Senzing",
     "SENZINGSDK",
     "stackoverflow",
     "stretchr",
+    "SUPPORTPATH",
     "szapi",
     "Szconfig",
     "szconfigmanager",
@@ -48,7 +51,10 @@
     "taskkill",
     "testcoverage",
     "testdata",
-    "unmarshalling"
+    "testrecords",
+    "truthset",
+    "unmarshalling",
+    "wraperror"
   ],
   "ignorePaths": [
     ".github/linters/.golangci.yaml",
