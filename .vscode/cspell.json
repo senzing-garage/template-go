@@ -1,46 +1,45 @@
 {
-    // Version of the setting file.  Always 0.2
-    "version": "0.2",
-    // language - current active spelling language
-    "language": "en",
-    // words - list of words to be always considered correct
-    "words": [
-      "CCLA",
-      "DYLD",
-      "GOPATH",
-      "ICLA",
-      "OSARCH",
-      "OSTYPE",
-      "SENZINGSDK",
-      "Senzing",
-      "coverprofile",
-      "dockter",
-      "dylib",
-      "examplepackage",
-      "godoc",
-      "golangci",
-      "gotest",
-      "gotestfmt",
-      "govulncheck",
-      "pkill",
-      "rootfs",
-      "stackoverflow",
-      "szconfig",
-      "szconfigmanager",
-      "szdiagnostic",
-      "szengine",
-      "szhelpers",
-      "szproduct",
-      "taskkill",
-      "testcoverage",
-      "testdata"
-    ],
-    "ignorePaths": [
-      "Makefile",
-      // using misspell via golangci-lint for go files
-      // https://github.com/golangci/misspell
-      "**/*.go",
-      "**/*.mod",
-      "**/*.sum"
-    ]
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "andrewslotin",
+    "buildx",
+    "CCLA",
+    "CODEOWNER",
+    "covermode",
+    "coverpkg",
+    "coverprofile",
+    "dockerhub",
+    "dockter",
+    "DYLD",
+    "examplepackage",
+    "godoc",
+    "golangci",
+    "gomod",
+    "GOPATH",
+    "gotest",
+    "gotestfmt",
+    "gotesttools",
+    "govulncheck",
+    "ICLA",
+    "OSARCH",
+    "OSTYPE",
+    "pkill",
+    "rootfs",
+    "Senzing",
+    "SENZINGSDK",
+    "stackoverflow",
+    "stretchr",
+    "taskkill",
+    "testcoverage",
+    "testdata"
+  ],
+  "ignorePaths": [
+    ".github/linters/.golangci.yaml",
+    ".gitignore",
+    "**/*.go",
+    "**/*.mod",
+    "**/*.sum",
+    "Makefile"
+  ]
 }
