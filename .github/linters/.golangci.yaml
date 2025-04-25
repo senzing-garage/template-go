@@ -134,6 +134,12 @@ linters:
     exhaustruct:
       exclude:
         - '.+/cobra\.Command$'
+    ireturn:
+      allow:
+        - anon
+        - empty
+        - error
+        - stdlib
 
 formatters:
   enable:

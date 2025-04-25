@@ -252,7 +252,17 @@ update-pkg-cache:
 
 .PHONY: cspell
 cspell:
-	@cspell .
+	@cspell lint --dot .
+
+
+.PHONY: exhaustruct
+exhaustruct:
+	exhaustruct ./...
+
+
+.PHONY: gofumpt
+gofumpt:
+	gofumpt -d ./**/*.go
 
 
 .PHONY: golangci-lint
@@ -263,3 +273,256 @@ golangci-lint:
 .PHONY: govulncheck
 govulncheck:
 	@${GOBIN}/govulncheck ./...
+
+# -----------------------------------------------------------------------------
+# Fixers
+# -----------------------------------------------------------------------------
+
+.PHONY: fix-asciicheck
+fix-asciicheck:
+	@asciicheck -fix ./...
+
+
+.PHONY: fix-bidichk
+fix-bidichk:
+	@bidichk -fix ./...
+
+
+.PHONY: fix-canonicalheader
+fix-canonicalheader:
+	@canonicalheader -fix ./...
+
+
+.PHONY: fix-copyloopvar
+fix-copyloopvar:
+	@copyloopvar -fix ./...
+
+
+.PHONY: fix-cyclop
+fix-cyclop:
+	@cyclop -fix ./...
+
+
+.PHONY: fix-dupword
+fix-dupword:
+	@dupword -fix ./...
+
+
+.PHONY: fix-durationcheck
+fix-durationcheck:
+	@durationcheck -fix ./...
+
+
+.PHONY: fix-err113
+fix-err113:
+	@err113 -fix ./...
+
+
+.PHONY: fix-errchkjson
+fix-errchkjson:
+	@errchkjson -fix ./...
+
+
+.PHONY: fix-errname
+fix-errname:
+	@errname -fix ./...
+
+
+.PHONY: fix-errorlint
+fix-errorlint:
+	@go-errorlint -fix ./...
+
+
+.PHONY: fix-exhaustive
+fix-exhaustive:
+	@go-exhaustive -fix ./...
+
+
+.PHONY: fix-exhaustruct
+fix-exhaustruct:
+	@go-exhaustruct -fix ./...
+
+
+.PHONY: fix-exptostd
+fix-exptostd:
+	@go-exptostd -fix ./...
+
+
+.PHONY: fix-fatcontext
+fix-fatcontext:
+	@go-fatcontext -fix ./...
+
+
+.PHONY: fix-ginkgolinter
+fix-ginkgolinter:
+	@go-ginkgolinter -fix ./...
+
+
+.PHONY: fix-gocheckcompilerdirectives
+fix-gocheckcompilerdirectives:
+	@go-gocheckcompilerdirectives -fix ./...
+
+
+.PHONY: fix-gochecknoglobals
+fix-gochecknoglobals:
+	@go-gochecknoglobals -fix ./...
+
+
+.PHONY: fix-godot
+fix-godot:
+	@go-godot --fix ./...
+
+
+.PHONY: fix-gofumpt
+fix-gofumpt:
+	@gofumpt -w ./**/*.go
+
+
+.PHONY: fix-grouper
+fix-grouper:
+	@grouper -fix ./...
+
+
+.PHONY: fix-ifacecheck
+fix-ifacecheck:
+	@ifacecheck -fix ./...
+
+
+.PHONY: fix-interfacebloat
+fix-interfacebloat:
+	@interfacebloat -fix ./...
+
+
+.PHONY: fix-inamedparam
+fix-inamedparam:
+	@inamedparam -fix ./...
+
+
+.PHONY: fix-ireturn
+fix-ireturn:
+	@ireturn -fix ./...
+
+
+.PHONY: fix-loggercheck
+fix-loggercheck:
+	@loggercheck -fix ./...
+
+
+.PHONY: fix-maintidx
+fix-maintidx:
+	@maintidx -fix ./...
+
+
+.PHONY: fix-mirror
+fix-mirror:
+	@mirror -fix ./...
+
+
+.PHONY: fix-mnd
+fix-mnd:
+	@mnd -fix ./...
+
+
+.PHONY: fix-nakedret
+fix-nakedret:
+	@nakedret -fix ./...
+
+
+.PHONY: fix-nilerr
+fix-nilerr:
+	@nilerr -fix ./...
+
+
+.PHONY: fix-nilnesserr
+fix-nilnesserr:
+	@nilnesserr -fix ./...
+
+
+.PHONY: fix-nilnil
+fix-nilnil:
+	@nilnil -fix ./...
+
+
+.PHONY: fix-paralleltest
+fix-paralleltest:
+	@paralleltest -fix ./...
+
+
+.PHONY: fix-perfsprint
+fix-perfsprint:
+	@perfsprint --fix ./...
+
+
+.PHONY: fix-predeclared
+fix-predeclared:
+	@predeclared -fix ./...
+
+
+.PHONY: fix-protogetter
+fix-protogetter:
+	@protogetter -fix ./...
+
+
+.PHONY: fix-rowserrcheck
+fix-rowserrcheck:
+	@rowserrcheck -fix ./...
+
+
+.PHONY: fix-spancheck
+fix-spancheck:
+	@spancheck -fix ./...
+
+
+.PHONY: fix-tagalign
+fix-tagalign:
+	@tagalign -fix ./...
+
+
+.PHONY: fix-tagliatelle
+fix-tagliatelle:
+	@tagliatelle -fix ./...
+
+
+.PHONY: fix-testableexamples
+fix-testableexamples:
+	@testableexamples -fix ./...
+
+
+.PHONY: fix-testifylint
+fix-testifylint:
+	@testifylint -fix ./...
+
+
+.PHONY: fix-testpackage
+fix-testpackage:
+	@testpackage -fix ./...
+
+
+.PHONY: fix-thelper
+fix-thelper:
+	@thelper -fix ./...
+
+
+.PHONY: fix-usestdlibvars
+fix-usestdlibvars:
+	@usestdlibvars -fix ./...
+
+
+.PHONY: fix-usetesting
+fix-usetesting:
+	@usetesting -fix ./...
+
+
+.PHONY: fix-whitespace
+fix-whitespace:
+	@whitespace -fix ./...
+
+
+.PHONY: fix-wrapcheck
+fix-wrapcheck:
+	@wrapcheck -fix ./...
+
+
+.PHONY: fix-wsl
+fix-wsl:
+	@wsl ./...
