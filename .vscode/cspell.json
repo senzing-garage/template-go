@@ -57,7 +57,9 @@
     "wraperror"
   ],
   "ignorePaths": [
+    ".git/*",
     ".github/linters/.golangci.yaml",
+    ".history/*",
     ".gitignore",
     "**/*.go",
     "**/*.mod",
