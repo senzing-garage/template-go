@@ -51,6 +51,7 @@
     "szhelpers",
     "szinterface",
     "Szproduct",
+    "SZSDK",
     "taskkill",
     "testcoverage",
     "testdata",
@@ -61,6 +62,7 @@
     "wraperror"
   ],
   "ignorePaths": [
+    ".dockerignore",
     ".git/*",
     ".github/linters/.golangci.yaml",
     ".history/*",
