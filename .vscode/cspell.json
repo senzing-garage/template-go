@@ -6,6 +6,7 @@
     "aquilax",
     "buildx",
     "CCLA",
+    "CFLAGS",
     "CODEOWNER",
     "CONFIGPATH",
     "covermode",
@@ -30,6 +31,7 @@
     "OSARCH",
     "OSTYPE",
     "pkill",
+    "pydevproject",
     "RESOURCEPATH",
     "rootfs",
     "Senzing",
@@ -46,6 +48,7 @@
     "szerror",
     "szerrors",
     "szerrortypes",
+    "szhelpers",
     "szinterface",
     "Szproduct",
     "taskkill",
@@ -54,6 +57,7 @@
     "testrecords",
     "truthset",
     "unmarshalling",
+    "USERPROFILE",
     "wraperror"
   ],
   "ignorePaths": [
