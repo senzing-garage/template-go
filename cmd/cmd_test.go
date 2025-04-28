@@ -30,8 +30,6 @@ func Test_DocsCmd(test *testing.T) {
 	require.NoError(test, err)
 }
 
-//
-
 func Test_Execute(test *testing.T) {
 	test.Parallel()
 
@@ -87,20 +85,3 @@ func Test_RootCmd(test *testing.T) {
 	err = cmd.RootCmd.RunE(cmd.RootCmd, []string{})
 	require.NoError(test, err)
 }
-
-// ----------------------------------------------------------------------------
-// Test private functions
-// ----------------------------------------------------------------------------
-
-// func Test_completionAction(test *testing.T) {
-// 	var buffer bytes.Buffer
-// 	err := completionAction(&buffer)
-// 	require.NoError(test, err)
-// }
-
-// func Test_docsAction_badDir(test *testing.T) {
-// 	var buffer bytes.Buffer
-// 	badDir := "/tmp/no/directory/exists"
-// 	err := docsAction(&buffer, badDir)
-// 	require.Error(test, err)
-// }
