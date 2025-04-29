@@ -140,6 +140,9 @@ linters:
         - empty
         - error
         - stdlib
+    mnd:
+      ignored-functions:
+        - '^logger\.Log$'
 
 formatters:
   enable:
