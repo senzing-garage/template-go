@@ -3,7 +3,7 @@ module github.com/senzing-garage/template-go
 go 1.24
 
 require (
-	github.com/senzing-garage/go-cmdhelping v0.3.3
+	github.com/senzing-garage/go-cmdhelping v0.3.4
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/viper v1.20.1
 	github.com/stretchr/testify v1.10.0
