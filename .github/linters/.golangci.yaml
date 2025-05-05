@@ -143,7 +143,6 @@ linters:
     mnd:
       ignored-functions:
         - '^logger\.Log$'
-
 formatters:
   enable:
     - gci
