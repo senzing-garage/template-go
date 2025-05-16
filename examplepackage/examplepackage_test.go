@@ -1,7 +1,6 @@
 package examplepackage_test
 
 import (
-	"fmt"
 	"os"
 	"testing"
 
@@ -16,15 +15,14 @@ import (
 func TestMain(m *testing.M) {
 	err := setup()
 	if err != nil {
-		fmt.Print(err)
-		os.Exit(1)
+		panic(err)
 	}
 
 	code := m.Run()
 
 	err = teardown()
 	if err != nil {
-		fmt.Print(err)
+		panic(err)
 	}
 
 	os.Exit(code)
@@ -47,6 +45,7 @@ func teardown() error {
 // ----------------------------------------------------------------------------
 
 func TestBasicExamplePackage_SaySomething(test *testing.T) {
+	test.Parallel()
 	ctx := test.Context()
 	testObject := &examplepackage.BasicExamplePackage{
 		Something: "I'm here",

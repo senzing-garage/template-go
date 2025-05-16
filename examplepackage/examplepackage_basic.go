@@ -37,7 +37,15 @@ Output
 func (examplepackage *BasicExamplePackage) SaySomething(ctx context.Context) error {
 	_ = ctx
 
-	fmt.Printf("%s: %s\n", exampleConstant, examplepackage.Something)
+	outputf("%s: %s\n", exampleConstant, examplepackage.Something)
 
 	return nil
+}
+
+// ----------------------------------------------------------------------------
+// Private functions
+// ----------------------------------------------------------------------------
+
+func outputf(format string, message ...any) {
+	fmt.Printf(format, message...) //nolint
 }
