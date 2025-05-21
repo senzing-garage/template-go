@@ -4,12 +4,12 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 	"os"
 
 	"github.com/senzing-garage/go-cmdhelping/cmdhelper"
 	"github.com/senzing-garage/go-cmdhelping/option"
 	"github.com/senzing-garage/go-cmdhelping/option/optiontype"
+	"github.com/senzing-garage/go-helpers/wraperror"
 	"github.com/senzing-garage/template-go/examplepackage"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -83,11 +83,12 @@ func RunE(_ *cobra.Command, _ []string) error {
 		Something: viper.GetString(SomethingToSay.Arg),
 	}
 
-	if err := examplePackage.SaySomething(ctx); err != nil {
-		return fmt.Errorf("examplePackage.SaySomething failed: %w", err)
+	err := examplePackage.SaySomething(ctx)
+	if err != nil {
+		return wraperror.Errorf(err, "examplePackage.SaySomething failed")
 	}
 
-	return nil
+	return wraperror.Errorf(err, wraperror.NoMessage)
 }
 
 // Used in construction of cobra.Command.
