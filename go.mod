@@ -1,6 +1,6 @@
 module github.com/senzing-garage/template-go
 
-go 1.24
+go 1.24.4
 
 require (
 	github.com/senzing-garage/go-cmdhelping v0.3.6
@@ -27,6 +27,6 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
-	golang.org/x/text v0.25.0 // indirect
+	golang.org/x/text v0.26.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
