@@ -100,4 +100,4 @@ jobs:
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
     uses: senzing-factory/build-resources/.github/workflows/build-failure-slack-notification.yaml@v2
     with:
-      job-status: ${{ needs.go-test-linux.outputs.status}}
+      job-status: ${{ needs.go-test-linux.outputs.status }}
