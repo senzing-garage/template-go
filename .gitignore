@@ -36,3 +36,5 @@ target/
 cover.out
 coverage.html
 coverage.out
+
+.claude/settings.local.json
