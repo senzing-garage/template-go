@@ -26,9 +26,7 @@
 
       ```json
       {
-      "ignore": [
-          "**/*.go,**/go-test*.yaml"
-      ],
+      "ignore": ["**/*.go,**/go-test*.yaml"],
       "threshold": 10
       }
       ```
