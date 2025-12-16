@@ -21,7 +21,7 @@
 go.work
 
 # macOS artifacts
-.DS_STORE
+.DS_Store
 
 # Visual Studio code
 .vscode/*
