@@ -9,6 +9,10 @@ on:
 # If not running on cron schedule
 # on: [push, workflow_dispatch]
 
+concurrency:
+  group: rule_check-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 env:
   SENZING_LOG_LEVEL: TRACE
   SENZING_TOOLS_DATABASE_URL: sqlite3://na:na@nowhere/tmp/sqlite/G2C.db

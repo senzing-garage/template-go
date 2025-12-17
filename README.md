@@ -54,7 +54,7 @@ See [main.go] for an example of use.
 1. [Examples]
 1. [Package reference]
 1. Related artifacts:
-    1. [DockerHub]
+   1. [DockerHub]
 
 [SDK documentation]: https://pkg.go.dev/github.com/senzing-garage/template-go
 [Development]: docs/development.md
