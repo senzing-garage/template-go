@@ -1,1 +1,1 @@
-# Best practices
+# template-go practices
