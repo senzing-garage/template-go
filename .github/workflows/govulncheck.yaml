@@ -1,4 +1,4 @@
-name: govulncheck
+name: Govulncheck
 
 on:
   push:

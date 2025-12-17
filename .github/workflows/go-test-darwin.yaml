@@ -80,14 +80,14 @@ jobs:
       - name: Store coverage file
         uses: actions/upload-artifact@v6
         with:
-          name: "cover-${{ matrix.senzingsdk-version }}.out"
+          name: "Cover-${{ matrix.senzingsdk-version }}.out"
           path: "./cover-${{ matrix.senzingsdk-version }}.out"
 
       - name: Upload test log
         uses: actions/upload-artifact@v6
         if: always()
         with:
-          name: "test-log-${{ matrix.senzingsdk-version }}"
+          name: "Test-log-${{ matrix.senzingsdk-version }}"
           path: "/tmp/gotest-${{ matrix.senzingsdk-version }}.log"
           if-no-files-found: error
 
