@@ -87,7 +87,7 @@ jobs:
           if-no-files-found: error
 
   coverage:
-    name: Coverage
+    name: coverage
     needs: go-test-windows
     permissions:
       contents: read
