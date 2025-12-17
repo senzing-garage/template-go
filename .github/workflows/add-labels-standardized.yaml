@@ -7,7 +7,7 @@ on:
       - reopened
 
 concurrency:
-  group: rule_check-${{ github.head_ref || github.ref_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 
 permissions: {}
