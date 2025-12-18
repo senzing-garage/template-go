@@ -8,7 +8,7 @@ Although this GitHub repository may help you understand an approach to using Sen
 it's not considered to be "production ready" and is not considered to be part of the Senzing product.
 Heck, it may not even be appropriate for your application of Senzing!
 
-## :warning: WARNING: template-go is still in development :warning: _
+## :warning: WARNING: template-go is still in development :warning: \_
 
 At the moment, this is "work-in-progress" with Semantic Versions of `0.n.x`.
 Although it can be reviewed and commented on,
@@ -54,7 +54,7 @@ See [main.go] for an example of use.
 1. [Examples]
 1. [Package reference]
 1. Related artifacts:
-    1. [DockerHub]
+   1. [DockerHub]
 
 [SDK documentation]: https://pkg.go.dev/github.com/senzing-garage/template-go
 [Development]: docs/development.md
