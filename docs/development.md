@@ -96,6 +96,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
 1. Run program.
    Examples:
+
    1. Linux
 
       ```console
