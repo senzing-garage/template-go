@@ -8,6 +8,5 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true,
-  "makefile.configureOnOpen": false
+  "editor.formatOnSave": true
 }
