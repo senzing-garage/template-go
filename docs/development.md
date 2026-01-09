@@ -110,7 +110,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
       ```
 
-   1. Windows
+    1. Windows
 
       ```console
       ${GIT_REPOSITORY_DIR}/target/windows-amd64/template-go
