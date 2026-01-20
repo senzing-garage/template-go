@@ -5,7 +5,6 @@ on:
     branches: [main]
   schedule:
     - cron: "15 7 * * *"
-  workflow_dispatch:
 # If not running on cron schedule
 # on: [pull_request, workflow_dispatch]
 
@@ -24,7 +23,6 @@ jobs:
     name: "Go test with Senzing: ${{ matrix.senzingsdk-version }}; OS: windows-latest; Go: ${{ matrix.go }}"
     permissions:
       contents: read
-    # If not running on a cron schedule the above output can be removed
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -54,7 +52,7 @@ jobs:
         with:
           senzingsdk-version: ${{ matrix.senzingsdk-version }}
 
-      - name: Add to "Path" environment variable
+      - name: Set environment variables
         run: |
           Add-Content "$env:GITHUB_PATH" "$Env:USERPROFILE\Senzing\er\lib"
 
@@ -103,6 +101,8 @@ jobs:
   slack-notification:
     needs: [go-test-windows]
     if: ${{ always() && contains(fromJSON('["failure", "cancelled"]'), needs.go-test-windows.result ) && github.event_name == 'schedule' }}
+    # If not running on cron schedule use this if statement instead
+    # if: ${{ always() && contains(fromJSON('["failure", "cancelled"]'), needs.go-test-windows.result ) && github.ref_name == github.event.repository.default_branch }} 
     secrets:
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
     uses: senzing-factory/build-resources/.github/workflows/build-failure-slack-notification.yaml@v3
