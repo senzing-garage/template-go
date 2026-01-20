@@ -6,8 +6,7 @@ on:
   schedule:
     - cron: "15 7 * * *"
   workflow_dispatch:
-# If not running on cron schedule
-# on: [pull_request, workflow_dispatch]
+# If not running on cron schedule, remove schedule: key
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
@@ -24,7 +23,6 @@ jobs:
     name: "Go test with Senzing: ${{ matrix.senzingsdk-version }}; OS: ${{ matrix.os }}; Go: ${{ matrix.go }}"
     permissions:
       contents: read
-    # If not running on a cron schedule the above output can be removed
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
