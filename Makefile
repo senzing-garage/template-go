@@ -164,6 +164,10 @@ run: run-osarch-specific
 test: test-osarch-specific
 
 
+.PHONY: test-verbose
+test-verbose: test-verbose-osarch-specific
+
+
 .PHONY: docker-test
 docker-test:
 	@docker-compose -f docker-compose.test.yaml up
